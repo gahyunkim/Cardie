@@ -1,0 +1,42 @@
+body{
+  background: #ddd;
+  padding-top: 80px;
+  height: 100%;
+}
+a, a:hover, a:visited{
+  text-decoration: none;
+}
+.navbar {
+  background: linear-gradient(to bottom,#881c1c 0%,#6c1717 95%);
+  height: 80px;
+  border: none;
+  border-radius: 0 !important;
+}
+
+.navbar .container {
+  padding-top: 20px;
+  height: 60px;
+}
+
+.navbar-icon {
+  font-size: 30px;;
+  color: white;
+  cursor: pointer;
+  padding-right: 5px;
+  height: 50;
+}
+
+.navbar-icon:hover {
+  color: lightgrey;
+}
+
+.cardie-search {
+  width: 395px !important;
+}
+
+.center-feed{
+  background: white;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
