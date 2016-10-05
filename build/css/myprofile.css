@@ -1,0 +1,40 @@
+ .wrapper {
+  text-align: center !important;
+  overflow: hidden;
+}
+
+.section-header .container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.section-header .content {
+  position: absolute;
+  padding-left: 250px;
+  color: white;
+  text-align: center;
+  vertical-align: center;
+  top: 25%;
+}
+
+.section-header {
+  padding: 0 !important;
+}
+.section-header .parallax, .section-header .full-image {
+  height: 35vh;
+}
+.section-header .content {
+  top: 23%;
+}
+.section-header .content h1 {
+  font-size: 4em;
+  letter-spacing: 0.15em;
+}
+
+
+
+
+
+
+
