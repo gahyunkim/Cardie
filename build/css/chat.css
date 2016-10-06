@@ -1,10 +1,11 @@
-.chat-preview {
-  border-top: 1px solid blue;
-  border-bottom: 1px solid blue;
-  padding-top: 10px;
-  padding-bottom: 10px;
+body {
+  min-height: 100% !important;
 }
 
-li:active {
-  background-color: blue;
+.main-body {
+  min-height: 900px !important;
+}
+
+.material-icons.md-12 {
+  font-size: 12px;
 }
