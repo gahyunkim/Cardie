@@ -4,3 +4,7 @@ node_modules
 build/js/app.js
 
 build/.DS_STORE
+
+reports/*.aux
+reports/*.log
+reports/*.synctex.gz
