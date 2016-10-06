@@ -42,6 +42,11 @@ a {
   color: white;
 }
 
+.chat-preview {
+  color: #66cc8f;
+  text-indent: 40px;
+}
+
 .chat-head {
   height: 50px;
   padding: 10px 10px 10px 10px;
