@@ -1,0 +1,68 @@
+body {
+  padding-top: 70px;
+  min-height: 100% !important;
+}
+
+.main-body {
+  min-height: 900px !important;
+}
+
+.material-icons.md-12 {
+  font-size: 12px;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+a {
+  color: #009a3d;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: #66cc8f;
+    color: white;
+}
+
+.nav-pills > li.active > a {
+    background-color: #009a3d;
+}
+
+.panel-default > .panel-heading {
+  background-color: #009a3d;
+  box-shadow: 1px;
+  color: white;
+}
+
+.panel-default > .panel-footer {
+  background-color: #009a3d;
+  box-shadow: 1px;
+  color: white;
+}
+
+.chat-preview {
+  color: #66cc8f;
+  text-indent: 40px;
+}
+
+.chat-head {
+  height: 50px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bolder;
+}
+
+.chat-menu {
+  height: 800px;
+}
+
+.chat-body {
+  height: 750px;
+}
+
+.chat-foot {
+  height:50px;
+}

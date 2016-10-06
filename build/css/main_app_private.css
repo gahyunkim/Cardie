@@ -1,0 +1,16 @@
+.item_for_sale {
+    display: block;
+    height: 720px;
+    margin: 0 auto;
+    border: 10px white solid;
+}
+
+.throw_a_bone {
+    height: 150px;
+    margin: 275px 0 0 -70px
+}
+
+.no_dogs {
+    height: 150px;
+    margin: 275px 0 0 70px
+}
