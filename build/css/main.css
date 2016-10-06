@@ -1,6 +1,6 @@
 body{
   background: #ddd;
-  padding-top: 80px;
+  padding-top: 60px;
   height: 100%;
 }
 a, a:hover, a:visited{
@@ -22,19 +22,48 @@ a, a:hover, a:visited{
   font-size: 30px;;
   color: white;
   cursor: pointer;
-  padding-right: 5px;
-  height: 50;
+  padding: 0 20px 0 20px;
+  height: 60px;
   display: inline-block;
 }
 
+.login{
+  color: #fff;
+  padding-top: 15px;
+}
+
+.login-input{
+  border: none;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
 .navbar-icon:hover {
-  color: lightgrey;
+  color: orange;
 }
 
 .cardie_logo{
   width: 180px;
   display: inline-block;
   float: left;
+}
+
+.right-nav-icons .navbar-icon{
+  vertical-align: middle !important;
+}
+
+.profile-icon{
+  background: url('/img/francis_holds_pikachu.jpeg') 50% 50% no-repeat; /* 50% 50% centers image in div */
+  background-size: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 4px solid white;
+  margin-top: 5px;
+}
+
+.profile-icon:hover {
+  border-color: orange;
 }
 
 .center-feed{
