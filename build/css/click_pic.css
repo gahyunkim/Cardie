@@ -1,0 +1,38 @@
+.for_sale {
+    height: 130px;
+    margin: 10px 0 0 10px
+}
+
+.for_sale2 {
+    height: 150px;
+    margin: 30px 0 0 180px
+}
+
+.item_title {
+    text-align: center;
+}
+
+.user_profile {
+    margin: 0 0 0 30px
+}
+
+.user_pic {
+    height: 100px;
+    margin: 0 0 0 40px
+}
+
+.rating {
+    margin: 0 0 0 60px
+}
+
+.no_dogs {
+    height: 150px;
+}
+
+.throw_a_bone {
+    height: 150px;
+}
+
+.buttons {
+    margin: 0 0 0 220px
+}
