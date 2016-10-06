@@ -1,0 +1,33 @@
+.thumb {
+    margin-bottom: 5px;
+}
+body{
+  padding-top: 50px;
+}
+footer {
+    margin: 50px 0;
+}
+
+.seeMoreButtons{
+  text-align: center;
+}
+
+/*probably change color scheme later*/
+.btn{
+  background-color: #9FED9F;
+  border-color: #009a3d;
+  color: #0E780E;
+}
+.panel-heading{
+  background-color: #9FED9F !important;
+  border-color: #009a3d !important;
+  color: #0E780E !important;
+}
+
+.panel-default{
+  border-color: #009a3d !important;
+}
+
+.thumbnail{
+  border-color: #009a3d !important;
+}
