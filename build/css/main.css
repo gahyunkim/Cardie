@@ -38,6 +38,11 @@ a, a:hover, a:visited{
   margin-right: 10px;
 }
 
+.login-field{
+  padding-left: 5px;
+  color: #000;
+}
+
 .navbar-icon:hover {
   color: orange;
 }
