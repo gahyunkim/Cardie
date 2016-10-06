@@ -1,3 +1,6 @@
+html{
+  height: 100%;
+}
 body{
   background: #ddd;
   padding-top: 40px;
@@ -18,7 +21,7 @@ a, a:hover, a:visited{
   color: white;
   cursor: pointer;
   padding: 0 20px 0 20px;
-  height: 40px;
+  height: 50px;
   display: inline-block;
 }
 
@@ -66,9 +69,11 @@ a, a:hover, a:visited{
   border-color: orange;
 }
 
-.center-feed{
+.center-feed .container {
+  padding-top: 10px;
   background: white;
   display: block;
   margin: 0 auto;
   position: relative;
+  padding-bottom: 20px;
 }
