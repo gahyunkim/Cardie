@@ -19,8 +19,8 @@ a {
   color: #009a3d;
 }
 
-.nav>li>a:hover,
-.nav>li>a:focus {
+.nav > li > a:hover,
+.nav > li > a:focus {
     text-decoration: none;
     background-color: #66cc8f;
     color: white;
@@ -36,6 +36,12 @@ a {
   color: white;
 }
 
+.panel-default > .panel-footer {
+  background-color: #009a3d;
+  box-shadow: 1px;
+  color: white;
+}
+
 .chat-head {
   height: 50px;
   padding: 10px 10px 10px 10px;
@@ -44,6 +50,14 @@ a {
   font-weight: bolder;
 }
 
-.chat-body {
+.chat-menu {
   height: 800px;
+}
+
+.chat-body {
+  height: 750px;
+}
+
+.chat-foot {
+  height:50px;
 }
