@@ -13,6 +13,11 @@
 
 .categoriesbutton{
   margin-top: 2px;
-  margin-left: 25px;
-  padding: 10px 120px;
+  margin-left: 17px;
+  width:300px;
+}
+.descriptionbox{
+  margin-top: 27px;
+  margin-left: 35px;
+  width:330px;
 }
