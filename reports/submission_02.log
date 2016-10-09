@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.7)  6 OCT 2016 17:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.7)  8 OCT 2016 20:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -179,68 +179,79 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--34
 
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+<../build/img/screen_07.png, id=22, 1686.3pt x 980.66376pt>
+File: ../build/img/screen_07.png Graphic file (type png)
+
+<use ../build/img/screen_07.png>
+Package pdftex.def Info: ../build/img/screen_07.png used on input line 35.
+(pdftex.def)             Requested size: 421.57397pt x 245.16533pt.
+ [4 <../build/img/screen_07.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
-<../build/img/screen_05.png, id=25, 1927.2pt x 1058.95625pt>
+<../build/img/screen_05.png, id=28, 1927.2pt x 1058.95625pt>
 File: ../build/img/screen_05.png Graphic file (type png)
 
 <use ../build/img/screen_05.png>
-Package pdftex.def Info: ../build/img/screen_05.png used on input line 39.
+Package pdftex.def Info: ../build/img/screen_05.png used on input line 42.
 (pdftex.def)             Requested size: 481.79883pt x 264.73842pt.
  [5 <../build/img/screen_05.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
 
  []
 
-<../build/img/screen_04.png, id=29, 1239.63126pt x 1044.90375pt>
+<../build/img/screen_04.png, id=32, 1239.63126pt x 1044.90375pt>
 File: ../build/img/screen_04.png Graphic file (type png)
 
 <use ../build/img/screen_04.png>
-Package pdftex.def Info: ../build/img/screen_04.png used on input line 45.
+Package pdftex.def Info: ../build/img/screen_04.png used on input line 48.
 (pdftex.def)             Requested size: 495.84372pt x 417.9541pt.
  [6 <../build/img/screen_04.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-<../build/img/screen_06.png, id=34, 1239.63126pt x 1044.90375pt>
+<../build/img/screen_06.png, id=37, 1239.63126pt x 1044.90375pt>
 File: ../build/img/screen_06.png Graphic file (type png)
 
 <use ../build/img/screen_06.png>
-Package pdftex.def Info: ../build/img/screen_06.png used on input line 51.
+Package pdftex.def Info: ../build/img/screen_06.png used on input line 54.
 (pdftex.def)             Requested size: 495.84372pt x 417.9541pt.
  [7 <../build/img/screen_06.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
-<../build/img/screen_09.png, id=38, 1927.2pt x 1058.95625pt>
+<../build/img/screen_09.png, id=41, 1927.2pt x 1058.95625pt>
 File: ../build/img/screen_09.png Graphic file (type png)
 
 <use ../build/img/screen_09.png>
-Package pdftex.def Info: ../build/img/screen_09.png used on input line 57.
+Package pdftex.def Info: ../build/img/screen_09.png used on input line 60.
 (pdftex.def)             Requested size: 481.79883pt x 264.73842pt.
  [8 <../build/img/screen_09.png>]
-(./submission_02.aux) ) 
+Underfull \hbox (badness 10000) in paragraph at lines 64--80
+
+ []
+
+[9] (./submission_02.aux) ) 
 Here is how much of TeX's memory you used:
- 1517 strings out of 493029
- 22117 string characters out of 6136235
- 77487 words of memory out of 5000000
- 5056 multiletter control sequences out of 15000+600000
+ 1522 strings out of 493029
+ 22253 string characters out of 6136235
+ 78487 words of memory out of 5000000
+ 5060 multiletter control sequences out of 15000+600000
  7280 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,6n,23p,257b,191s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on submission_02.pdf (9 pages, 4093349 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+
+Output written on submission_02.pdf (10 pages, 4237279 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 63 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
