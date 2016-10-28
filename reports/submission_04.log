@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.21)  27 OCT 2016 16:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.21)  27 OCT 2016 20:20
 entering extended mode
 **submission_04.tex
 (submission_04.tex
@@ -757,26 +757,79 @@ Overfull \hbox (35.22565pt too wide) in paragraph at lines 153--155
 []
  []
 
-[2 <./ERDiagram.png>] 
+[2 <./ERDiagram.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--165
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--171
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--174
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--183
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+
 AED: lastpage setting LastPage
 [3
 
 ] (submission_04.aux) ) 
 Here is how much of TeX's memory you used:
- 16774 strings out of 493673
- 316464 string characters out of 3145579
- 454608 words of memory out of 3000000
- 19828 multiletter control sequences out of 15000+200000
- 13320 words of font info for 46 fonts, out of 3000000 for 9000
+ 16819 strings out of 493673
+ 317057 string characters out of 3145579
+ 456608 words of memory out of 3000000
+ 19851 multiletter control sequences out of 15000+200000
+ 20174 words of font info for 69 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  55i,11n,66p,416b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fil
-es/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-Output written on submission_04.pdf (3 pages, 87693 bytes).
+{C:/Program Files/MiKTeX/fonts/enc/dvips/mnsymbol/MnSymb
+olC.enc}<C:/Program Files/MiKTeX/fonts/type1/public/mnsymbol/MnSymbol7.pfb><C:/
+Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on submission_04.pdf (3 pages, 124180 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
+ 47 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -153,20 +153,39 @@
  \includegraphics[scale=.65]{ERDiagram.png}
 \end{homeworkProblem}
 \clearpage
-\begin{homeworkProblem}[Description]
-USER: Anyone with an account in the system, that is formally logged in. A USER must have a name, valid email, and location.
+\begin{homeworkProblem}[Entity Description]
+\textbf{USER}: Anyone with an account in the system, that is formally logged in. A USER must have a \emph{name}, valid \emph{email}, and \emph{location}.
 \newline
-FEED: The FEED lists ITEMS publicly open for sale by USERS.
+
+\textbf{FEED}: The FEED lists \emph{ITEMS} publicly open for sale by \textit{USERS}.
 \newline
-ITEM: A unique ITEM in our database. An item only ever belongs to a single USER. A USER can have many ITEMS for sale. An ITEM must have a photo, name, description. 
+
+\textbf{ITEM}: A unique ITEM in our database. An item only ever belongs to a single \emph{USER}. A \emph{USER} can have many ITEMS for sale. An ITEM must have a \emph{photo}, \emph{name}, \emph{description}. 
 \newline
-PRODUCT MANAGER: A interface in which a USER can see all ITEMS they have open for sale. Every USER has one and only one.
+
+\textbf{PRODUCT MANAGER}: A interface in which a USER can see all \textit{ITEMS} they have open for sale. Every \emph{USER} has one and only one.
 \newline
-CHAT: A CHAT must have exactly 2 users associated with it. A USER can have multiple CHATS with different people. 
+
+\textbf{CHAT}: A CHAT must have exactly 2 \emph{users} associated with it. A \emph{USER} can have multiple CHATS with different people. 
 \newline
-SETTINGS: The set of preferences a USER has. Ex. "Item search radius=25 miles" 
+
+\textbf{SETTINGS}: The set of preferences a \emph{USER} has. Ex. "Item search radius=25 miles" 
 \newline
-VIEWER: Someone not formally logged within our system. They have a FEED, and can look at items. Their interaction \newline
+
+\textbf{VIEWER}: Someone not formally logged within our system. They have a \emph{FEED}, and can look at \emph{items}.\newline
+\end{homeworkProblem}
+\begin{homeworkProblem}[Page/Widget Description]
+\textbf{Main UI(public and private)}: the Main UI displays the \emph{Feed} which consists of \emph{Items}. The \emph{Feed} can be utilized by either a \emph{Viewer} or a \emph{User}. \newline
+
+\textbf{Trending Items}: the Trending Items page displays an assortment of popular \emph{Item$'$s} based on category.
+\newline
+\textbf{Sell Item}: this page allows a \emph{User} to upload an \emph{Item}. \newline
+
+\textbf{User Profile}: the User Profile displays the components of the \emph{User}. It also contains its \emph{Settings} and \emph{Product Manager}. \newline
+
+\textbf{Chat}: the Chat displays all \emph{Chat} entities belonging to a \emph{User}. \newline
+ 
+\textbf{Item Manager}: the Item Manager displays the \emph{Product Manager} entity which displays all \emph{Item$'$s} put out by the \emph{User}. \newline
 \end{homeworkProblem}
  
 %----------------------------------------------------------------------------------------
