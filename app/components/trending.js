@@ -1,6 +1,13 @@
 import React from 'react';
+import Item from './item.js';
 
 export default class Trending extends React.Component{
+  constructor(props) {
+  super(props);
+  this.state = {
+    contents: []
+  };
+}
   render(){
     return(
       <div>
@@ -13,29 +20,28 @@ export default class Trending extends React.Component{
 
                 <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                   <a className="thumbnail" href="#">
-                    <img className="img-responsive" src={'http://placehold.it/400x300'}  />
+                    <img className="img-responsive" src="http://placehold.it/400x300"  alt=""/>
                   </a>
                 </div>
                 <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                   <a className="thumbnail" href="#">
-                    <img className="img-responsive" src="http://placehold.it/400x300" />
+                    <img className="img-responsive" src="http://placehold.it/400x300" alt=""/>
                   </a>
                 </div>
                 <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                   <a className="thumbnail" href="#">
-                    <img className="img-responsive" src="http://placehold.it/400x300" />
+                    <img className="img-responsive" src="http://placehold.it/400x300" alt=""/>
                   </a>
                 </div>
                 <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                   <a className="thumbnail" href="#">
-                    <img className="img-responsive" src="http://placehold.it/400x300" />
+                    <img className="img-responsive" src="http://placehold.it/400x300" alt=""/>
                   </a>
                 </div>
-                <div className="container seeMoreButtons">
                   <div id="category1" className="collapse">
                     <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                       <a className="thumbnail" href="#">
-                        <img className="img-responsive" src="http://placehold.it/400x300" />
+                        <img className="img-responsive" src="http://placehold.it/400x300" alt=""/>
                       </a>
                     </div>
                     <div className="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -54,7 +60,7 @@ export default class Trending extends React.Component{
                       </a>
                     </div>
                   </div>
-                </div>
+                  <a href="#category1" className="btn btn-info btn-color" data-toggle="collapse">See More</a>
               </div>
             </div>
           </li>
@@ -84,7 +90,6 @@ export default class Trending extends React.Component{
                     <img className="img-responsive" src="http://placehold.it/400x300" alt="" />
                   </a>
                 </div>
-                <div className="container seeMoreButtons">
                   <div id="category2" className="collapse">
                     <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                       <a className="thumbnail" href="#">
@@ -107,7 +112,7 @@ export default class Trending extends React.Component{
                       </a>
                     </div>
                   </div>
-                </div>
+                  <a href="#category2" className="btn btn-info" data-toggle="collapse">See More</a>
               </div>
             </div>
           </li>
@@ -135,7 +140,6 @@ export default class Trending extends React.Component{
                     <img className="img-responsive" src="http://placehold.it/400x300" alt="" />
                   </a>
                 </div>
-                <div className="container seeMoreButtons">
                   <div id="category3" className="collapse">
                     <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                       <a className="thumbnail" href="#">
@@ -158,7 +162,7 @@ export default class Trending extends React.Component{
                       </a>
                     </div>
                   </div>
-                </div>
+                  <a href="#category3" className="btn btn-info" data-toggle="collapse">See More</a>
               </div>
             </div>
           </li>
@@ -186,7 +190,6 @@ export default class Trending extends React.Component{
                     <img className="img-responsive" src="http://placehold.it/400x300" alt="" />
                   </a>
                 </div>
-                <div className="container seeMoreButtons">
                   <div id="category4" className="collapse">
                     <div className="col-lg-3 col-md-4 col-xs-6 thumb">
                       <a className="thumbnail" href="#">
@@ -209,7 +212,7 @@ export default class Trending extends React.Component{
                       </a>
                     </div>
                   </div>
-                </div>
+                <a href="#category4" className="btn btn-info" data-toggle="collapse">See More</a>
               </div>
             </div>
           </li>

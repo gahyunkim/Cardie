@@ -1,71 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
 
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  	<!-- The above 3 meta tags *must* come first in the head;
+    <!-- The above 3 meta tags *must* come first in the head;
 
-  	any other head content must come *after* these tags -->
+  any other head content must come *after* these tags -->
 
-  	<title>Cardie(TEMP)</title>
+    <title>Cardie(TEMP)</title>
 
-  	<!-- Bootstrap's CSS -->
+    <!-- Bootstrap's CSS -->
 
-  	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  	<!-- Custom CSS -->
-  	<link href="css/main.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/main.css" rel="stylesheet">
     <link href="css/myprofile.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-  <body>
+</head>
+
+<body>
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="#">
-            <img src="img/cardie_logo.png" alt="cardie" class="cardie_logo">
-          </a>
-        </div>
-        <div class="nav navbar-nav navbar-left">
-          <div class="navbar-icon">
-            <i class="material-icons">backup</i> Sell Item
-          </div>
-          <div class="navbar-icon">
-            <i class="material-icons">whatshot</i>Trending
-          </div>
-
-
-        </div>
-        <div class="nav navbar-nav navbar-right right-nav-icons">
-          <div class="navbar-icon" style="border-right: solid 3px white;">
-            <i class="material-icons">message</i>
-          </div>
-          <div class="navbar-icon">
-            <div class="profile-icon">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#">
+                    <img src="img/cardie_logo.png" alt="cardie" class="cardie_logo">
+                </a>
             </div>
-          </div>
+            <div class="nav navbar-nav navbar-left">
+                <div class="navbar-icon">
+                    <i class="material-icons">backup</i> Sell Item
+                </div>
+                <div class="navbar-icon">
+                    <i class="material-icons">whatshot</i>Trending
+                </div>
+
+
+            </div>
+            <div class="nav navbar-nav navbar-right right-nav-icons">
+                <div class="navbar-icon" style="border-right: solid 3px white;">
+                    <i class="material-icons">message</i>
+                </div>
+                <div class="navbar-icon">
+                    <div class="profile-icon">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </nav>
     <div class="container">
-      <!-- The row that contains the three main columns of the website. -->
-      <div class="row">
-        <div class="col-md-2">
+        <!-- The row that contains the three main columns of the website. -->
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation">DEBUG</li>
+                    <li role="presentation" id="db-reset"></li>
+                </ul>
+            </div>
+            <div class="col-md-8" id="main-feed">
+            </div>
+            <div class="col-md-2">
+            </div>
         </div>
-        <div class="col-md-7" id="main-feed">
-        </div>
-        <div class="col-md-3">
-        </div>
-      </div>
     </div>
     <script src="js/app.js"></script>
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  </body>
+</body>
+
 </html>

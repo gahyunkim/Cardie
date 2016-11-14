@@ -79,7 +79,7 @@ var initialData = {
     },
     "5" : {
       "_id" : 5,
-      "items" : [1,3]
+      "items" : [1,2,3,4,5,6,7,8]
     }
 
   },
@@ -90,6 +90,7 @@ var initialData = {
       "name" : "Lamp",
       "description" : "Nice lamp",
       "category" : "Dorm",
+      "contents" : "http://placehold.it/400x300",
       "photoID" : 1,
       "vendorID" : 1
     },
@@ -98,6 +99,7 @@ var initialData = {
       "name" : "Dog Biscuit",
       "description" : "Yummy",
       "category" : "Snacks",
+      "contents" : "http://placehold.it/400x300",
       "photoID" : 2,
       "vendorID" : 5
     },
@@ -106,7 +108,53 @@ var initialData = {
       "name" : "Apple Lightning Charging Cable",
       "description" : "Nylon Braided Cable",
       "category" : "Eletronics",
+      "contents" : "http://placehold.it/400x300",
       "photoID" : 3,
+      "vendorID" : 1
+    },
+    "4" :{
+      "_id" : 4,
+      "name" : "Computer Mouse",
+      "description" : "Cool computer mouse",
+      "category" : "Eletronics",
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 4,
+      "vendorID" : 1
+    },
+    "5" :{
+      "_id" : 5,
+      "name" : "Monitor",
+      "description" : "Next generation 20K monitor",
+      "category" : "Eletronics",
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 5,
+      "vendorID" : 1
+    },
+    "6" :{
+      "_id" : 6,
+      "name" : "Dongle",
+      "description" : "You probably lost your last one",
+      "category" : "Eletronics",
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 6,
+      "vendorID" : 1
+    },
+    "7" :{
+      "_id" : 7,
+      "name" : "Apple Watch",
+      "description" : "time at your convenience",
+      "category" : "Eletronics",
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 7,
+      "vendorID" : 1
+    },
+    "8" :{
+      "_id" : 8,
+      "name" : "tiger",
+      "description" : "this should not be in Eletronics",
+      "category" : "Eletronics",
+      "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
+      "photoID" : 8,
       "vendorID" : 1
     }
   }
