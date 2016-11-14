@@ -5,7 +5,6 @@ import Trending from './components/trending';
 import User from './components/user';
 import ProductManager from './components/productmanager';
 import Upload from './components/upload';
-
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class FeedPage extends React.Component {
