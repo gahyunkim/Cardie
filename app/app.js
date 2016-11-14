@@ -6,7 +6,7 @@ import User from './components/user';
 import ProductManager from './components/productmanager';
 import Upload from './components/upload';
 
-import { IndexRoute, Router, Route, browserHistory } from 'react-router'
+import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class FeedPage extends React.Component {
   render() {
@@ -22,7 +22,7 @@ class TrendingPage extends React.Component {
 
 class ProfilePage extends React.Component {
   render() {
-    return <User key={this.props.params.id}/>;
+    return <User key={5}/>;
   }
 }
 
@@ -53,7 +53,7 @@ class App extends React.Component {
 
 
 ReactDOM.render((
-<Router history={browserHistory}>
+<Router history={hashHistory}>
 <Route path="/" component={App}>
 {/* Show the Feed at / */}
 <IndexRoute component={FeedPage} />
