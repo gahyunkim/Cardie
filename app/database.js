@@ -6,7 +6,110 @@ var startupName = "Cardie";
 
 // Put your mock objects here, as in Workshop 4
 var initialData = {
+  // USERS
+  "users": {
+    "1" : {
+      "_id" : 1,
+      "fullName" : "Francis Phan",
+      "email" : "fphan@umass.edu",
+      "location" : "Amherst, MA",
+      "productManager" : {
+        "_id" : 1,
+        "items" : [1,3]
+      }
+    },
+    "2" : {
+      "_id" : 2,
+      "fullName" : "Richard Cui",
+      "email" : "rcui@umass.edu",
+      "location" : "Amherst, MA",
+      "productManager" : {
+        "_id" : 2,
+        "items" : []
+      }
+    },
+    "3" : {
+      "_id" : 3,
+      "fullName" : "Roman Ganchin",
+      "email" : "rganchin@umass.edu",
+      "location" : "Amherst, MA",
+      "productManager" : {
+        "_id" : 3,
+        "items" : []
+      }
+    },
+    "4" : {
+      "_id" : 4,
+      "fullName" : "Suzie Kim",
+      "email" : "gahyunkim@umass.edu",
+      "location" : "Amherst, MA",
+      "productManager" : {
+        "_id" : 4,
+        "items" : []
+      }
+    },
+    "5" : {
+      "_id" : 5,
+      "fullName" : "Cardie Duncan",
+      "email" : "cardieduncan@umass.edu",
+      "location" : "Amherst, MA",
+      "productManager" : {
+        "_id" : 5,
+        "items" : [2]
+      }
+    }
+  },
+  // FEEDS
+  "feeds" : {
+    "1" : {
+      "_id" : 1,
+      "items" : [2]
+    },
+    "2" : {
+      "_id" : 2,
+      "items" : [1,2,3]
+    },
+    "3" : {
+      "_id" : 3,
+      "items" : [1,2,3]
+    },
+    "4" : {
+      "_id" : 4,
+      "items" : [1,2,3]
+    },
+    "5" : {
+      "_id" : 5,
+      "items" : [1,3]
+    }
 
+  },
+  // ITEMS
+  "items" : {
+    "1" :{
+      "_id" : 1,
+      "name" : "Lamp",
+      "description" : "Nice lamp",
+      "category" : "Dorm",
+      "photoID" : 1,
+      "vendorID" : 1
+    },
+    "2" :{
+      "_id" : 2,
+      "name" : "Dog Biscuit",
+      "description" : "Yummy",
+      "category" : "Snacks",
+      "photoID" : 2,
+      "vendorID" : 5
+    },
+    "3" :{
+      "_id" : 3,
+      "name" : "Apple Lightning Charging Cable",
+      "description" : "Nylon Braided Cable",
+      "category" : "Eletronics",
+      "photoID" : 3,
+      "vendorID" : 1
+    }
+  }
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
