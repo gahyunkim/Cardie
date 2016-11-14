@@ -52,7 +52,7 @@ export function getFeedData(user, cb) {
 }
 
 
-function getUserProfile(userId) {
-  var item = readDocument('users', userId);
-  return item;
+export function getUserProfile(userId) {
+  var userData = readDocument('users', userId);
+  return userData;
 }
