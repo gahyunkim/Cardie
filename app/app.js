@@ -21,7 +21,7 @@ class TrendingPage extends React.Component {
 
 class ProfilePage extends React.Component {
   render() {
-    return <User key={5}/>;
+    return <User fullName="susan" user={5}/>;
   }
 }
 
