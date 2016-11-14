@@ -1,5 +1,5 @@
 {
-  "name": "team-project-client",
+  "name": "Cardie",
   "version": "0.0.1",
   "description": "Build support for the client-side of CS326 projects.",
   "author": "John Vilk <jvilk@cs.umass.edu>",
@@ -16,8 +16,10 @@
     "babel-preset-react": "^6.3.13",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.14.0",
+    "history": "^1.17.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-router": "^1.0.3",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1"
   },
