@@ -5,7 +5,7 @@ export default class Upload extends React.Component{
   render(){
     return(
       <div>
-        Hello
+        UPLOAD PAGE
       </div>
     )
   }
