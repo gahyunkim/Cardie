@@ -10,7 +10,7 @@ export default class User extends React.Component{
   render(){
     return(
       <div>
-        <h1>Susie Kim</h1>
+        <h1>Cardie Duncan</h1>
         <div className="container">
           <div className="row">
             <div className="col-md-7 user-description">
@@ -21,9 +21,7 @@ export default class User extends React.Component{
                     <div className="col-md-6">
                       <div className="media">
                         <div className="media-body">
-                          <a href="https://twitter.com/NASA">
                             <font size="+1" color="black">Description</font>
-                          </a>
                         </div>
                       </div>
                     </div>
@@ -119,7 +117,7 @@ export default class User extends React.Component{
                                       </li>
                                       <li role="presentation">
                                         <a href="#"><span className="glyphicon glyphicon-envelope"></span>
-                                          Email</a>
+                                           Email</a>
                                       </li>
                                       <li role="presentation">
                                         <a href="#"><span className="glyphicon glyphicon-home"></span>
