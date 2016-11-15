@@ -21,7 +21,7 @@ class TrendingPage extends React.Component {
 
 class ProfilePage extends React.Component {
   render() {
-    return <User fullName="susan" user={5}/>;
+    return <User user={5}/>;
   }
 }
 
@@ -52,18 +52,18 @@ class App extends React.Component {
 
 
 ReactDOM.render((
-<Router history={hashHistory}>
-<Route path="/" component={App}>
-{/* Show the Feed at / */}
-<IndexRoute component={FeedPage} />
-<Route path="profile/:id" component={ProfilePage} />
-<Route path="pm/:id" component={ProductManagerPage} />
-<Route path="chat/:id" component={ChatPage} />
-<Route path="trending" component={TrendingPage} />
-<Route path="upload" component={UploadPage} />
-</Route>
-</Router>
-),
+  <Router history={hashHistory}>
+  <Route path="/" component={App}>
+  {/* Show the Feed at / */}
+  <IndexRoute component={FeedPage} />
+  <Route path="profile/:id" component={ProfilePage} />
+  <Route path="pm/:id" component={ProductManagerPage} />
+  <Route path="chat/:id" component={ChatPage} />
+  <Route path="trending" component={TrendingPage} />
+  <Route path="upload" component={UploadPage} />
+  </Route>
+  </Router>
+  ),
   document.getElementById('main-feed')
 
 );
