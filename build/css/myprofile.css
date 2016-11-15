@@ -97,9 +97,15 @@ body {
   padding-top: 30px;
 }
 
-
-
-
-
-
-
+.glyphicon-plus:before {
+  margin-right: 7px;
+}
+.glyphicon-pencil:before {
+  margin-right: 7px;
+}
+.glyphicon-envelope:before {
+  margin-right: 7px;
+}
+.glyphicon-home:before {
+  margin-right: 7px;
+}

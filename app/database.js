@@ -10,6 +10,7 @@ var initialData = {
   "users": {
     "1" : {
       "_id" : 1,
+      "nickname" : "phancis",
       "fullName" : "Francis Phan",
       "email" : "fphan@umass.edu",
       "location" : "Amherst, MA",
@@ -20,6 +21,7 @@ var initialData = {
     },
     "2" : {
       "_id" : 2,
+      "nickname" : "rcui",
       "fullName" : "Richard Cui",
       "email" : "rcui@umass.edu",
       "location" : "Amherst, MA",
@@ -30,6 +32,7 @@ var initialData = {
     },
     "3" : {
       "_id" : 3,
+      "nickname" : "r-man",
       "fullName" : "Roman Ganchin",
       "email" : "rganchin@umass.edu",
       "location" : "Amherst, MA",
@@ -40,6 +43,7 @@ var initialData = {
     },
     "4" : {
       "_id" : 4,
+      "nickname" : "SuzyQ",
       "fullName" : "Suzie Kim",
       "email" : "gahyunkim@umass.edu",
       "location" : "Amherst, MA",
@@ -50,7 +54,8 @@ var initialData = {
     },
     "5" : {
       "_id" : 5,
-      "fullName" : "Cardie Duncan",
+      "username" : "DMix-Dogs",
+      "fullName2" : "Cardie Duncan",
       "email" : "cardieduncan@umass.edu",
       "location" : "Amherst, MA",
       "productManager" : {
