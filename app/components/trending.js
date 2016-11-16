@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './item.js';
+import {getItems} from '../server.js';
 
 export default class Trending extends React.Component{
   constructor(props) {
@@ -9,9 +10,14 @@ export default class Trending extends React.Component{
   };
 }
   render(){
+    var items = getItems();
+    console.log(items.contents);
     return(
       <div>
         <ul className="list-group">
+          <li>
+            <img className="img-responsive" src={items.contents} />
+          </li>
           <li className="list-group-item">
             <div className="panel panel-default">
 
