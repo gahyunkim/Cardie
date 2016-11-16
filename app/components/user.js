@@ -1,5 +1,5 @@
 import React from 'react';
-import UserDescriptionEntry from './item1';
+import UserDescriptionEntry from './userdescriptionentry';
 import {getUserProfile} from '../server';
 import {createUserDescription} from '../server';
 
@@ -51,95 +51,59 @@ export default class User extends React.Component{
                       email = {userData.email}>
                     </UserDescriptionEntry>
 
-                    <div className="row profile-update">
-                      <div className="col-md-5">
-                        <div className="media">
-                          <div className="media-body description">
-                            <font size="+1" color="black">Languages</font>
-                            <ul className="nav nav-pills nav-stacked accounts">
-                              <li role="presentation">
-                                <br></br>
-                                English
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row profile-update">
-                      <div className="col-md-5">
-                        <div className="media">
-                          <div className="media-body linked-accounts">
-                            <font size="+1" color="black">Linked Accounts</font>
-                            <ul className="nav nav-pills nav-stacked accounts">
-                              <li role="presentation">
-                                <a href="#">
-                                  <span className="glyphicon glyphicon-plus fa-fw"></span>
-                                  Facebook</a>
-                              </li>
-                              <li role="presentation">
-                                <a href="#"><span className="glyphicon glyphicon-plus"></span>
-                                Google</a>
-                            </li>
-                            <li role="presentation">
-                              <a href="#"><span className="glyphicon glyphicon-plus"></span>
-                              Linkedin</a>
-                          </li>
-                          <li role="presentation">
-                            <a href="#">
-                              <span className="glyphicon glyphicon-plus"></span>
-                              Github
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 <div className="row profile-update">
-                  <div className="col-md-5">
+                  <div className="col-md-12">
                     <div className="media">
                       <div className="media-body description">
                         <font size="+1" color="black">Skills</font>
-                        <ul className="nav nav-pills nav-stacked accounts">
-                          <li role="presentation">
-                            <br></br>
-
-                          </li>
-                        </ul>
+                          <div className="media-body">
+                            <font size="+0.5" color="black">{this.props.description}</font>
+                          </div>
+                          <div className="description">
+                          <textarea className="form-control"
+                            rows="2"
+                            placeholder= "Add a skill!"
+                            onChange={(e) => this.handleChange(e)} />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div className="row profile-update">
-                  <div className="col-md-5">
+                  <div className="col-md-12">
                     <div className="media">
                       <div className="media-body description">
                         <font size="+1" color="black">Education</font>
-                        <ul className="nav nav-pills nav-stacked accounts">
-                          <li role="presentation">
-                            <br></br>
-
-                          </li>
-                        </ul>
+                          <div className="media-body">
+                            <font size="+0.5" color="black">{this.props.description}</font>
+                          </div>
+                          <div className="description">
+                          <textarea className="form-control"
+                            rows="2"
+                            placeholder= "Add a skill!"
+                            onChange={(e) => this.handleChange(e)} />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div className="row profile-update">
-                  <div className="col-md-5">
+                  <div className="col-md-12">
                     <div className="media">
                       <div className="media-body description">
                         <font size="+1" color="black">Certification</font>
-                        <ul className="nav nav-pills nav-stacked accounts">
-                          <li role="presentation">
-                            <br></br>
-
-                          </li>
-                        </ul>
+                          <div className="media-body">
+                            <font size="+0.5" color="black">{this.props.description}</font>
+                          </div>
+                          <div className="description">
+                          <textarea className="form-control"
+                            rows="2"
+                            placeholder= "Add a skill!"
+                            onChange={(e) => this.handleChange(e)} />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -152,7 +116,7 @@ export default class User extends React.Component{
           <div className="col-md-3 user-description">
             <div className="container">
               <div className="row">
-                <div className="col-md-3 user-description">
+                <div className="col-md-4 user-description">
                   <div className="panel panel-default">
                     <div className="panel-body ">
 
@@ -160,15 +124,8 @@ export default class User extends React.Component{
                         <div className="col-md-6">
                           <div className="media">
                             <div className="media-body">
-                              <font size="+1" color="black">Settings</font>
+                              <font size="+1" color="black">Information</font>
                             </div>
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="btn-group pull-right" role="group">
-                            <button type="button" className="btn btn-default ">
-                              <font size="-1" color="009a3d">Edit</font>
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -180,16 +137,16 @@ export default class User extends React.Component{
                             <ul className="nav nav-pills nav-stacked accounts user-description">
                               <li role="presentation">
                                 <a href="#">
-                                  <span className="glyphicon glyphicon-pencil"></span>
-                                  Name</a>
+                                  <span className="glyphicon glyphicon-user"></span>
+                                  {userData.fullName}</a>
                               </li>
                               <li role="presentation">
                                 <a href="#"><span className="glyphicon glyphicon-envelope"></span>
-                                Email</a>
+                                {userData.email}</a>
                             </li>
                             <li role="presentation">
                               <a href="#"><span className="glyphicon glyphicon-home"></span>
-                              Password</a>
+                              {userData.location}</a>
                           </li>
                         </ul>
                       </div>

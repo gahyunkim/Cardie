@@ -56,7 +56,8 @@ var initialData = {
       "_id" : 5,
       "username" : "DMix-Dogs",
       "description" : "We are DMix's dogs.",
-      "fullName2" : "Cardie Duncan",
+      "languages" : "English",
+      "fullName" : "Cardie Duncan",
       "email" : "cardieduncan@umass.edu",
       "location" : "Amherst, MA",
       "feed": 5,
@@ -66,6 +67,7 @@ var initialData = {
       }
     }
   },
+
   // FEEDS
   "feeds" : {
     "1" : {
