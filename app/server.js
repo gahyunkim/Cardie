@@ -20,6 +20,7 @@ function getFeedItemSync(itemId) {
 }
 function getCategorySync(cId){
   var category = readDocument('categories', cId);
+  category.items = category.items.map(getFeedItemSync);
   return category;
 }
 //
