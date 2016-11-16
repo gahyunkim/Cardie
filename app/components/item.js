@@ -10,6 +10,7 @@ export default class Item extends React.Component{
     data = (
       <Item key = {this.state._id}
         name = {this.state.name}
+        description = {this.state.description}
         category = {this.state.category}
         contents = {this.state.contents}
         >
