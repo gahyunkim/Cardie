@@ -97,6 +97,9 @@ var initialData = {
       "name" : "Lamp",
       "description" : "Nice lamp",
       "category" : "Dorm",
+      //stores all the users that liked the item
+      "likeCounter": [2,3],
+      "dislikeCounter": [4,5],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 1,
       "vendorID" : 1
@@ -106,6 +109,9 @@ var initialData = {
       "name" : "Dog Biscuit",
       "description" : "Yummy",
       "category" : "Snacks",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 2,
       "vendorID" : 5
@@ -115,6 +121,9 @@ var initialData = {
       "name" : "Apple Lightning Charging Cable",
       "description" : "Nylon Braided Cable",
       "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 3,
       "vendorID" : 1
@@ -124,6 +133,9 @@ var initialData = {
       "name" : "Computer Mouse",
       "description" : "Cool computer mouse",
       "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 4,
       "vendorID" : 1
@@ -133,6 +145,9 @@ var initialData = {
       "name" : "Monitor",
       "description" : "Next generation 20K monitor",
       "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 5,
       "vendorID" : 1
@@ -142,6 +157,9 @@ var initialData = {
       "name" : "Dongle",
       "description" : "You probably lost your last one",
       "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 6,
       "vendorID" : 1
@@ -151,6 +169,8 @@ var initialData = {
       "name" : "Apple Watch",
       "description" : "time at your convenience",
       "category" : "Electronics",
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 7,
       "vendorID" : 1
@@ -160,6 +180,9 @@ var initialData = {
       "name" : "tiger",
       "description" : "this should not be in Electronics",
       "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
       "photoID" : 8,
       "vendorID" : 1

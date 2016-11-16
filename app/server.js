@@ -44,6 +44,18 @@ export function getItems(){
   return items;
 }
 
+export function likeFeedItem(feedItemId, userId, cb) {
+  var feedItem = readDocument('Items', feedItemId);
+  // Normally, we would check if the user already
+  // liked this comment. But we will not do that
+  // in this mock server. ('push' modifies the array
+  // by adding userId to the end)
+  feedItem.likeCounter.push(userId);
+  writeDocument('Items', feedItem);
+  // Return a resolved version of the likeCounter
+  emulateServerReturn(feedItem.likeCounter.map((userId) =>
+  readDocument('users', userId)), cb);
+}
 
 export function getUserProfile(userId) {
   var userData = readDocument('users', userId);
