@@ -12,10 +12,10 @@ export default class Item extends React.Component{
         name = {this.state.name}
         description = {this.state.description}
         category = {this.state.category}
+        likeCounter = {this.state.likeCounter}
         contents = {this.state.contents}>
       </Item>
     );
-    console.log(data);
     return(
       <div>
         {data.props.name}
