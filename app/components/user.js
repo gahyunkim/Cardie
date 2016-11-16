@@ -1,5 +1,5 @@
 import React from 'react';
-import UserDescriptionEntry from './userdescriptionentry';
+import UserDescriptionEntry from './userdescriptionentry.js';
 import {getUserProfile} from '../server';
 import {createUserDescription} from '../server';
 
