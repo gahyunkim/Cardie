@@ -7,6 +7,7 @@ export default class Item extends React.Component{
   }
   render(){
     var data;
+    console.log("here1 " + this.state);
     data = (
       <Item key = {this.state._id}
         name = {this.state.name}
@@ -16,8 +17,10 @@ export default class Item extends React.Component{
         >
       </Item>
     )
+    console.log("null?" + data);
     return(
       <div>
+        {console.log("printing"+ data.contents)}
         <ul>
           <ul>
             <div>Name: {this.state.name}</div>
