@@ -7,20 +7,18 @@ export default class Item extends React.Component{
   }
   render(){
     var data;
-    console.log("here1 " + this.state);
     data = (
       <Item key = {this.state._id}
         name = {this.state.name}
         description = {this.state.description}
         category = {this.state.category}
-        contents = {this.state.contents}
-        >
+        contents = {this.state.contents}>
       </Item>
-    )
-    console.log("null?" + data);
+    );
+    console.log(data);
     return(
       <div>
-        {console.log("printing"+ data.contents)}
+        {data.props.name}
         <ul>
           <ul>
             <div>Name: {this.state.name}</div>
