@@ -56,3 +56,11 @@ export function getUserProfile(userId) {
   var userData = readDocument('users', userId);
   return userData;
 }
+
+export function createUserDescription(content, userId, cb) {
+  var userData = readDocument('users', userId)
+  var description = userData.description;
+  userData.description.replace(description, content);
+  writeDocument('users', userId);
+  emulateServerReturn(userData, cb);
+}
