@@ -20,28 +20,46 @@ export default class Feed extends React.Component{
   }
   render(){
     var allItems = this.state.items.map((item) => {
-              console.log("here2 " +item);
-              return (
-                <Item key={item._id} data={item} />
-              );
-            })
+      console.log("here2 " +item);
+      return (
+        <Item key={item._id} data={item} />
+      );
+    })
     console.log(allItems);
-    var item
-    var text
     if(allItems.length > 0){
-      item = allItems[0].props.data.contents;
+      var itemImage
+      itemImage = allItems[0].props.data.contents;
+      return(
+        <div>
+          <div className="col-md-2">
+            <button type="button" className="dislike">
+              <img src="img/no_dogs.JPG" className="no_dogs" />
+            </button>
+          </div>
+          <div className="col-md-8">
+            <Link to={"/profile/5"}>
+              TEST FEED
+            </Link>
+            <img src={itemImage} className="item_for_sale" />
+          </div>
+          <div className="col-md-2">
+            <button type="button" className="like">
+              <img src="img/throw_a_bone.JPG" className="throw_a_bone" />
+            </button>
+          </div>
+        </div>
+      )
     }
     else{
-      text = "No More Items";
+      return(
+        <div>
+          <Link to={"/profile/5"}>
+            TEST FEED
+          </Link>
+          <h1>No More Items In Your Area</h1>
+        </div>
+      )
     }
-    return(
-      <div>
-        <Link to={"/profile/5"}>
-          TEST FEED
-        </Link>
-        <img src={item}/>
-        <h1>{text}</h1>
-      </div>
-    )
+
   }
 }
