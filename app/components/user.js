@@ -1,5 +1,5 @@
 import React from 'react';
-import UserDescriptionEntry from './userdescriptionentry.js';
+// import UserDescriptionEntry from './userdescriptionentry.js';
 import {getUserProfile} from '../server';
 import {createUserDescription} from '../server';
 
@@ -46,10 +46,29 @@ export default class User extends React.Component{
                 <div className="panel panel-default">
                   <div className="panel-body ">
 
-                    <UserDescriptionEntry user={this.props.user}
-                      description = {userData.description}
-                      email = {userData.email}>
-                    </UserDescriptionEntry>
+                    <div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="media">
+                            <div className="media-body">
+                              <font size="+1" color="black">Description</font>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12 description">
+                          <div className="media-body">
+                            <font size="+0.5" color="black">{this.props.description}</font>
+                          </div>
+                          <div className="description">
+                          <textarea className="form-control"
+                            rows="2"
+                            placeholder= "Add a description here!" />
+                        </div>
+                      </div>
+                      </div>
+                    </div>
 
 
                 <div className="row profile-update">
