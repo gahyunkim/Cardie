@@ -1,16 +1,35 @@
 .item_for_sale {
-    display: block;
-    height: 720px;
-    margin: 0 auto;
-    border: 10px white solid;
+    float: right;
+    position: relative;
+    left: -8%;
+    /* or right 50% */
+    text-align: left;
 }
 
-.throw_a_bone {
-    height: 150px;
-    margin: 275px 0 0 -70px
+.like {
+    float: left;
+    /*background-color: #4CAF50;*/
+    height: 400px;
+    width: 100px;
+    /*border:solid 1px #4CAF50;*/
+}
+
+.dislike {
+    float: right;
+    height: 400px;
+    width: 100px;
+    /*background-color: #f44336;*/
+    /*border:solid 1px #f44336;*/
 }
 
 .no_dogs {
-    height: 150px;
-    margin: 275px 0 0 70px
+    float: right;
+    height: 160px;
+    width: 80px;
+}
+
+.throw_a_bone {
+    float: left;
+    height: 160px;
+    width: 80px;
 }
