@@ -18,6 +18,11 @@ function getFeedItemSync(itemId) {
   var item = readDocument('items', itemId);
   return item;
 }
+function getCategorySync(cId){
+  var category = readDocument('categories', cId);
+  category.items = category.items.map(getFeedItemSync);
+  return category;
+}
 //
 // /**
 // * Emulates a REST call to get the feed data for a particular user.
@@ -39,6 +44,13 @@ export function getFeedData(user, cb) {
   emulateServerReturn(feedData, cb);
 }
 
+export function getCategories(user, cb){
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  feedData.categories = feedData.categories.map(getCategorySync);
+
+  emulateServerReturn(feedData, cb);
+}
 export function getItems(){
   var items = readDocument('items', 8);
   return items;

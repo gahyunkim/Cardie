@@ -72,25 +72,44 @@ var initialData = {
   "feeds" : {
     "1" : {
       "_id" : 1,
-      "items" : [2]
+      "items" : [2],
+      "categories" : ["Dorm","Snacks","Electronics"]
     },
     "2" : {
       "_id" : 2,
-      "items" : [1,2,3]
+      "items" : [1,2,3],
+      "categories" : ["Dorm","Snacks","Electronics"]
     },
     "3" : {
       "_id" : 3,
-      "items" : [1,2,3]
+      "items" : [1,2,3],
+      "categories" : ["Dorm","Snacks","Electronics"]
     },
     "4" : {
       "_id" : 4,
-      "items" : [1,2,3]
+      "items" : [1,2,3],
+      "categories" : ["Dorm","Snacks","Electronics"]
     },
     "5" : {
       "_id" : 5,
-      "items" : [1,2,3,4,5,6,7,8]
+      "items" : [1,2,3,4,5,6,7,8],
+      "categories" : ["Dorm","Snacks","Electronics"]
     }
 
+  },
+  "categories":{
+    "Dorm": {
+      "_id": "Dorm",
+      "items" : [1]
+    },
+    "Snacks":{
+      "_id": "Snacks",
+      "items": [2]
+    },
+    "Electronics":{
+      "_id": "Electronics",
+      "items":[3,4,5,6,7,8]
+    }
   },
   // ITEMS
   "items" : {
