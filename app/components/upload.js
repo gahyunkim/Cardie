@@ -2,6 +2,12 @@ import React from 'react';
 import {getUserProfile} from '../server';
 
 export default class Upload extends React.Component{
+  constructor(props) {
+  super(props);
+  this.state = {
+    contents: []
+  };
+}
   render(){
     var userData = getUserProfile(this.props.user);
     return(
@@ -38,6 +44,6 @@ export default class Upload extends React.Component{
         </div>
 
       </div>
-    )
+    );
   }
 }
