@@ -1,9 +1,9 @@
 import {readDocument, writeDocument, addDocument} from './database.js';
 
 /**
- * Emulates how a REST call is *asynchronous* -- it calls your function back
- * some time in the future with data.
- */
+* Emulates how a REST call is *asynchronous* -- it calls your function back
+* some time in the future with data.
+*/
 function emulateServerReturn(data, cb) {
   setTimeout(() => {
     cb(data);
@@ -53,7 +53,10 @@ export function getUserProfile(userId) {
 export function createUserDescription(content, userId, cb) {
   var userData = readDocument('users', userId)
   var description = userData.description;
-  userData.description.replace(description, content);
+  if (description !== "") {
+    userData.description = content;
+    // userData.description.replace(description, content);
+  }
   writeDocument('users', userId);
   emulateServerReturn(userData, cb);
 }

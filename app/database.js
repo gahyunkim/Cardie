@@ -55,6 +55,7 @@ var initialData = {
     "5" : {
       "_id" : 5,
       "username" : "DMix-Dogs",
+      "description" : "We are DMix's dogs.",
       "fullName2" : "Cardie Duncan",
       "email" : "cardieduncan@umass.edu",
       "location" : "Amherst, MA",
