@@ -1,6 +1,5 @@
 import React from 'react';
 import Item from './item.js';
-import {Link} from 'react-router';
 import {getFeedData, likeFeedItem} from '../server';
 
 export default class Feed extends React.Component{
@@ -69,9 +68,6 @@ export default class Feed extends React.Component{
            </button>
          </div>
          <div className="col-md-8">
-           <Link to={"/profile/5"}>
-             TEST FEED
-           </Link>
            {console.log(allItems[0].props.data.likeCounter[0])}
            <img src={itemImage} className="item_for_sale" />
          </div>
@@ -86,9 +82,6 @@ export default class Feed extends React.Component{
    else{
      return(
        <div>
-         <Link to={"/profile/5"}>
-           TEST FEED
-         </Link>
          <h1>No More Items In Your Area</h1>
        </div>
      )

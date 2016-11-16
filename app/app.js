@@ -39,7 +39,7 @@ class ChatPage extends React.Component {
 
 class UploadPage extends React.Component {
   render() {
-    return <Upload />;
+    return <Upload user={5}/>;
   }
 }
 class App extends React.Component {

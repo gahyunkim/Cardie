@@ -2,8 +2,15 @@ import React from 'react';
 import {getUserProfile} from '../server';
 
 export default class Upload extends React.Component{
+  constructor(props) {
+    // super() calls the parent class constructor --
+    // e.g. React.Component's constructor.
+    super(props);
+    this.state = props.data
+  }
   render(){
-    var userData = getUserProfile(this.props.user);
+    console.log(this.state);
+    var userData = getUserProfile(5);
     return(
       <div>
         <div className="panel panel-default">
