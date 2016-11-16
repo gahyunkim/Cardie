@@ -58,6 +58,7 @@ var initialData = {
       "fullName2" : "Cardie Duncan",
       "email" : "cardieduncan@umass.edu",
       "location" : "Amherst, MA",
+      "feed": 5,
       "productManager" : {
         "_id" : 5,
         "items" : [2]
@@ -112,7 +113,7 @@ var initialData = {
       "_id" : 3,
       "name" : "Apple Lightning Charging Cable",
       "description" : "Nylon Braided Cable",
-      "category" : "Eletronics",
+      "category" : "Electronics",
       "contents" : "http://placehold.it/400x300",
       "photoID" : 3,
       "vendorID" : 1
@@ -121,7 +122,7 @@ var initialData = {
       "_id" : 4,
       "name" : "Computer Mouse",
       "description" : "Cool computer mouse",
-      "category" : "Eletronics",
+      "category" : "Electronics",
       "contents" : "http://placehold.it/400x300",
       "photoID" : 4,
       "vendorID" : 1
@@ -130,7 +131,7 @@ var initialData = {
       "_id" : 5,
       "name" : "Monitor",
       "description" : "Next generation 20K monitor",
-      "category" : "Eletronics",
+      "category" : "Electronics",
       "contents" : "http://placehold.it/400x300",
       "photoID" : 5,
       "vendorID" : 1
@@ -139,7 +140,7 @@ var initialData = {
       "_id" : 6,
       "name" : "Dongle",
       "description" : "You probably lost your last one",
-      "category" : "Eletronics",
+      "category" : "Electronics",
       "contents" : "http://placehold.it/400x300",
       "photoID" : 6,
       "vendorID" : 1
@@ -148,7 +149,7 @@ var initialData = {
       "_id" : 7,
       "name" : "Apple Watch",
       "description" : "time at your convenience",
-      "category" : "Eletronics",
+      "category" : "Electronics",
       "contents" : "http://placehold.it/400x300",
       "photoID" : 7,
       "vendorID" : 1
@@ -156,8 +157,8 @@ var initialData = {
     "8" :{
       "_id" : 8,
       "name" : "tiger",
-      "description" : "this should not be in Eletronics",
-      "category" : "Eletronics",
+      "description" : "this should not be in Electronics",
+      "category" : "Electronics",
       "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
       "photoID" : 8,
       "vendorID" : 1
