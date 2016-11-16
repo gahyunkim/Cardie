@@ -99,12 +99,15 @@ var initialData = {
   },
   "categories":{
     "Dorm": {
+      "_id": "Dorm",
       "items" : [1]
     },
     "Snacks":{
+      "_id": "Snacks",
       "items": [2]
     },
     "Electronics":{
+      "_id": "Electronics",
       "items":[3,4,5,6,7,8]
     }
   },
