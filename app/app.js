@@ -6,6 +6,7 @@ import User from './components/user';
 import ProductManager from './components/productmanager.js';
 import Upload from './components/upload';
 import Item from './components/item';
+import Chat from './components/chat';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class FeedPage extends React.Component {

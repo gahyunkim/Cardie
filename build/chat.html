@@ -221,5 +221,17 @@
         <div class="col-md-2"></div>
       </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://localhost');
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below),
+    or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

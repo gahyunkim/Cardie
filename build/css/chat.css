@@ -60,7 +60,8 @@ a {
 }
 
 .chat-body {
-  height: 750px;
+  position: fixed;
+  height: 100%;
 }
 
 .chat-foot {
