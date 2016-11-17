@@ -14,6 +14,7 @@ var initialData = {
       "fullName" : "Francis Phan",
       "email" : "fphan@umass.edu",
       "location" : "Amherst, MA",
+      "feed": 1,
       "productManager" : {
         "_id" : 1,
         "items" : [1,3]
@@ -25,6 +26,7 @@ var initialData = {
       "fullName" : "Richard Cui",
       "email" : "rcui@umass.edu",
       "location" : "Amherst, MA",
+      "feed": 2,
       "productManager" : {
         "_id" : 2,
         "items" : []
@@ -36,6 +38,7 @@ var initialData = {
       "fullName" : "Roman Ganchin",
       "email" : "rganchin@umass.edu",
       "location" : "Amherst, MA",
+      "feed": 3,
       "productManager" : {
         "_id" : 3,
         "items" : []
@@ -47,6 +50,7 @@ var initialData = {
       "fullName" : "Suzie Kim",
       "email" : "gahyunkim@umass.edu",
       "location" : "Amherst, MA",
+      "feed": 4,
       "productManager" : {
         "_id" : 4,
         "items" : []
@@ -202,7 +206,7 @@ var initialData = {
       "description" : "this should not be in Electronics",
       "category" : "Electronics",
       //stores all the users that liked the item
-      "likeCounter": [],
+      "likeCounter": [5],
       "dislikeCounter": [],
       "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
       "photoID" : 8,
@@ -227,7 +231,7 @@ function JSONClone(obj) {
 /**
  * Emulates reading a "document" from a NoSQL database.
  * Doesn't do any tricky document joins, as we will cover that in the latter
- * half of the course. :)
+ * half of the course. 🙂
  */
 export function readDocument(collection, id) {
   // Clone the data. We do this to model a database, where you receive a
