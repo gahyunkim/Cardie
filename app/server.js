@@ -61,23 +61,6 @@ export function getCategories(user, cb){
 
   emulateServerReturn(feedData, cb);
 }
-export function getItem(itemId){
-  var items = readDocument('items', itemId);
-  return items;
-}
-
-export function likeFeedItem(feedItemId, userId, cb) {
-  var feedItem = readDocument('Items', feedItemId);
-  // Normally, we would check if the user already
-  // liked this comment. But we will not do that
-  // in this mock server. ('push' modifies the array
-  // by adding userId to the end)
-  feedItem.likeCounter.push(userId);
-  writeDocument('Items', feedItem);
-  // Return a resolved version of the likeCounter
-  emulateServerReturn(feedItem.likeCounter.map((userId) =>
-  readDocument('users', userId)), cb);
-}
 
 export function getUserProfile(userId) {
   var userData = readDocument('users', userId);
@@ -93,4 +76,21 @@ export function createUserDescription(content, userId, cb) {
   }
   writeDocument('users', userId);
   emulateServerReturn(userData, cb);
+}
+
+export function getItem(itemId){
+  var item = readDocument('items', itemId);
+  return item;
+}
+
+export function likeItem(itemId, userId) {
+  var item = readDocument('items', itemId);
+  item.likeCounter.push(userId);
+  writeDocument('items', item);
+}
+
+export function dislikeItem(itemId, userId) {
+  var item = readDocument('items', itemId);
+  item.dislikeCounter.push(userId);
+  writeDocument('items', item);
 }
