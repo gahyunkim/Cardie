@@ -1,7 +1,7 @@
 import React from 'react';
 // import UserDescriptionEntry from './userdescriptionentry.js';
-import {getUserProfile} from '../server';
-import {createUserDescription} from '../server';
+import {getUserProfile, createUserDescription} from '../server';
+import {Link} from 'react-router';
 
 export default class User extends React.Component{
   constructor(props) {
@@ -139,6 +139,19 @@ export default class User extends React.Component{
                   <div className="panel panel-default">
                     <div className="panel-body ">
 
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="media">
+                            <div className="media-body">
+                              <font size="+1" color="black">
+                                <Link to={"pm/"+ this.props._id}>
+                                  Product Manager
+                                </Link>
+                              </font>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <div className="row">
                         <div className="col-md-6">
                           <div className="media">

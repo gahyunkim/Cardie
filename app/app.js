@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import Feed from './components/feed';
 import Trending from './components/trending';
 import User from './components/user';
-import ProductManager from './components/productmanager';
+import ProductManager from './components/productmanager.js';
 import Upload from './components/upload';
+import Item from './components/item';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class FeedPage extends React.Component {
@@ -27,7 +28,7 @@ class ProfilePage extends React.Component {
 
 class ProductManagerPage extends React.Component {
   render() {
-    return <ProductManager key={5} />;
+    return <ProductManager pm={5} />;
   }
 }
 
@@ -51,7 +52,7 @@ class App extends React.Component {
 }
 class ItemPage extends React.Component {
   render() {
-    return <Item key={this.props.param.itemID}/>;
+    return <Item _id={this.props.params.itemID}/>;
   }
 }
 

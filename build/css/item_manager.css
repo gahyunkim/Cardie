@@ -44,6 +44,7 @@ table tr{
 }
 .check-button{
   background: #9FED9F;
+  color: black;
 }
 
 .check-button:hover{
@@ -53,6 +54,7 @@ table tr{
 
 .remove-button{
   background: #ff4d4d;
+  color: black;
 }
 
 .remove-button:hover{
