@@ -6,7 +6,11 @@ import { getUserProfile, getItem, removeItem } from '../server.js';
 export default class ProductManager extends React.Component{
   constructor(props){
     super(props);
-    this.state = props.data;
+    this.state = {
+      user: getUserProfile(this.props.pm),
+      items: getUserProfile(this.props.pm).productManager.items.map((item) => getItem(item))
+    }
+
   }
   refresh(){
     var user = getUserProfile(this.props.pm);
@@ -18,10 +22,12 @@ export default class ProductManager extends React.Component{
   handleSoldRemove(e){
     e.preventDefault();
     console.log(this);
-    removeItem(this.props.pm, e, (update) => {
+    console.log(e);
+    removeItem(this.props.pm, 2, (update) => {
       var user = getUserProfile(this.props.pm);
       var items = user.productManager.items.map((item) => getItem(item));
       this.setState(update);
+      this.refresh();
     })
   }
 

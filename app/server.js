@@ -24,7 +24,7 @@ function getCategorySync(cId){
   return category;
 }
 
-export function removeItem(userId, itemId){
+export function removeItem(userId, itemId, cb){
   var user = readDocument('users', userId);
   var items = user.productManager.items;
 
