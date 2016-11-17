@@ -25,6 +25,11 @@
   margin-left: 35px;
   width:330px;
 }
+.titlebox{
+  margin-left: 35px;
+  margin-bottom: 20px;
+  width:330px;
+}
 .expireform{
   width: 300px;
 }
@@ -33,6 +38,8 @@
 }
 .submitcancelbutton{
   position:absolute;
+  padding-left: 25px;
+  padding-right: 26px;
   margin-left: 93px;
   margin-top: 45px;
 }
