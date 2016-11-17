@@ -53,7 +53,7 @@ class App extends React.Component {
 class ItemPage extends React.Component {
   render() {
     console.log(this);
-    return <Item itemID={this.props.params.itemID}/>;
+    return <Item _id={this.props.params.itemID}/>;
   }
 }
 
