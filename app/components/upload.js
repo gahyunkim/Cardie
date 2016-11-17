@@ -6,7 +6,7 @@ export default class Upload extends React.Component{
     // super() calls the parent class constructor --
     // e.g. React.Component's constructor.
     super(props);
-    this.state = props.data
+    this.state = props.data;
   }
   render(){
     console.log(this.state);
@@ -44,8 +44,14 @@ export default class Upload extends React.Component{
                         <p>Item expires: </p>
                         <input type="date" className="form-control expireform" placeholder="Text input" />
                     </div>
-                      <div><div className="col-md-2"><button className="btn btn-default btn-lg submitsubmitbutton btn-success" type="submit">Upload <span className="glyphicon glyphicon-upload" aria-hidden="true"></span></button></div></div>
-                      <div><div className="col-md-2"><button className="btn btn-default btn-lg submitcancelbutton btn-danger" type="submit">Cancel</button></div></div>
+                      <div>
+                        <div className="col-md-2">
+                          <button className="btn btn-default btn-lg submitsubmitbutton btn-success" type="submit">
+                            Upload
+                            <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
 
             </div>
