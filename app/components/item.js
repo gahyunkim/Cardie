@@ -18,7 +18,7 @@ export default class Item extends React.Component{
     );
     return(
       <div className="col-lg-3 col-md-4 col-xs-6 thumb">
-        <a className="thumbnail" href="#">
+        <a className="thumbnail" href={"#/item/" + this.state._id}>
           <img className="img-responsive" src={this.state.contents} />
         </a>
       </div>

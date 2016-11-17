@@ -1,7 +1,6 @@
 import React from 'react';
-import Item from './item.js';
 import Category from './category.js'
-import {getFeedData, getCategories} from '../server.js';
+import {getCategories} from '../server.js';
 
 export default class Trending extends React.Component{
   constructor(props) {
