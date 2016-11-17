@@ -21,7 +21,7 @@ export default class Trending extends React.Component{
   }
   render(){
     var allCategories = this.state.categories;
-    console.log(allCategories);
+    
     return(
       <div>
         <ul className="list-group">

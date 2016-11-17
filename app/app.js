@@ -27,7 +27,7 @@ class ProfilePage extends React.Component {
 
 class ProductManagerPage extends React.Component {
   render() {
-    return <ProductManager key={5} />;
+    return <ProductManager pm={5} />;
   }
 }
 
