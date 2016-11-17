@@ -17,26 +17,11 @@ export default class Item extends React.Component{
       </Item>
     );
     return(
-      <div>
-        {data.props.name}
-        <ul>
-          <ul>
-            <div>Name: {this.state.name}</div>
-          </ul>
-
-          <ul>
-            <div>Description: {this.state.description}</div>
-          </ul>
-
-          <ul>
-            <div>Category: {this.state.category}</div>
-          </ul>
-
-          <ul>
-            <img className="img-responsive" src={this.state.contents} />
-          </ul>
-        </ul>
-    </div>
+      <div className="col-lg-3 col-md-4 col-xs-6 thumb">
+        <a className="thumbnail" href="#">
+          <img className="img-responsive" src={this.state.contents} />
+        </a>
+      </div>
     )
   }
 
