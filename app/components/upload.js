@@ -8,11 +8,17 @@ export default class Upload extends React.Component{
     // super() calls the parent class constructor --
     // e.g. React.Component's constructor.
     super(props);
-    this.state = props.data
+    this.state = {
+      titleBoxValue: "",
+      categoryBoxValue: "",
+      descriptionBoxValue: "",
+      pictureValue: ""
+    }
   }
   render(){
     console.log(this.state);
     var userData = getUserProfile(5);
+    var picture = "/img/camera-solid.jpg"
     return(
       <div>
         <div className="panel panel-default">
@@ -21,7 +27,7 @@ export default class Upload extends React.Component{
 
                 <div className="row">
                     <div className="col-md-6">
-                        <img src="/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
+                        <img src= {picture} alt="..." className="img-thumbnail imagesize" />
                     </div>
                     <div className="col-md-3"><button className="btn btn-default btn-lg buttonsize" type="submit">Choose <span className="glyphicon glyphicon-camera" aria-hidden="true"></span></button></div>
                       <div className="col-md-3 titlebox">
@@ -31,7 +37,6 @@ export default class Upload extends React.Component{
                       <option selected disabled>Category</option>
                       <option>Auto</option>
                       <option>Electronics</option>
-                      <option>Dorm</option>
                       <option>Home & Furniture</option>
                       <option>Sports & Outdoor</option>
                       <option>TV, Movies, Books</option>
@@ -50,7 +55,7 @@ export default class Upload extends React.Component{
                         <input type="date" className="form-control expireform" placeholder="Text input" />
                     </div>
                       <div className="col-md-2"><button className="btn btn-default btn-lg submitsubmitbutton btn-success" type="submit">Upload <span className="glyphicon glyphicon-upload" aria-hidden="true"></span></button></div>
-                      <div className="col-md-2"><button className="btn btn-default btn-lg submitcancelbutton btn-danger" type="submit">Cancel</button></div>
+                      <a href = "#"><div className="col-md-2"><button className="btn btn-default btn-lg submitcancelbutton btn-danger" type="submit">Cancel</button></div></a>
                     </div>
 
             </div>

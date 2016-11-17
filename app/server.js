@@ -84,3 +84,13 @@ export function createUserDescription(content, userId, cb) {
   writeDocument('users', userId);
   emulateServerReturn(userData, cb);
 }
+/*** Adds a new item to the database.*/
+export function uploadNewItem(itemName, itemDescription, itemCategory){
+  var newItem = {
+    "Item": {
+      "name" : itemName,
+      "description" : itemDescription,
+      "category" : itemCategory
+    }
+  };
+}
