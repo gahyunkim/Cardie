@@ -49,6 +49,11 @@ class App extends React.Component {
 		)
 	}
 }
+class ItemPage extends React.Component {
+  render() {
+    return <Item key={this.props.param.itemID}/>;
+  }
+}
 
 
 ReactDOM.render((
@@ -61,6 +66,7 @@ ReactDOM.render((
   <Route path="chat/:id" component={ChatPage} />
   <Route path="trending" component={TrendingPage} />
   <Route path="upload" component={UploadPage} />
+  <Route path="item/:itemID" component={ItemPage} />
   </Route>
   </Router>
   ),

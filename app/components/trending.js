@@ -1,6 +1,7 @@
 import React from 'react';
 import Category from './category.js'
 import {getCategories} from '../server.js';
+import {Link} from 'react-router';
 
 export default class Trending extends React.Component{
   constructor(props) {
