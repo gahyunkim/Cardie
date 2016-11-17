@@ -11,7 +11,8 @@
 }
 
 .buttonsize{
-  margin: 25px;
+  margin: 30px;
+  margin-left: 125px;
 }
 
 .categoriesbutton{
@@ -31,6 +32,12 @@
   margin: 25px;
 }
 .submitcancelbutton{
+  position:absolute;
+  margin-left: 93px;
+  margin-top: 45px;
+}
+.submitsubmitbutton{
+  position:absolute;
   margin-top: 45px;
   margin-left: 93px;
 }
