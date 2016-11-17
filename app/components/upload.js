@@ -19,12 +19,20 @@ export default class Upload extends React.Component{
 
                 <div className="row">
                     <div className="col-md-6">
-                        <img src="../../build/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
+                        <img src="/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
                     </div>
                     <div className="col-md-3"><button className="btn btn-default btn-lg buttonsize" type="submit">Choose <span className="glyphicon glyphicon-camera" aria-hidden="true"></span></button></div>
-                    <div className="col-md-3"><button className="btn btn-default btn-lg buttonsize" type="submit">Upload <span className="glyphicon glyphicon-upload" aria-hidden="true"></span></button></div>
                     <div className="col-md-3 categoriesbutton"><select className="form-control input-lg categoriesbutton">
                       <option selected disabled>Category</option>
+                      <option>Auto</option>
+                      <option>Electronics</option>
+                      <option>Dorm</option>
+                      <option>Home & Furniture</option>
+                      <option>Sports & Outdoor</option>
+                      <option>TV, Movies, Books</option>
+                      <option>Food</option>
+                      <option>Supplies</option>
+                      <option>Other</option>
                     </select></div>
                     <div className="col-md-3 descriptionbox">
                         <textarea className="form-control" rows="7" placeholder="Enter Description"></textarea>
@@ -36,8 +44,8 @@ export default class Upload extends React.Component{
                         <p>Item expires: </p>
                         <input type="date" className="form-control expireform" placeholder="Text input" />
                     </div>
-                      <div className="col-md-2"><button className="btn btn-default btn-lg submitcancelbutton btn-success" type="submit">Submit</button></div>
-                      <div className="col-md-2"><button className="btn btn-default btn-lg submitcancelbutton btn-danger" type="submit">Cancel</button></div>
+                      <div><div className="col-md-2"><button className="btn btn-default btn-lg submitsubmitbutton btn-success" type="submit">Upload <span className="glyphicon glyphicon-upload" aria-hidden="true"></span></button></div></div>
+                      <div><div className="col-md-2"><button className="btn btn-default btn-lg submitcancelbutton btn-danger" type="submit">Cancel</button></div></div>
                     </div>
 
             </div>
