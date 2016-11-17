@@ -24,12 +24,13 @@ function getCategorySync(cId){
   return category;
 }
 
-export function removeItem(userId, itemId){
+export function removeItem(userId, itemId, cb){
   var user = readDocument('users', userId);
   var items = user.productManager.items;
-
-  user.productManager.items = items.splice(items.indexOf(itemId), 1);
-  writeDocument('users', userId);
+  console.log(items)
+  items = items.splice(items.indexOf(itemId), 1);
+  console.log(user.productManager.items);
+  writeDocument('users', user);
   emulateServerReturn(user, cb);
 }
 
