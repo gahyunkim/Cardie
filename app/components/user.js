@@ -66,7 +66,7 @@ export default class User extends React.Component{
                     <div className="panel-body ">
 
                       <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-10">
                           <div className="media">
                             <div className="media-body">
                               <font size="+1" color="black">
