@@ -101,7 +101,7 @@
 \newcommand{\hmwkDueDate}{Tuesday,\ November\ 15,\ 2016} % Due date
 \newcommand{\hmwkClass}{CS\ 326} % Course/class
 \newcommand{\hmwkClassTime}{} % Class/lecture time
-\newcommand{\hmwkClassInstructor}{RedWine/Guanabana} % Teacher/lecturer
+\newcommand{\hmwkClassInstructor}{RedWine} % Teacher/lecturer
 \newcommand{\hmwkAuthorName}{} % Your name
 
 %----------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@
 %----------------------------------------------------------------------------------------
 
 \begin{homeworkProblem}[Outstanding Bugs] % Custom section title
-There are a number of outstanding bugs in the current iteration of our web application. Most of these issues are caused by the lack of implementation of a database. We currently have pages linked together, and are able to pull dummy data from a JSON file, though the lack of a real database prevents us from being able to add new entries or modify existing entries, producing a static UI that can't take inputs. \\
+There are a number of outstanding bugs in the current iteration of our web application. Most of these issues are caused by the lack of implementation of a database. We currently have pages linked together, and are able to pull dummy data from a JSON file, though the lack of a real database prevents us from being able to add new entries or modify existing entries, producing a static UI that can't take inputs. Additionally, there is currently an issue with parsing user information from JSON so we are hard-coding user ids.\\
 
 As of right now, we intend to use Socket.io and Express to implement a chat client for users. Unfortunately, the chat client is not ready yet because we had some configuration issues, so the chat client has been tabled for later implementation. \\
 
@@ -166,7 +166,35 @@ Some UI elements are currently unpolished because we have not yet decided on a u
 %--------------------------------------------
 
 \begin{homeworkSection}{Feed} % Using the problem name elsewhere
+The Feed component contains the feed of item images that is tailored to each user. Users can like or dislike items on the feed to see new items.
+\end{homeworkSection}
 
+\begin{homeworkSection}{Trending}
+The Trending component draws items from the database and displays them to the user, sorted by categories. Unlike the Feed component, which can only display one item at a time, the Trending component can display multiple items at a time.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Category}
+The Category component is built into the Trending component and renders all items of a specific category.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Profile}
+The Profile component displays user settings. Users can edit their personal information through this component, as well as access their ProductManager and Chat.
+\end{homeworkSection}
+
+\begin{homeworkSection}{ProductManager}
+The ProductManager component allows the user to manage their items for sale by editing or removing items through a number of fields.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Chat}
+The Chat component is a simple chat interface where two users can exchange messages.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Upload}
+The Upload component is a form submission that allows the user to upload items for sale into the application database.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Item}
+The Item component contains information specific to a single item, containing both item information as well as user iteractions with the item, such as likes/dislikes.
 \end{homeworkSection}
 
 \end{homeworkProblem}
@@ -175,12 +203,40 @@ Some UI elements are currently unpolished because we have not yet decided on a u
 %	PROBLEM 4
 %----------------------------------------------------------------------------------------
 
-\begin{homeworkProblem}[Prob. \Roman{homeworkProblemCounter}] % Roman numerals
-\problemAnswer{ % Answer
-\lipsum[10]
-}
+\begin{homeworkProblem}[Contributions]
+
+\begin{homeworkSection}{Daanial Ahmed}
+Daanial Ahmed contributed to the Upload component.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Richard Cui}
+Richard Cui contributed to the Chat component and the written report.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Roman Ganchin}
+Roman Ganchin contributed to the Trending, Category, and Item components.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Gahyun (Susie) Kim}
+Gahyun (Susie) Kim contributed to the User component.
+\end{homeworkSection}
+
+\begin{homeworkSection}{Greg McGrath}
+Greg McGrath contributed to the Feed and item components. 
+\end{homeworkSection}
+
+\begin{homeworkSection}{Francis Phan}
+Francis Phan contributed to the ProductManager and Item components, the dummy database, and linking and routing all of the components into one application.
+\end{homeworkSection}
+
 \end{homeworkProblem}
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}[Cut Features]
+No features were cut from the project, though some features were pushed back until a server/database is implemented as they are not currently feasible at this time.
+\end{homeworkProblem}
 
 \end{document}
