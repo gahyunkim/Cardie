@@ -1,6 +1,6 @@
 import React from 'react';
 // import UserDescriptionEntry from './userdescriptionentry.js';
-import {getUserProfile, createUserDescription} from '../server';
+import {getUserProfile} from '../server';
 import {Link} from 'react-router';
 
 export default class User extends React.Component{
@@ -33,34 +33,27 @@ export default class User extends React.Component{
                         <div className="col-md-12 ">
                           <ul className="nav nav-pills nav-stacked accounts user-description">
                             <li role="presentation">
-                              <a href="#">
+                              <a>
                                 <span className="glyphicon glyphicon-sunglasses"></span>
                                 {userData.username}</a>
                             </li>
                             <li role="presentation">
-                              <a href="#">
+                              <a>
                                 <span className="glyphicon glyphicon-user"></span>
                                 {userData.fullName}</a>
                             </li>
                             <li role="presentation">
-                              <a href="#"><span className="glyphicon glyphicon-envelope"></span>
+                              <a><span className="glyphicon glyphicon-envelope"></span>
                               {userData.email}</a>
                           </li>
                           <li role="presentation">
-                            <a href="#"><span className="glyphicon glyphicon-home"></span>
+                            <a><span className="glyphicon glyphicon-home"></span>
                             {userData.location}</a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-
-
-
-
-
-
-
               </div>
             </div>
           </div>
@@ -85,6 +78,8 @@ export default class User extends React.Component{
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -92,10 +87,8 @@ export default class User extends React.Component{
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-</div>
+  </div>
 
 )
 }
