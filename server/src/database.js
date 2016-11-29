@@ -1,6 +1,213 @@
 // Your startup's initial mock objects go here
-var initialData = {
 
+var initialData = {
+  // USERS
+  "users": {
+    "1" : {
+      "_id" : 1,
+      "nickname" : "phancis",
+      "fullName" : "Francis Phan",
+      "email" : "fphan@umass.edu",
+      "location" : "Amherst, MA",
+      "feed": 1,
+      "productManager" : {
+        "_id" : 1,
+        "items" : [1,3]
+      }
+    },
+    "2" : {
+      "_id" : 2,
+      "nickname" : "rcui",
+      "fullName" : "Richard Cui",
+      "email" : "rcui@umass.edu",
+      "location" : "Amherst, MA",
+      "feed": 2,
+      "productManager" : {
+        "_id" : 2,
+        "items" : []
+      }
+    },
+    "3" : {
+      "_id" : 3,
+      "nickname" : "r-man",
+      "fullName" : "Roman Ganchin",
+      "email" : "rganchin@umass.edu",
+      "location" : "Amherst, MA",
+      "feed": 3,
+      "productManager" : {
+        "_id" : 3,
+        "items" : []
+      }
+    },
+    "4" : {
+      "_id" : 4,
+      "nickname" : "SuzyQ",
+      "fullName" : "Suzie Kim",
+      "email" : "gahyunkim@umass.edu",
+      "location" : "Amherst, MA",
+      "feed": 4,
+      "productManager" : {
+        "_id" : 4,
+        "items" : []
+      }
+    },
+    "5" : {
+      "_id" : 5,
+      "username" : "DMix-Dogs",
+      "description" : "We are DMix's dogs.",
+      "languages" : "English",
+      "fullName" : "Cardie Duncan",
+      "email" : "cardieduncan@umass.edu",
+      "location" : "Amherst, MA",
+      "feed": 5,
+      "productManager" : {
+        "_id" : 5,
+        "items" : [2]
+      }
+    }
+  },
+
+  // FEEDS
+  "feeds" : {
+    "1" : {
+      "_id" : 1,
+      "items" : [2],
+      "categories" : ["Dorm","Snacks","Electronics"]
+    },
+    "2" : {
+      "_id" : 2,
+      "items" : [1,2,3],
+      "categories" : ["Dorm","Snacks","Electronics"]
+    },
+    "3" : {
+      "_id" : 3,
+      "items" : [1,2,3],
+      "categories" : ["Dorm","Snacks","Electronics"]
+    },
+    "4" : {
+      "_id" : 4,
+      "items" : [1,2,3],
+      "categories" : ["Dorm","Snacks","Electronics"]
+    },
+    "5" : {
+      "_id" : 5,
+      "items" : [1,2,3,4,5,6,7,8],
+      "categories" : ["Dorm","Snacks","Electronics"]
+    }
+
+  },
+  "categories":{
+    "Dorm": {
+      "_id": "Dorm",
+      "items" : [1]
+    },
+    "Snacks":{
+      "_id": "Snacks",
+      "items": [2]
+    },
+    "Electronics":{
+      "_id": "Electronics",
+      "items":[3,4,5,6,7,8]
+    }
+  },
+  // ITEMS
+  "items" : {
+    "1" :{
+      "_id" : 1,
+      "name" : "Lamp",
+      "description" : "Nice lamp",
+      "category" : "Dorm",
+      //stores all the users that liked the item
+      "likeCounter": [2,3],
+      "dislikeCounter": [4,5],
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 1,
+      "vendorID" : 1
+    },
+    "2" :{
+      "_id" : 2,
+      "name" : "Dog Biscuit",
+      "description" : "Yummy",
+      "category" : "Snacks",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 2,
+      "vendorID" : 5
+    },
+    "3" :{
+      "_id" : 3,
+      "name" : "Apple Lightning Charging Cable",
+      "description" : "Nylon Braided Cable",
+      "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 3,
+      "vendorID" : 1
+    },
+    "4" :{
+      "_id" : 4,
+      "name" : "Computer Mouse",
+      "description" : "Cool computer mouse",
+      "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 4,
+      "vendorID" : 1
+    },
+    "5" :{
+      "_id" : 5,
+      "name" : "Monitor",
+      "description" : "Next generation 20K monitor",
+      "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 5,
+      "vendorID" : 1
+    },
+    "6" :{
+      "_id" : 6,
+      "name" : "Dongle",
+      "description" : "You probably lost your last one",
+      "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 6,
+      "vendorID" : 1
+    },
+    "7" :{
+      "_id" : 7,
+      "name" : "Apple Watch",
+      "description" : "time at your convenience",
+      "category" : "Electronics",
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "contents" : "http://placehold.it/400x300",
+      "photoID" : 7,
+      "vendorID" : 1
+    },
+    "8" :{
+      "_id" : 8,
+      "name" : "tiger",
+      "description" : "this should not be in Electronics",
+      "category" : "Electronics",
+      //stores all the users that liked the item
+      "likeCounter": [5],
+      "dislikeCounter": [],
+      "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
+      "photoID" : 8,
+      "vendorID" : 1
+    }
+  }
 };
 
 var data;
