@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "history": "^4.4.0",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
     "react-router": "^3.0.0",
     "redux-router": "^1.0.0-beta3"
   }
