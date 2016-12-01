@@ -111,49 +111,29 @@ export function createUserDescription(content, userId, cb) {
   writeDocument('users', userId);
   emulateServerReturn(userData, cb);
 }
-//
-// /**
-// * Emulates a REST call to get the feed data for a particular user.
-// * @param user The ID of the user whose feed we are requesting.
-// * @param cb A Function object, which we will invoke when the Feed's data is available.
-// */
 export function getFeedData(user, cb) {
-  // Get the User object with the id "user".
-  var userData = readDocument('users', user);
-  // Get the Feed object for the user.
-  var feedData = readDocument('feeds', userData.feed);
-  // Map the Feed's FeedItem references to actual FeedItem objects.
-  // Note: While map takes a callback function as an argument, it is
-  // synchronous, not asynchronous. It calls the callback immediately.
-  feedData.items = feedData.items.map(getItemSync);
-  // Return FeedData with resolved references.
-  // emulateServerReturn will emulate an asynchronous server operation, which
-  // invokes (calls) the "cb" function some time in the future.
-  emulateServerReturn(feedData, cb);
-}
-
-export function getCategories(user, cb){
-  var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.categories = feedData.categories.map(getCategorySync);
-
-  emulateServerReturn(feedData, cb);
-}
-export function getItem(itemId, cb){
-  sendXHR('GET', '/user/1/feed/items/' + itemId, undefined, (xhr) => {
+  sendXHR('GET', '/user/' + user + '/feed', undefined, (xhr) => {
   cb(JSON.parse(xhr.responseText));
   });
 }
-
+export function getCategories(user, cb){
+  sendXHR('GET', '/user/' + user + '/feed/categories', undefined, (xhr) => {
+  cb(JSON.parse(xhr.responseText));
+  });
+}
+export function getItem(itemId, cb){
+  sendXHR('GET', '/items/' + itemId, undefined, (xhr) => {
+  cb(JSON.parse(xhr.responseText));
+  });
+}
 export function likeItem(itemId, userId,cb) {
-  sendXHR('PUT', '/user/1/feed/items' + itemId + '/likeCounter/'+ userId,
+  sendXHR('PUT', '/user/' + userId + '/feed/items/' + itemId + '/likeCounter/'+ userId,
             undefined, (xhr) => {
         cb(JSON.parse(xhr.responseText));
   });
 }
-
 export function dislikeItem(itemId, userId, cb) {
-  sendXHR('PUT', '/user/1/feed/items' + itemId + '/dislikeCounter/'+ userId,
+  sendXHR('PUT', '/user/' + userId + '/feed/items/' + itemId + '/dislikeCounter/'+ userId,
             undefined, (xhr) => {
         cb(JSON.parse(xhr.responseText));
   });
