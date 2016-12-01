@@ -1,7 +1,7 @@
 # Ignores node dependencies (e.g. webpack).
 node_modules
 # Ignores your built application.
-app/build/js/app.js
+client/app/build/js/app.js
 
 build/.DS_STORE
 
