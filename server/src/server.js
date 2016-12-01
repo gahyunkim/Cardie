@@ -117,7 +117,7 @@ app.delete('/pm/:userid/item/:itemid', function(res, req) {
 });
 
 app.delete('/pm/:userid/item/:itemid', function(res, req) {
-  var fromUser = getUserIdFromToken(req.get('Authorization')
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
   var itemId = parseInt(req.params.itemid, 10);
   var item = readDocument('items', itemId);
   var feeds = getCollection("feeds");
