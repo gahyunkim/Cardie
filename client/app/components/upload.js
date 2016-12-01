@@ -15,9 +15,15 @@ export default class Upload extends React.Component{
   handleChange(event) {
     this.setState({value: event.target.value});
   }
+
+  previewImage() {
+    var preview = document.getElementById("myFile");
+    this.setState({photo: itemImage})
+  }
+
+
   render(){
     var userData = getUserProfile(5);
-    var item_img = document.getElementById("myFile");
     return(
       <div>
         <div className="panel panel-default">
@@ -30,7 +36,7 @@ export default class Upload extends React.Component{
                         <img src="/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
                     </div>
                     <form encType="multipart/form-data" action="/upload/image" method="post">
-                      <input id="image-file" type="file" />
+                      <input id="myFile" type="file" onChange={(e) => this.uploadImage(e)}/>
                     </form>
                     <div className="col-md-3 categoriesbutton"><select className="form-control input-lg categoriesbutton">
                       <option selected disabled>Category</option>
@@ -65,9 +71,7 @@ export default class Upload extends React.Component{
                   </div>
                 </form>
             </div>
-
         </div>
-
       </div>
     )
   }

@@ -11,8 +11,8 @@ import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class FeedPage extends React.Component {
   render() {
-		return <Feed key={5} />;
-	}
+    return <Feed key={5} />;
+  }
 }
 
 class TrendingPage extends React.Component {
@@ -45,11 +45,11 @@ class UploadPage extends React.Component {
   }
 }
 class App extends React.Component {
-	render() {
-		return (
-			<div>{this.props.children}</div>
-		)
-	}
+  render() {
+    return (
+      <div>{this.props.children}</div>
+    )
+  }
 }
 class ItemPage extends React.Component {
   render() {
@@ -60,18 +60,18 @@ class ItemPage extends React.Component {
 
 ReactDOM.render((
   <Router history={hashHistory}>
-  <Route path="/" component={App}>
-  {/* Show the Feed at / */}
-  <IndexRoute component={FeedPage} />
-  <Route path="profile/:id" component={ProfilePage} />
-  <Route path="pm/:id" component={ProductManagerPage} />
-  <Route path="chat/:id" component={ChatPage} />
-  <Route path="trending" component={TrendingPage} />
-  <Route path="upload" component={UploadPage} />
-  <Route path="item/:itemID" component={ItemPage} />
-  </Route>
+    <Route path="/" component={App}>
+      {/* Show the Feed at / */}
+      <IndexRoute component={FeedPage} />
+      <Route path="profile/:id" component={ProfilePage} />
+      <Route path="pm/:id" component={ProductManagerPage} />
+      <Route path="chat/:id" component={ChatPage} />
+      <Route path="trending" component={TrendingPage} />
+      <Route path="upload" component={UploadPage} />
+      <Route path="item/:itemID" component={ItemPage} />
+    </Route>
   </Router>
-  ),
-  document.getElementById('main-feed')
+),
+document.getElementById('main-feed')
 
 );
