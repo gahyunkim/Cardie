@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/",
+  "type": "object",
+    "properties": {
+      "name": {
+        "id": "name",
+        "type": "string"
+      },
+      "description": {
+        "id": "description",
+        "type": "string"
+      },
+      "category": {
+        "id": "category",
+        "type": "string"
+      },
+      "likeCounter": {
+        "id": "likeCounter",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "dislikeCounter": {
+        "id": "likeCounter",
+        "type": "array",
+        "items": {
+          "type": "integer"
+      },
+      "vendorID": {
+        "id": "vendorID",
+        "type": "integer"
+      },
+      "photoID": {
+        "id": "photoID",
+        "type": "integer"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "name",
+      "description",
+      "category",
+      "vendorID"
+    ]
+}

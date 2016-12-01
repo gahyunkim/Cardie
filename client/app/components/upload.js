@@ -6,7 +6,14 @@ export default class Upload extends React.Component{
     // super() calls the parent class constructor --
     // e.g. React.Component's constructor.
     super(props);
-    this.state = props.data;
+    this.state = {category: '',
+                  description: '',
+                  photo: '',
+                  expiration: ''};
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
   render(){
     var userData = getUserProfile(5);
