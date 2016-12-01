@@ -44,6 +44,33 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
+/**
+ * Resolves a feed item. Internal to the server, since it's synchronous.
+ */
+function getItemSync(itemId) {
+  var item = readDocument('items', itemId);
+  // Resolve 'like' and 'dislike' counter.
+  item.likeCounter = item.likeCounter.map((id) => readDocument('users', id));
+  item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
+  item.vendorID = readDocument('users', item.vendorID);
+  item.photoID = readDocument('users', item.photoID);
+  });
+  return item;
+}
+function getCategorySync(cId){
+  var category = readDocument('categories', cId);
+  category.items = category.items.map(getItemSync);
+  return category;
+}
+function getFeedData(user) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  // While map takes a callback, it is synchronous, not asynchronous.
+  // It calls the callback immediately.
+  feedData.contents = feedData.contents.map(getItemSync);
+  // Return FeedData with resolved references.
+  return feedData;
+}
 app.delete('/pm/:userid/item/:itemid', function(res, req) {
   var fromUser = getUserIdFromToken(req.get('Authorization')
   var itemId = parseInt(req.params.itemid, 10);
