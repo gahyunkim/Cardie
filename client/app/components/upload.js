@@ -70,16 +70,10 @@ export default class Upload extends React.Component{
                       <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
                     </button>
                   </div>
-                  <<<<<<< HEAD
-                </form>
               </div>
-              =======
             </div>
-          </div>
-        </form>
+          </form>
       </div>
-
-      >>>>>>> e85be815785bdcbe6c360904a0a2258480c18d46
     </div>
   </div>
 )
