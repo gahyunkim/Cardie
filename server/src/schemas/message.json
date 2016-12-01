@@ -11,6 +11,10 @@
         "id": "recipient",
         "type": "integer"
       },
+      "date": {
+        "id": "date",
+        "type": "string"
+      },
       "contents": {
         "id": "contents",
         "type": "string"
@@ -20,6 +24,7 @@
     "required": [
       "sender",
       "recipient",
+      "date",
       "contents"
     ]
 }
