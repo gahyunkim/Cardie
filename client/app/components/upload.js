@@ -17,6 +17,7 @@ export default class Upload extends React.Component{
   }
   render(){
     var userData = getUserProfile(5);
+    var item_img = document.getElementById("myFile");
     return(
       <div>
         <div className="panel panel-default">

@@ -6,10 +6,10 @@ function sendXHR(verb, resource, body, cb) {
   var xhr = new XMLHttpRequest();
   xhr.open(verb, resource);
   xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-  // The below comment tells ESLint that FacebookError is a global.
+  // The below comment tells ESLint that CardieError is a global.
   // Otherwise, ESLint would complain about it! (See what happens in Atom if
   // you remove the comment...)
-  /* global FacebookError */
+  /* global CardieError */
   // Response received from server. It could be a failure, though!
   xhr.addEventListener('load', function() {
     var statusCode = xhr.status;
@@ -23,7 +23,7 @@ function sendXHR(verb, resource, body, cb) {
     // The server may have included some response text with details concerning
     // the error.
     var responseText = xhr.responseText;
-    FacebookError('Could not ' + verb + " " + resource + ": Received " +
+    CardieError('Could not ' + verb + " " + resource + ": Received " +
     statusCode + " " + statusText + ": " + responseText);
     }
   });
@@ -32,12 +32,12 @@ function sendXHR(verb, resource, body, cb) {
   xhr.timeout = 10000;
   // Network failure: Could not connect to server.
   xhr.addEventListener('error', function() {
-    FacebookError('Could not ' + verb + " " + resource +
+    CardieError('Could not ' + verb + " " + resource +
     ": Could not connect to the server.");
   });
   // Network failure: request took too long to complete.
   xhr.addEventListener('timeout', function() {
-    FacebookError('Could not ' + verb + " " + resource +
+    CardieError('Could not ' + verb + " " + resource +
     ": Request timed out.");
   });
   switch (typeof(body)) {
@@ -91,11 +91,6 @@ function getCategorySync(cId){
 }
 
 export function removeItem(userId, itemId, cb){
-  var user = readDocument('users', userId);
-  var items = user.productManager.items;
-  items = items.splice(items.indexOf(itemId), 1);
-  writeDocument('users', user);
-  emulateServerReturn(user, cb);
   sendXHR("DELETE", "/pm/" + userId + "/item/" + itemId, undefined, () => {
     cb();
   });
@@ -144,21 +139,24 @@ export function getCategories(user, cb){
 
   emulateServerReturn(feedData, cb);
 }
-export function getItem(itemId){
-  var item = readDocument('items', itemId);
-  return item;
+export function getItem(itemId, cb){
+  sendXHR('GET', '/user/1/feed/items/' + itemId, undefined, (xhr) => {
+  cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function likeItem(itemId, userId) {
-  var item = readDocument('items', itemId);
-  item.likeCounter.push(userId);
-  writeDocument('items', item);
+export function likeItem(itemId, userId,cb) {
+  sendXHR('PUT', '/user/1/feed/items' + itemId + '/likeCounter/'+ userId,
+            undefined, (xhr) => {
+        cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function dislikeItem(itemId, userId) {
-  var item = readDocument('items', itemId);
-  item.dislikeCounter.push(userId);
-  writeDocument('items', item);
+export function dislikeItem(itemId, userId, cb) {
+  sendXHR('PUT', '/user/1/feed/items' + itemId + '/dislikeCounter/'+ userId,
+            undefined, (xhr) => {
+        cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function sendMessage(senderId, recipientId, message) {
