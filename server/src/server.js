@@ -45,17 +45,8 @@ function getUserIdFromToken(authorizationLine) {
 }
 
 /**
- * Resolves a feed item. Internal to the server, since it's synchronous.
- */
-function getItemSync(itemId) {
-  var item = readDocument('items', itemId);
-  // Resolve 'like' and 'dislike' counter.
-  item.likeCounter = item.likeCounter.map((id) => readDocument('users', id));
-  item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
-  item.vendorID = readDocument('users', item.vendorID);
-  item.photoID = readDocument('users', item.photoID);
-  return item;
-}
+ * Get the feed data for a particular user.
+*/
 function getFeedData(user) {
   var userData = readDocument('users', user);
   var feedData = readDocument('feeds', userData.feed);
@@ -65,9 +56,6 @@ function getFeedData(user) {
   // Return FeedData with resolved references.
   return feedData;
 }
-/**
- * Get the feed data for a particular user.
-*/
 app.get('/users/:userid/feed', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
@@ -102,6 +90,50 @@ app.get('/users/:userid/feed', function(req, res) {
         res.status(401).end();
       }
   });
+
+
+  /**
+   * Resolves a feed item. Internal to the server, since it's synchronous.
+   */
+  function getItemSync(itemId) {
+    var item = readDocument('items', itemId);
+    // Resolve 'like' and 'dislike' counter.
+    item.likeCounter = item.likeCounter.map((id) => readDocument('users', id));
+    item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
+    item.vendorID = readDocument('users', item.vendorID);
+    item.photoID = readDocument('users', item.photoID);
+    return item;
+  }
+    app.get('/items/:itemid', function(req, res) {
+      var itemid = req.params.itemid;
+      res.send(getItemSync(itemid));
+    });
+
+
+    // Like an item.
+    app.put('/items/:itemid/likeCounter/:userid', function(req, res) {
+      var fromUser = getUserIdFromToken(req.get('Authorization'));
+      // Convert params from string to number.
+      var feedItemId = parseInt(req.params.feeditemid, 10);
+      var userId = parseInt(req.params.userid, 10);
+      if (fromUser === userId) {
+        var item = readDocument('items', feedItemId); // Add to likeCounter if not already present.
+        if (item.likeCounter.indexOf(userId) === -1) {
+          item.likeCounter.push(userId);
+          writeDocument('items', item);
+        }
+        // Return a resolved version of the likeCounter
+        res.send(item.likeCounter.map((userId) =>
+                readDocument('users', userId)));
+      } else {
+        // 401: Unauthorized.
+        res.status(401).end();
+      }
+    });
+
+
+
+
 app.delete('/pm/:userid/item/:itemid', function(res, req) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var itemId = parseInt(req.params.itemid, 10);
