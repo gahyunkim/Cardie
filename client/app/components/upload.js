@@ -1,5 +1,5 @@
 import React from 'react';
-import {getUserProfile} from '../server';
+// import {getUserProfile} from '../server';
 
 export default class Upload extends React.Component{
   constructor(props) {
@@ -23,12 +23,12 @@ export default class Upload extends React.Component{
 
   previewImage() {
     var preview = document.getElementById("myFile");
-    this.setState({photo: itemImage})
+    this.setState({photo: preview})
   }
 
 
   render(){
-    var userData = getUserProfile(5);
+    // var userData = getUserProfile(5);
     return(
       <div>
         <div className="panel panel-default">
@@ -39,7 +39,7 @@ export default class Upload extends React.Component{
                   <img src="/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
                 </div>
                 <form encType="multipart/form-data" action="/upload/image" method="post">
-                  <input id="myFile" type="file" onChange={(e) => this.uploadImage(e)}/>
+                  <input id="myFile" type="file" onChange="previewImage()"/>
                 </form>
                 <div className="col-md-3 categoriesbutton"><select className="form-control input-lg categoriesbutton">
                   <option selected disabled>Category</option>
@@ -56,7 +56,6 @@ export default class Upload extends React.Component{
                 <div className="col-md-3 descriptionbox">
                   <textarea className="form-control" rows="7" placeholder="Enter Description"></textarea>
                 </div>
-
               </div>
               <div className="row">
                 <div className="col-md-5 expirerow">
@@ -70,18 +69,12 @@ export default class Upload extends React.Component{
                       <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
                     </button>
                   </div>
-                  <<<<<<< HEAD
-                </form>
+                </div>
               </div>
-              =======
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
-
-      >>>>>>> e85be815785bdcbe6c360904a0a2258480c18d46
-    </div>
-  </div>
-)
-}
+    )
+  }
 }
