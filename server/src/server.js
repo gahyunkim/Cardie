@@ -45,21 +45,28 @@ function getUserIdFromToken(authorizationLine) {
 }
 
 app.delete('/pm/:userid/item/:itemid', function(res, req) {
+  var fromUser = getUserIdFromToken(req.get('Authorization')
   var itemId = parseInt(req.params.itemid, 10);
   var item = readDocument('items', itemId);
   var feeds = getCollection("feeds");
   var feedIds = Object.keys('feeds');
-  feedIds.forEach((feedId) => {
-      var feed = feeds[feedId];
-      var itemIdx = feed.contents.indexOf(itemId);
-      if (itemIdx !== -1) {
-      // Splice out of array.
-      feed.contents.splice(itemIdx, 1);
-      // Update feed.
-      database.writeDocument('feeds', feed);
-    }
-  });
-  res.send();
+  var userId = parseInt(req.params.userid, 10);
+  if( fromUser === userId){
+    console.log(feedIds);
+    feedIds.forEach((feedId) => {
+        var feed = feeds[feedId];
+        var itemIdx = feed.contents.indexOf(itemId);
+        if (itemIdx !== -1) {
+        // Splice out of array.
+        feed.contents.splice(itemIdx, 1);
+        // Update feed.
+        database.writeDocument('feeds', feed);
+      }
+    });
+    res.send();
+  } else {
+    res.status(401).end();
+  }
 });
 
 /**
