@@ -160,3 +160,21 @@ export function dislikeItem(itemId, userId) {
   item.dislikeCounter.push(userId);
   writeDocument('items', item);
 }
+
+export function uploadItem(user, itemName, contents, category, picture, cb) {
+  var item = {
+      "_id" : user,
+      "name" : itemName,
+      "description" : contents,
+      "category" : category,
+      //stores all the users that liked the item
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "contents" : "http://placehold.it/400x300" //replace with uploaded picture later
+  };
+  item = addDocument('items', item);
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);  //update the feed
+  writeDocument('feeds', feedData);
+  emulateServerReturn(item, cb);
+}
