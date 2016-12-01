@@ -69,26 +69,41 @@ function getFeedData(user) {
  * Get the feed data for a particular user.
 */
 app.get('/users/:userid/feed', function(req, res) {
-var userid = req.params.userid;
-var fromUser = getUserIdFromToken(req.get('Authorization'));
-var useridNumber = parseInt(userid, 10);
-if (fromUser === useridNumber) {
-    // Send response.
-res.send(getFeedData(userid)); } else {
-    // 401: Unauthorized request.
-    res.status(401).end();
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+      // Send response.
+      res.send(getFeedData(userid));
+  } else {
+      // 401: Unauthorized request.
+      res.status(401).end();
   }
 
-/**
- * Get the categories for a particular user.
-*/
-function getCategorySync(cId){
-  var category = readDocument('categories', cId);
-  category.items = category.items.map(getItemSync);
-  return category;
-}
-app.get('/users/:userid/feed/categories', function(req, res) {
-  var userid = req.params.userid;
+  /**
+   * Get the categories for a particular user.
+  */
+  function getCategorySync(cId){
+    var category = readDocument('categories', cId);
+    category.items = category.items.map(getItemSync);
+    return category;
+  }
+  app.get('/users/:userid/feed/categories', function(req, res) {
+    var userid = req.params.userid;
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    var useridNumber = parseInt(userid, 10);
+
+    if (fromUser === useridNumber) {
+      // Send response.
+      res.send(getFeedData(userid).categories.map(getCategorySync));
+    } else {
+        // 401: Unauthorized request.
+        res.status(401).end();
+      }
+  });
+
+app.delete('/pm/:userid/item/:itemid', function(res, req) {
+  console.log("GOT HERE");
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNumber = parseInt(userid, 10);
 

@@ -131,7 +131,7 @@ export function sendMessage(senderId, recipientId, message) {
 }
 
 export function getMessages(userId) {
-
+  
 }
 
 export function uploadItem(user, itemName, contents, category, picture, cb) {

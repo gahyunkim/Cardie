@@ -1,5 +1,5 @@
 import React from 'react';
-import {getUserProfile} from '../server';
+// import {getUserProfile} from '../server';
 
 export default class Upload extends React.Component{
   constructor(props) {
@@ -11,31 +11,35 @@ export default class Upload extends React.Component{
   }
   handlePost(e) {
     e.preventDefault();
-  var itemNameText =this.state.value.trim();
-  if(itemNameText !== "") {
-    this.setState({value: ""});
-  }
+    var itemNameText =this.state.value.trim();
+    if(itemNameText !== "") {
+      this.setState({value: ""});
+    }
 
   }
   handleChange(event) {
     this.setState({value: event.target.value});
   }
+
+  previewImage() {
+    var preview = document.getElementById("myFile");
+    this.setState({photo: preview})
+  }
+
+
   render(){
-    var userData = getUserProfile(5);
-    var item_img = document.getElementById("myFile");
+    // var userData = getUserProfile(5);
     return(
       <div>
         <div className="panel panel-default">
-
           <div className="panel-body">
-
             <form>
               <div className="row">
                 <div className="col-md-6">
                   <img src="/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
                 </div>
                 <form encType="multipart/form-data" action="/upload/image" method="post">
-                  <input id="image-file" type="file" />
+                  <input id="myFile" type="file" onChange="previewImage()"/>
                 </form>
                 <div className="col-md-3 categoriesbutton"><select className="form-control input-lg categoriesbutton">
                   <option selected disabled>Category</option>
@@ -52,7 +56,6 @@ export default class Upload extends React.Component{
                 <div className="col-md-3 descriptionbox">
                   <textarea className="form-control" rows="7" placeholder="Enter Description"></textarea>
                 </div>
-
               </div>
               <div className="row">
                 <div className="col-md-5 expirerow">
@@ -70,9 +73,7 @@ export default class Upload extends React.Component{
               </div>
             </form>
           </div>
-
         </div>
-
       </div>
     )
   }
