@@ -54,7 +54,6 @@ function getItemSync(itemId) {
   item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
   item.vendorID = readDocument('users', item.vendorID);
   item.photoID = readDocument('users', item.photoID);
-  });
   return item;
 }
 function getCategorySync(cId){
