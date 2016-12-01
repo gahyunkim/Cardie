@@ -1,6 +1,6 @@
 import React from 'react';
 import Item from './item.js';
-import {getFeedData, likeFeedItem} from '../server';
+import {getFeedData, likeFeedItem, uploadItem} from '../server';
 
 export default class Feed extends React.Component{
  constructor(props) {
@@ -14,6 +14,13 @@ export default class Feed extends React.Component{
      this.setState(feedData);
    });
  }
+
+ onPost(postContents){
+   //add
+   //uploadItem(5, )
+   this.refresh();
+ }
+
  componentDidMount() {
    this.refresh();
  }
