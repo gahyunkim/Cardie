@@ -17,6 +17,7 @@ export default class Upload extends React.Component{
   }
   render(){
     var userData = getUserProfile(5);
+    var item_img = document.getElementById("myFile");
     return(
       <div>
         <div className="panel panel-default">
@@ -28,7 +29,9 @@ export default class Upload extends React.Component{
                     <div className="col-md-6">
                         <img src="/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
                     </div>
-                    <div className="col-md-3"><button className="btn btn-default btn-lg buttonsize" type="submit">Choose <span className="glyphicon glyphicon-camera" aria-hidden="true"></span></button></div>
+                    <form encType="multipart/form-data" action="/upload/image" method="post">
+                      <input id="image-file" type="file" />
+                    </form>
                     <div className="col-md-3 categoriesbutton"><select className="form-control input-lg categoriesbutton">
                       <option selected disabled>Category</option>
                       <option>Auto</option>
