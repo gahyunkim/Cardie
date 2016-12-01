@@ -57,6 +57,11 @@ function getItemSync(itemId) {
   });
   return item;
 }
+function getCategorySync(cId){
+  var category = readDocument('categories', cId);
+  category.items = category.items.map(getItemSync);
+  return category;
+}
 function getFeedData(user) {
   var userData = readDocument('users', user);
   var feedData = readDocument('feeds', userData.feed);

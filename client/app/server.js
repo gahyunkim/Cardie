@@ -76,20 +76,6 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
-// /**
-// * Given a feed item ID, returns a FeedItem object with references resolved.
-// * Internal to the server, since it's synchronous.
-// */
-export function getItemSync(itemId) {
-  var item = readDocument('items', itemId);
-  return item;
-}
-function getCategorySync(cId){
-  var category = readDocument('categories', cId);
-  category.items = category.items.map(getItemSync);
-  return category;
-}
-
 export function removeItem(userId, itemId, cb){
   sendXHR("DELETE", "/pm/" + userId + "/item/" + itemId, undefined, () => {
     cb();
