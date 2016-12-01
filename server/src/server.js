@@ -44,8 +44,48 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
+/**
+ * Resolves a feed item. Internal to the server, since it's synchronous.
+ */
+function getItemSync(itemId) {
+  var item = readDocument('items', itemId);
+  // Resolve 'like' and 'dislike' counter.
+  item.likeCounter = item.likeCounter.map((id) => readDocument('users', id));
+  item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
+  item.vendorID = readDocument('users', item.vendorID);
+  item.photoID = readDocument('users', item.photoID);
+  return item;
+}
+function getCategorySync(cId){
+  var category = readDocument('categories', cId);
+  category.items = category.items.map(getItemSync);
+  return category;
+}
+function getFeedData(user) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  // While map takes a callback, it is synchronous, not asynchronous.
+  // It calls the callback immediately.
+  feedData.contents = feedData.contents.map(getItemSync);
+  // Return FeedData with resolved references.
+  return feedData;
+}
+/**
+ * Get the feed data for a particular user.
+*/
+app.get('/users/:userid/feed', function(req, res) {
+var userid = req.params.userid;
+var fromUser = getUserIdFromToken(req.get('Authorization'));
+var useridNumber = parseInt(userid, 10);
+if (fromUser === useridNumber) {
+    // Send response.
+res.send(getFeedData(userid)); } else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
 app.delete('/pm/:userid/item/:itemid', function(res, req) {
-  var fromUser = getUserIdFromToken(req.get('Authorization')
+  console.log("GOT HERE");
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
   var itemId = parseInt(req.params.itemid, 10);
   var item = readDocument('items', itemId);
   var feeds = getCollection("feeds");

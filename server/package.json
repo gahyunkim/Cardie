@@ -1,5 +1,5 @@
 {
-  "name": "startup-server",
+  "name": "cardie-server",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "eslint": "^2.4.0",
-    "eslint-plugin-node": "^1.0.0"
+    "eslint-plugin-node": "^1.0.0",
+    "eslint-plugin-react": "^3.14.0"
   }
 }
