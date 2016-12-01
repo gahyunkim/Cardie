@@ -18,6 +18,51 @@ var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
 
 /**
+* Get the user ID from a token. Returns -1 (an invalid ID)
+* if it fails.
+*/
+function getUserIdFromToken(authorizationLine) {
+  try {
+    // Cut off "Bearer " from the header value.
+    var token = authorizationLine.slice(7);
+    // Convert the base64 string to a UTF-8 string.
+    var regularString = new Buffer(token, 'base64').toString('utf8');
+    // Convert the UTF-8 string into a JavaScript object.
+    var tokenObj = JSON.parse(regularString);
+    var id = tokenObj['id'];
+    // Check that id is a number.
+    if (typeof id === 'number') {
+      return id;
+    }
+    else {
+      // Not a number. Return -1, an invalid ID.
+      return -1;
+    }
+  } catch (e) {
+    // Return an invalid ID.
+    return -1;
+  }
+}
+
+app.delete('/pm/:userid/item/:itemid', function(res, req) {
+  var itemId = parseInt(req.params.itemid, 10);
+  var item = readDocument('items', itemId);
+  var feeds = getCollection("feeds");
+  var feedIds = Object.keys('feeds');
+  feedIds.forEach((feedId) => {
+      var feed = feeds[feedId];
+      var itemIdx = feed.contents.indexOf(itemId);
+      if (itemIdx !== -1) {
+      // Splice out of array.
+      feed.contents.splice(itemIdx, 1);
+      // Update feed.
+      database.writeDocument('feeds', feed);
+    }
+  });
+  res.send();
+});
+
+/**
 * Translate JSON Schema Validation failures into error 400s.
 */
 app.use(function(err, req, res, next) {

@@ -1,10 +1,6 @@
 import {readDocument, writeDocument, addDocument} from './database.js';
 
-
-
-
-
-
+var token = 'eyJpZCI6NX0=';
 
 function sendXHR(verb, resource, body, cb) {
   var xhr = new XMLHttpRequest();
@@ -97,11 +93,12 @@ function getCategorySync(cId){
 export function removeItem(userId, itemId, cb){
   var user = readDocument('users', userId);
   var items = user.productManager.items;
-  console.log(items)
   items = items.splice(items.indexOf(itemId), 1);
-  console.log(user.productManager.items);
   writeDocument('users', user);
   emulateServerReturn(user, cb);
+  sendXHR("DELETE", "/pm/" + userId + "/item/" + itemId, undefined, () => {
+    cb();
+  });
 }
 
 //

@@ -9,7 +9,6 @@ export default class Upload extends React.Component{
     this.state = props.data;
   }
   render(){
-    console.log(this.state);
     var userData = getUserProfile(5);
     return(
       <div>
@@ -17,6 +16,7 @@ export default class Upload extends React.Component{
 
             <div className="panel-body">
 
+              <form>
                 <div className="row">
                     <div className="col-md-6">
                         <img src="/img/camera-solid.jpg" alt="..." className="img-thumbnail imagesize" />
@@ -52,8 +52,8 @@ export default class Upload extends React.Component{
                           </button>
                         </div>
                       </div>
-                    </div>
-
+                  </div>
+                </form>
             </div>
 
         </div>

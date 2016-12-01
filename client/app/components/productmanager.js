@@ -21,8 +21,6 @@ export default class ProductManager extends React.Component{
 
   handleSoldRemove(e){
     e.preventDefault();
-    console.log(this);
-    console.log(e);
     removeItem(this.props.pm, 2, (update) => {
       var user = getUserProfile(this.props.pm);
       var items = user.productManager.items.map((item) => getItem(item));
