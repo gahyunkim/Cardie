@@ -126,19 +126,22 @@ export function getCategories(user, cb){
   cb(JSON.parse(xhr.responseText));
   });
 }
-export function getItem(itemId){
-  var item = readDocument('items', itemId);
-  return item;
+export function getItem(itemId, cb){
+  sendXHR('GET', '/user/1/feed/items/' + itemId, undefined, (xhr) => {
+  cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function likeItem(itemId, userId) {
-  var item = readDocument('items', itemId);
-  item.likeCounter.push(userId);
-  writeDocument('items', item);
+export function likeItem(itemId, userId,cb) {
+  sendXHR('PUT', '/user/1/feed/items' + itemId + '/likeCounter/'+ userId,
+            undefined, (xhr) => {
+        cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function dislikeItem(itemId, userId) {
-  var item = readDocument('items', itemId);
-  item.dislikeCounter.push(userId);
-  writeDocument('items', item);
+export function dislikeItem(itemId, userId, cb) {
+  sendXHR('PUT', '/user/1/feed/items' + itemId + '/dislikeCounter/'+ userId,
+            undefined, (xhr) => {
+        cb(JSON.parse(xhr.responseText));
+  });
 }

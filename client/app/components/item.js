@@ -40,7 +40,8 @@ export default class Item extends React.Component{
     // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
     if (clickEvent.button === 0) {
       // Callback function for both the like and unlike cases.
-      likeItem(item._id, 5);
+      likeItem(item._id, 5, (feedData)=>{
+        this.setState(feedData)});
     }
   }
   handleDislikeClick(clickEvent, item) {
@@ -53,7 +54,8 @@ export default class Item extends React.Component{
     // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
     if (clickEvent.button === 0) {
       // Callback function for both the like and unlike cases.
-      dislikeItem(item._id, 5);
+      dislikeItem(item._id, 5,(feedData)=>{
+        this.setState(feedData)});
     }
   }
   render(){
@@ -76,7 +78,8 @@ export default class Item extends React.Component{
       else{
         length = this.props.length;
       }
-      var item = getItem(id);
+      var item = getItem(id, (feedData)=>{
+        this.setState(feedData)});
       var checkIfLike = this.didUserLike(item);
       var checkIfDislike = this.didUserDislike(item);
       if(checkIfLike || checkIfDislike){
