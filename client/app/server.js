@@ -101,6 +101,21 @@ export function removeItem(userId, itemId, cb){
   });
 }
 
+export function getUserProfile(userId) {
+  var userData = readDocument('users', userId);
+  return userData;
+}
+
+export function createUserDescription(content, userId, cb) {
+  var userData = readDocument('users', userId)
+  var description = userData.description;
+  if (description !== "") {
+    userData.description = content;
+    // userData.description.replace(description, content);
+  }
+  writeDocument('users', userId);
+  emulateServerReturn(userData, cb);
+}
 //
 // /**
 // * Emulates a REST call to get the feed data for a particular user.
@@ -129,23 +144,6 @@ export function getCategories(user, cb){
 
   emulateServerReturn(feedData, cb);
 }
-
-export function getUserProfile(userId) {
-  var userData = readDocument('users', userId);
-  return userData;
-}
-
-export function createUserDescription(content, userId, cb) {
-  var userData = readDocument('users', userId)
-  var description = userData.description;
-  if (description !== "") {
-    userData.description = content;
-    // userData.description.replace(description, content);
-  }
-  writeDocument('users', userId);
-  emulateServerReturn(userData, cb);
-}
-
 export function getItem(itemId){
   var item = readDocument('items', itemId);
   return item;
