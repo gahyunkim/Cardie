@@ -11,7 +11,10 @@ export default class Upload extends React.Component{
   }
   handlePost(e) {
     e.preventDefault();
-//adding
+  var itemNameText =this.state.value.trim();
+  if(itemNameText !== "") {
+    this.setState({value: ""});
+  }
 
   }
   handleChange(event) {
@@ -58,7 +61,7 @@ export default class Upload extends React.Component{
                 </div>
                 <div>
                   <div className="col-md-2">
-                    <button className="btn btn-default btn-lg submitsubmitbutton btn-success" type="submit">
+                    <button className="btn btn-default btn-lg submitsubmitbutton btn-success" type="submit" onClick={(e) =>this.handlePost(e)}>
                       Upload
                       <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
                     </button>
