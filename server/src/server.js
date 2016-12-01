@@ -57,7 +57,15 @@ function getItemSync(itemId) {
   });
   return item;
 }
-
+function getFeedData(user) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  // While map takes a callback, it is synchronous, not asynchronous.
+  // It calls the callback immediately.
+  feedData.contents = feedData.contents.map(getItemSync);
+  // Return FeedData with resolved references.
+  return feedData;
+}
 app.delete('/pm/:userid/item/:itemid', function(res, req) {
   var fromUser = getUserIdFromToken(req.get('Authorization')
   var itemId = parseInt(req.params.itemid, 10);
