@@ -85,7 +85,8 @@ res.send(getFeedData(userid)); } else {
     res.status(401).end();
   }
 app.delete('/pm/:userid/item/:itemid', function(res, req) {
-  var fromUser = getUserIdFromToken(req.get('Authorization')
+  console.log("GOT HERE");
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
   var itemId = parseInt(req.params.itemid, 10);
   var item = readDocument('items', itemId);
   var feeds = getCollection("feeds");
