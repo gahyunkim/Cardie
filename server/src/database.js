@@ -63,7 +63,21 @@ var initialData = {
       "productManager" : {
         "_id" : 5,
         "items" : [2]
-      }
+      },
+      "messages" : [
+        {
+          "sender" : 5,
+          "recipient" : 4,
+          "date" : "2:03 PM",
+          "contents" : "hi"
+        },
+        {
+          "sender" : 4,
+          "recipient" : 5,
+          "date" : "4:20 PM",
+          "contents" : "bye"
+        }
+      ]
     }
   },
 

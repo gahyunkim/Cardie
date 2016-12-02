@@ -178,6 +178,11 @@ app.delete('/pm/:userid/item/:itemid', function(res, req) {
   }
 });
 
+function getMessages(messageList) {
+  var messages = readDocument('messages', messageList);
+  return messages;
+}
+
 /**
 * Translate JSON Schema Validation failures into error 400s.
 */

@@ -113,7 +113,6 @@ export function dislikeItem(itemId, userId, cb) {
 }
 
 export function sendMessage(senderId, recipientId, message) {
-  var date = new Date();
 
 }
 
