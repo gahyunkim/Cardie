@@ -15,7 +15,6 @@ export default class Upload extends React.Component{
     if(itemNameText !== "") {
       this.setState({value: ""});
     }
-
   }
   handleChange(event) {
     this.setState({value: event.target.value});
