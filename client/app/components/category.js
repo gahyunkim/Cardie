@@ -26,6 +26,7 @@ export default class Category extends React.Component{
         <div className="panel panel-default">
         <div className="panel-heading">{this.state._id}</div>
         <div className="panel-body">
+          {console.log(firstFourItems)}
           {firstFourItems}
           {this.state.showResults ? lastItems : null }
           <input className="btn" type="submit" value="More/Less" onClick={this.onClick.bind(this)} />

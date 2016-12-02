@@ -4,7 +4,8 @@ import {getItem, likeItem, dislikeItem} from '../server.js'
 export default class Item extends React.Component{
   constructor(props){
     super(props);
-    this.state = props.data;
+    console.log(props);
+    this.state = props;
   }
   didUserLike(item) {
     var liked = false;
@@ -58,28 +59,36 @@ export default class Item extends React.Component{
         this.setState(feedData)});
     }
   }
+  refresh(){
+    getItem(this.state._id,(feedData)=>{
+      this.setState(feedData)});
+  }
   render(){
     var check = this.state;
-    if(check !== null){
+    console.log(check);
+    if(check.data !== undefined){
       return(
         <div className="col-lg-3 col-md-4 col-xs-6 thumb">
-          <Link to={'/item/'+this.state._id}>
-            <img className="img-responsive" src={this.state.contents} />
+          <Link to={'/item/'+this.state.data._id}>
+            <img className="img-responsive" src={this.state.data.contents} />
           </Link>
         </div>
       )
     }
     else{
-      var id = this.props._id;
+      var id = check._id;
       var length;
       if(this.props.length === undefined){
         length = 8;
       }
       else{
-        length = this.props.length;
+        length = check.length;
       }
-      var item = getItem(id, (feedData)=>{
-        this.setState(feedData)});
+      this.refresh()
+        console.log(this);
+        var item = this;
+        console.log("----------");
+        console.log(item.state);
       var checkIfLike = this.didUserLike(item);
       var checkIfDislike = this.didUserDislike(item);
       if(checkIfLike || checkIfDislike){

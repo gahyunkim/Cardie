@@ -58,7 +58,6 @@ function getFeedData(user) {
   return feedData;
 }
 app.get('/feeds/:userid', function(req, res) {
-    console.log("got here");
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNumber = parseInt(userid, 10);
@@ -74,6 +73,15 @@ app.get('/feeds/:userid', function(req, res) {
 /**
 * Get the categories for a particular user.
 */
+function getCategories(user) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  // While map takes a callback, it is synchronous, not asynchronous.
+  // It calls the callback immediately.
+  feedData.categories = feedData.categories.map((catagory) => getCategorySync(catagory));
+  // Return FeedData with resolved references.
+  return feedData;
+}
 function getCategorySync(cId){
   var category = readDocument('categories', cId);
   category.items = category.items.map(getItemSync);
@@ -86,7 +94,8 @@ app.get('/users/:userid/feeds/categories', function(req, res) {
 
   if (fromUser === useridNumber) {
     // Send response.
-    res.send(getFeedData(userid).categories.map((category) => getCategorySync(category)));
+    var feedData = getCategories(userid);
+    res.send(feedData);
   } else {
     // 401: Unauthorized request.
     res.status(401).end();
@@ -97,14 +106,33 @@ app.get('/users/:userid/feeds/categories', function(req, res) {
 /**
 * Resolves a feed item. Internal to the server, since it's synchronous.
 */
+/*function getItems(user) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  // While map takes a callback, it is synchronous, not asynchronous.
+  // It calls the callback immediately.
+  feedData.items = feedData.items.map((item) => getItemSync(item));
+  // Return FeedData with resolved references.
+  return feedData;
+}*/
 function getItemSync(itemId) {
   var item = readDocument('items', itemId);
-  // Resolve 'like' and 'dislike' counter.
   return item;
 
 }
 app.get('/items/:itemid', function(req, res) {
-  console.log("got here2");
+  /*var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var useridNumber = parseInt(userid, 10);
+
+  if (fromUser === useridNumber) {
+    // Send response.
+    var feedData = getItems(userid);
+    res.send(feedData);
+  } else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }*/
   var itemid = req.params.itemid;
   res.send(getItemSync(itemid));
 });
