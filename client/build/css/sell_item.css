@@ -16,7 +16,7 @@
 }
 
 .categoriesbutton{
-  margin-top: 2px;
+  margin-top: 12px;
   margin-left: 17px;
   width:300px;
 }
@@ -46,5 +46,8 @@
 .submitsubmitbutton{
   position:absolute;
   margin-top: 45px;
-  margin-left: 93px;
+  margin-left: 140px;
+}
+.imageupload{
+  margin-left: 40px;
 }

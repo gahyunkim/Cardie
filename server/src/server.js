@@ -178,6 +178,33 @@ app.delete('/pm/:userid/item/:itemid', function(res, req) {
   }
 });
 
+function sendMessage(sender, recipient, contents) {
+  var senderData = readDocument('users', sender);
+  var recipientData = readDocument('users', recipient);
+  var senderMessages = readDocument('messages', senderData.messages);
+  var recipientMessages = readDocument('messages', recipientData.messages);
+
+  var date = new Date().getTime();
+  var newMessage = {
+    "type" : "message",
+    "contents" : {
+      "sender" : sender,
+      "recipient" : recipient,
+      "date" : date,
+      "contents" : contents
+    }
+  }
+  senderMessages.push(newMessage);
+  recipientMessages.push(newMessage);
+  senderMessages.writeDocument('messages', newMessage);
+  recipientMessages.writeDocument('messages', newMessage);
+  return newMessage;
+}
+
+app.put('/users/:userid/messages', function(req, res){
+
+});
+
 function getMessages(user) {
   var userData = readDocument('users', user);
   var messages = readDocument('messages', userData.messages);
