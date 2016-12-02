@@ -17,6 +17,7 @@ var validate = require('express-jsonschema').validate;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
 var getCollection = database.getCollection;
+var deleteDocument = database.deleteDocument;
 
 /**
 * Get the user ID from a token. Returns -1 (an invalid ID)
@@ -198,21 +199,21 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
   var feeds = getCollection('feeds');
   var feedKeys = Object.keys(feeds);
   var userId = parseInt(req.params.userid, 10);
+  var user = readDocument('users', userId);
   if( fromUser === userId){
-
+    var feed, itemIdx;
     feedKeys.forEach((key) => {
-      var feed = readDocument('feeds', key);
-      var itemIdx = feed.items.indexOf(itemId);
+      feed = readDocument('feeds', key);
+      itemIdx = feed.items.indexOf(itemId);
       if(itemIdx !== -1){
-        feed.items = feed.items.splice(itemIdx, 1);
-        writeDocument('feeds', feed);
+        feed.items.splice(itemIdx, 1);
+        database.writeDocument('feeds', feed);
       }
     });
-    var user = readDocument('users', userId);
     var itemIdx = user.productManager.items.indexOf(itemId);
-    user.productManager.items = user.productManager.items.splice(itemIdx, 1);
-    writeDocument('users', user);
-
+    user.productManager.items.splice(itemIdx, 1);
+    database.writeDocument('users', user);
+    database.deleteDocument('items', itemId);
     res.send();
   } else {
     res.status(401).end();
