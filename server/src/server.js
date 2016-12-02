@@ -178,10 +178,24 @@ app.delete('/pm/:userid/item/:itemid', function(res, req) {
   }
 });
 
-function getMessages(messageList) {
-  var messages = readDocument('messages', messageList);
+function getMessages(user) {
+  var userData = readDocument('users', user);
+  var messages = readDocument('messages', userData.messages);
   return messages;
 }
+
+app.get('/users/:userid/messages', function(req, res) {
+  var userId = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userIdNumber = parseInt(userId, 10);
+  if (fromUser === userIdNumber) {
+    // Send response.
+    res.send(getMessages(userId));
+  } else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
+});
 
 /**
 * Translate JSON Schema Validation failures into error 400s.
