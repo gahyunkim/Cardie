@@ -56,7 +56,8 @@ function getFeedData(user) {
   // Return FeedData with resolved references.
   return feedData;
 }
-app.get('/users/:userid/feed', function(req, res) {
+app.get('/users/:userid/feeds', function(req, res) {
+    console.log("got here");
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNumber = parseInt(userid, 10);
@@ -77,7 +78,7 @@ function getCategorySync(cId){
   category.items = category.items.map(getItemSync);
   return category;
 }
-app.get('/users/:userid/feed/categories', function(req, res) {
+app.get('/users/:userid/feeds/categories', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNumber = parseInt(userid, 10);

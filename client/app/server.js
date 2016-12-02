@@ -98,12 +98,12 @@ export function createUserDescription(content, userId, cb) {
   emulateServerReturn(userData, cb);
 }
 export function getFeedData(user, cb) {
-  sendXHR('GET', '/user/' + user + '/feed', undefined, (xhr) => {
+  sendXHR('GET', '/users/' + user + '/feeds', undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
 export function getCategories(user, cb){
-  sendXHR('GET', '/user/' + user + '/feed/categories', undefined, (xhr) => {
+  sendXHR('GET', '/users/' + user + '/feeds/categories', undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
@@ -113,13 +113,13 @@ export function getItem(itemId, cb){
   });
 }
 export function likeItem(itemId, userId,cb) {
-  sendXHR('PUT', '/user/' + userId + '/feed/items/' + itemId + '/likeCounter/'+ userId,
+  sendXHR('PUT', '/users/' + userId + '/feeds/items/' + itemId + '/likeCounter/'+ userId,
   undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
 export function dislikeItem(itemId, userId, cb) {
-  sendXHR('PUT', '/user/' + userId + '/feed/items/' + itemId + '/dislikeCounter/'+ userId,
+  sendXHR('PUT', '/users/' + userId + '/feeds/items/' + itemId + '/dislikeCounter/'+ userId,
   undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
@@ -131,7 +131,7 @@ export function sendMessage(senderId, recipientId, message) {
 }
 
 export function getMessages(userId) {
-  
+
 }
 
 export function uploadItem(user, itemName, contents, category, picture, cb) {

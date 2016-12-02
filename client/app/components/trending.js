@@ -21,11 +21,11 @@ export default class Trending extends React.Component{
   }
   render(){
     var allCategories = this.state.categories;
-    
+
     return(
       <div>
         <ul className="list-group">
-          {this.state.categories.map((category)=>{
+          {allCategories.map((category)=>{
             return (
               <Category key={category._id} data={category} />
             );
