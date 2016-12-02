@@ -77,8 +77,15 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
+export function getProductManager(userId, cb){
+  sendXHR("GET", "/user/" + userId + "/pm", undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
 export function removeItem(userId, itemId, cb){
-  sendXHR("DELETE", "/pm/" + userId + "/item/" + itemId, undefined, () => {
+  console.log("???!124");
+  sendXHR("DELETE", "/user/" + userId + "/pm/item/" + itemId, undefined, () => {
     cb();
   });
 }

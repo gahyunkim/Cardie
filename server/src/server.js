@@ -16,6 +16,7 @@ var readDocument = database.readDocument;
 var validate = require('express-jsonschema').validate;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
+var getCollection = database.getCollection;
 
 /**
 * Get the user ID from a token. Returns -1 (an invalid ID)
@@ -99,10 +100,8 @@ app.get('/users/:userid/feeds/categories', function(req, res) {
 function getItemSync(itemId) {
   var item = readDocument('items', itemId);
   // Resolve 'like' and 'dislike' counter.
-  item.likeCounter = item.likeCounter.map((id) => readDocument('users', id));
-  item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
-  item.vendorID = readDocument('users', item.vendorID);
   return item;
+
 }
 app.get('/items/:itemid', function(req, res) {
   console.log("got here2");
@@ -152,26 +151,40 @@ app.put('/items/:itemid/dislikeCounter/:userid', function(req, res) {
     res.status(401).end();
   }
 });
+app.get('/user/:userid/pm', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  if(fromUser === userId){
+    var productManager = readDocument('users', userId).productManager;
+    productManager.items = productManager.items.map((item) => getItemSync(item));
+    res.send(productManager);
+  } else {
+    res.status(401).end();
+  }
+});
 
-app.delete('/pm/:userid/item/:itemid', function(res, req) {
+app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var itemId = parseInt(req.params.itemid, 10);
   var item = readDocument('items', itemId);
-  var feeds = getCollection("feeds");
-  var feedIds = Object.keys('feeds');
+  var feeds = getCollection('feeds');
+  var feedKeys = Object.keys(feeds);
   var userId = parseInt(req.params.userid, 10);
   if( fromUser === userId){
-    console.log(feedIds);
-    feedIds.forEach((feedId) => {
-      var feed = feeds[feedId];
-      var itemIdx = feed.contents.indexOf(itemId);
-      if (itemIdx !== -1) {
-        // Splice out of array.
-        feed.contents.splice(itemIdx, 1);
-        // Update feed.
-        database.writeDocument('feeds', feed);
+
+    feedKeys.forEach((key) => {
+      var feed = readDocument('feeds', key);
+      var itemIdx = feed.items.indexOf(itemId);
+      if(itemIdx !== -1){
+        feed.items = feed.items.splice(itemIdx, 1);
+        writeDocument('feeds', feed);
       }
     });
+    var user = readDocument('users', userId);
+    var itemIdx = user.productManager.items.indexOf(itemId);
+    user.productManager.items = user.productManager.items.splice(itemIdx, 1);
+    writeDocument('users', user);
+
     res.send();
   } else {
     res.status(401).end();

@@ -17,7 +17,7 @@ var initialData = {
       "feed": 1,
       "productManager" : {
         "_id" : 1,
-        "items" : [1,3]
+        "items" : [1,5,6,7,8]
       }
     },
     "2" : {
@@ -67,7 +67,7 @@ var initialData = {
       "feed": 5,
       "productManager" : {
         "_id" : 5,
-        "items" : [2]
+        "items" : [2, 3, 4]
       }
     }
   },
@@ -76,27 +76,27 @@ var initialData = {
   "feeds" : {
     "1" : {
       "_id" : 1,
-      "items" : [2],
+      "items" : [2, 3, 4],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "2" : {
       "_id" : 2,
-      "items" : [1,2,3],
+      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "3" : {
       "_id" : 3,
-      "items" : [1,2,3],
+      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "4" : {
       "_id" : 4,
-      "items" : [1,2,3],
+      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "5" : {
       "_id" : 5,
-      "items" : [1,2,3,4,5,6,7,8],
+      "items" : [1, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     }
 
@@ -151,7 +151,7 @@ var initialData = {
       "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 3,
-      "vendorID" : 1
+      "vendorID" : 5
     },
     "4" :{
       "_id" : 4,
@@ -163,7 +163,7 @@ var initialData = {
       "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 4,
-      "vendorID" : 1
+      "vendorID" : 5
     },
     "5" :{
       "_id" : 5,

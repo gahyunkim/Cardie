@@ -1,41 +1,35 @@
 
 import React from 'react';
 import Item from './item.js'
-import { getUserProfile, getItem, removeItem } from '../server.js';
+import { getProductManager, getUserProfile, getItem, removeItem } from '../server';
+import {unixTimeToString} from './util'
 
 export default class ProductManager extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      user: getUserProfile(this.props.pm),
-      items: getUserProfile(this.props.pm).productManager.items.map((item) => getItem(item))
+      contents: []
     }
 
   }
   refresh(){
-    var user = getUserProfile(this.props.pm);
-    var items = user.productManager.items.map((item) => getItem(item));
-    this.setState(items);
+    getProductManager(this.props.pm, (pm) => {
+      this.setState(pm);
+    });
 
   }
 
-  handleSoldRemove(e){
-    e.preventDefault();
-    removeItem(this.props.pm, e.target.value, (update) => {
-      var user = getUserProfile(this.props.pm);
-      var items = user.productManager.items.map((item) => getItem(item));
-      this.setState(update);
+  removeItem(userid, itemid){
+    removeItem(userid, itemid, () => {
       this.refresh();
-    })
+    });
   }
 
   componentDidMount(){
     this.refresh();
   }
   render(){
-    var user = getUserProfile(this.props.pm);
-
-    var items = user.productManager.items.map((item) => getItem(item));
+    var items = this.state.items ? this.state.items : [];
     return(
       <div>
         <h1> Product Manager </h1>
@@ -66,14 +60,12 @@ export default class ProductManager extends React.Component{
                     <div className="item-actions">
                       <button type="button"
                               className="btn btn-default navbar-btn item-action-button check-button"
-                              value={item._id}
-                              onClick={(e) => this.handleSoldRemove(e)}>
+                              onClick={() => this.removeItem(item.vendorID, item._id)}>
                         <i className="material-icons">check</i>Sold
                       </button>
                       <button type="button"
                               className="btn btn-default navbar-btn item-action-button remove-button"
-                              value={item._id}
-                              onClick={(e) => this.handleSoldRemove(e)}>
+                              onClick={() => this.removeItem(item.vendorID, item._id)}>
                         <i className="material-icons">close</i>Remove
                       </button>
                     </div>

@@ -67,7 +67,7 @@ ReactDOM.render((
       <IndexRoute component={FeedPage} />
       <Route path="feeds/:userid" component={FeedPage} />
       <Route path="profile/:id" component={ProfilePage} />
-      <Route path="pm/:id" component={ProductManagerPage} />
+      <Route path="user/:id/pm" component={ProductManagerPage} />
       <Route path="chat/:id" component={ChatPage} />
       <Route path="trending" component={TrendingPage} />
       <Route path="upload" component={UploadPage} />

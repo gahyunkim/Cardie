@@ -70,7 +70,7 @@ export default class User extends React.Component{
                           <div className="media">
                             <div className="media-body">
                               <font size="+1" color="black">
-                                <Link to={"pm/"+ this.props.user}>
+                                <Link to={"user/" + this.props.user + "/pm"}>
                                   Manage My Products
                                 </Link>
                               </font>

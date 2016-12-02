@@ -62,22 +62,8 @@ var initialData = {
       "feed": 5,
       "productManager" : {
         "_id" : 5,
-        "items" : [2]
-      },
-      "messages" : [
-        {
-          "sender" : 5,
-          "recipient" : 4,
-          "date" : "2:03 PM",
-          "contents" : "hi"
-        },
-        {
-          "sender" : 4,
-          "recipient" : 5,
-          "date" : "4:20 PM",
-          "contents" : "bye"
-        }
-      ]
+        "items" : [2, 3, 4]
+      }
     }
   },
 
@@ -160,7 +146,7 @@ var initialData = {
       "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 3,
-      "vendorID" : 1
+      "vendorID" : 5
     },
     "4" :{
       "_id" : 4,
@@ -172,7 +158,7 @@ var initialData = {
       "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 4,
-      "vendorID" : 1
+      "vendorID" : 5
     },
     "5" :{
       "_id" : 5,
