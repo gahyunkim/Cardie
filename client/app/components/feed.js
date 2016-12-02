@@ -15,10 +15,10 @@ export default class Feed extends React.Component{
    });
  }
 
- onPost(postContents){
+ onPost(itemname, content, Category, picture){
    //add
-   //uploadItem(5, )
-   this.refresh();
+   uploadItem(this.state._id, itemname, content, Category, picture, () => {this.refresh();});
+   // Database is now updated. Refresh the feed.
  }
 
  componentDidMount() {

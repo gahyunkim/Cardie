@@ -41,7 +41,7 @@ export default class Upload extends React.Component{
                   <input id="myFile" type="file" onChange="previewImage()"/>
                 </form>
                 <div className="col-md-3 categoriesbutton"><select className="form-control input-lg categoriesbutton">
-                  <option selected disabled>Category</option>
+                  <option>Category</option>
                   <option>Auto</option>
                   <option>Electronics</option>
                   <option>Dorm</option>
