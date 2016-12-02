@@ -65,7 +65,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       {/* Show the Feed at / */}
       <IndexRoute component={FeedPage} />
-      <Route path="users/:userid/feeds" component={FeedPage} />
+      <Route path="feeds/:userid" component={FeedPage} />
       <Route path="profile/:id" component={ProfilePage} />
       <Route path="pm/:id" component={ProductManagerPage} />
       <Route path="chat/:id" component={ChatPage} />

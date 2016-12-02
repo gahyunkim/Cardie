@@ -56,7 +56,7 @@ function getFeedData(user) {
   // Return FeedData with resolved references.
   return feedData;
 }
-app.get('/users/:userid/feeds', function(req, res) {
+app.get('/feeds/:userid', function(req, res) {
     console.log("got here");
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
@@ -102,10 +102,10 @@ function getItemSync(itemId) {
   item.likeCounter = item.likeCounter.map((id) => readDocument('users', id));
   item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
   item.vendorID = readDocument('users', item.vendorID);
-  item.photoID = readDocument('users', item.photoID);
   return item;
 }
 app.get('/items/:itemid', function(req, res) {
+  console.log("got here2");
   var itemid = req.params.itemid;
   res.send(getItemSync(itemid));
 });

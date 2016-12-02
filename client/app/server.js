@@ -99,7 +99,7 @@ export function createUserDescription(content, userId, cb) {
   emulateServerReturn(userData, cb);
 }
 export function getFeedData(user, cb) {
-  sendXHR('GET', '/users/' + user + '/feeds', undefined, (xhr) => {
+  sendXHR('GET', '/feeds/' + user, undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
@@ -109,6 +109,7 @@ export function getCategories(user, cb){
   });
 }
 export function getItem(itemId, cb){
+  console.log("got here1");
   sendXHR('GET', '/items/' + itemId, undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
