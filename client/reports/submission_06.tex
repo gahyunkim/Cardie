@@ -1,0 +1,193 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage{amsmath}%
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\usepackage{cancel}
+\usepackage{tikz}
+\usepackage{graphicx}
+\graphicspath{ {C:/Users/Roman/Documents/CS326/team-project-client-template/ERDiagram} }
+\usepackage[margin=1in]{geometry} 
+\usetikzlibrary{automata,positioning}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{enumitem}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{} % Header and footer within the environment
+}{
+\exitProblemHeader{} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+%\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{HTTP Request/Server} % Assignment title
+\newcommand{\hmwkDueDate}{Thursday,\ December 1,\ 2016} % Due date
+\newcommand{\hmwkClass}{CS\ 326} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Professor Tim Richards} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{ \hmwkClassInstructor}
+\vspace{3in}
+}
+\author{Daanial Ahmed, Richard Cui, Roman Ganchin, \\Gahyun (Susie) Kim, Greg McGrath, Francis Phan}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9.10.1
+%----------------------------------------------------------------------------------------
+
+% To have just one problem per page, simply put a \clearpage after each problem
+\begin{homeworkProblem}[Diagram]
+ \includegraphics[scale=.65]{ERDiagram.png}
+\end{homeworkProblem}
+\clearpage
+\begin{homeworkProblem}[Entity Description]
+\textbf{USER}: Anyone with an account in the system, that is formally logged in. A USER must have a \emph{name}, valid \emph{email}, and \emph{location}.
+\newline
+
+\textbf{FEED}: The FEED lists \emph{ITEMS} publicly open for sale by \textit{USERS}.
+\newline
+
+\textbf{ITEM}: A unique ITEM in our database. An item only ever belongs to a single \emph{USER}. A \emph{USER} can have many ITEMS for sale. An ITEM must have a \emph{photo}, \emph{name}, \emph{description}. 
+\newline
+
+\textbf{PRODUCT MANAGER}: A interface in which a USER can see all \textit{ITEMS} they have open for sale. Every \emph{USER} has one and only one.
+\newline
+
+\textbf{CHAT}: A CHAT must have exactly 2 \emph{users} associated with it. A \emph{USER} can have multiple CHATS with different people. 
+\newline
+
+\textbf{SETTINGS}: The set of preferences a \emph{USER} has. Ex. "Item search radius=25 miles" 
+\newline
+
+\textbf{VIEWER}: Someone not formally logged within our system. They have a \emph{FEED}, and can look at \emph{items}.\newline
+\end{homeworkProblem}
+\begin{homeworkProblem}[Page/Widget Description]
+\textbf{Main UI(public and private)}: the Main UI displays the \emph{Feed} which consists of \emph{Items}. The \emph{Feed} can be utilized by either a \emph{Viewer} or a \emph{User}. \newline
+
+\textbf{Trending Items}: the Trending Items page displays an assortment of popular \emph{Item$'$s} based on category.
+\newline
+\textbf{Sell Item}: this page allows a \emph{User} to upload an \emph{Item}. \newline
+
+\textbf{User Profile}: the User Profile displays the components of the \emph{User}. It also contains its \emph{Settings} and \emph{Product Manager}. \newline
+
+\textbf{Chat}: the Chat displays all \emph{Chat} entities belonging to a \emph{User}. \newline
+ 
+\textbf{Item Manager}: the Item Manager displays the \emph{Product Manager} entity which displays all \emph{Item$'$s} put out by the \emph{User}. \newline
+\end{homeworkProblem}
+ 
+%----------------------------------------------------------------------------------------
+
+\end{document}
