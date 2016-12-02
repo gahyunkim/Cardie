@@ -9,7 +9,7 @@ function sendXHR(verb, resource, body, cb) {
   // The below comment tells ESLint that FacebookError is a global.
   // Otherwise, ESLint would complain about it! (See what happens in Atom if
   // you remove the comment...)
-  /* global FacebookError */
+  /* global CardieError */
   // Response received from server. It could be a failure, though!
   xhr.addEventListener('load', function() {
     var statusCode = xhr.status;
@@ -22,11 +22,25 @@ function sendXHR(verb, resource, body, cb) {
       // Client or server error.
       // The server may have included some response text with details concerning
       // the error.
+      var responseText = xhr.responseText;
+      CardieError('Could not ' + verb + " " + resource + ": Received " +
+      statusCode + " " + statusText + ": " + responseText);
     }
   });
   // Time out the request if it takes longer than 10,000
   // milliseconds (10 seconds)
   xhr.timeout = 10000;
+
+  // Network failure: Could not connect to server.
+  xhr.addEventListener('error', function() {
+    CardieError('Could not ' + verb + " " + resource +
+    ": Could not connect to the server.");
+  });
+  // Network failure: request took too long to complete.
+  xhr.addEventListener('timeout', function() {
+    CardieError('Could not ' + verb + " " + resource +
+    ": Request timed out.");
+  });
   switch (typeof(body)) {
     case 'undefined':
     // No body to send.

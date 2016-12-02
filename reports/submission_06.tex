@@ -147,6 +147,28 @@
 %----------------------------------------------------------------------------------------
 %	PROBLEM 9.10.1
 %----------------------------------------------------------------------------------------
+\begin{homeworkProblem}[HTTP Requests]
+\begin{lstlisting}
+GET /feeds/:userid
+\end{lstlisting} 
+\indent Returns the feed of the user with id :userid\\
+\begin{lstlisting}
+POST /upload [item]
+\end{lstlisting} 
+Where [item] is a JSON object describing a new item for sale\\
+\begin{lstlisting}
+PUT /feeds/:userid/item/:itemid/likeCounter
+\end{lstlisting} 
+Current user has their ID pushed on to the item's likeCounter with id :itemid\\
+\begin{lstlisting}
+PUT /feeds/:userid/item/:itemid/dislikeCounter
+\end{lstlisting} 
+Current user has their ID pushed on to the item's dislikeCounter with id :itemid\\
+\begin{lstlisting}
+DELETE /pm/:userid/item/:itemid
+\end{lstlisting} 
+Removes item from vendors ProductManager and from the feeds of anyone that has this item\\
+\end{homeworkProblem}
 
 % To have just one problem per page, simply put a \clearpage after each problem
 \begin{homeworkProblem}[Contributions]
