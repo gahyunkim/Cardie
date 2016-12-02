@@ -6,9 +6,19 @@ export default class Upload extends React.Component{
     // super() calls the parent class constructor --
     // e.g. React.Component's constructor.
     super(props);
-    this.state = {value: ""
+    this.state = {namevalue: "",
+      categoryvalue: "",
+      descriptionvalue: ""
     };
   }
+  /*** Called when the user clicks the 'post' button.
+* Triggers the `Upload` prop if the post isn't empty, and clears* the component.
+*/
+  handleUpload(e) {
+
+  }
+
+  //Called when the user types a character into the form boxes.
   handleItemName(e) {
     e.preventDefault();
     var itemNameText = this.state.value.trim();
