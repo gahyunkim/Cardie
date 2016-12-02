@@ -108,8 +108,7 @@ export function getCategories(user, cb){
     cb(JSON.parse(xhr.responseText));
   });
 }
-export function getItem(itemId, cb){
-  console.log("got here1");
+export function getItem(itemId, cb){ //hardcoded 5, add user with all items?
   sendXHR('GET', '/items/' + itemId, undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });

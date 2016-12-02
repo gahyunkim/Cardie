@@ -25,8 +25,9 @@ export default class Feed extends React.Component{
    this.refresh();
  }
  render(){
-   if(this.state.items.length > 0){
-     var firstItem = (<Item _id={this.state.items[0]._id} length={this.state.items.length}/>);
+   console.log(this.state.items);
+   if(this.state.items.length > 0){ //why are you sending Item id and length??
+     var firstItem = (<Item _id={this.state.items[0]._id} data ={this.state.items[0]} length={this.state.items.length}/>);
      return(
        <div>
          {firstItem}
