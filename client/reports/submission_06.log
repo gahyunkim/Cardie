@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.21)  1 DEC 2016 19:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.21)  1 DEC 2016 19:29
 entering extended mode
 **submission_06.tex
 (submission_06.tex
@@ -746,90 +746,28 @@ LaTeX Font Info:    Try loading font information for U+wasy on input line 134.
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 ) [1
 
-{C:/Users/Roman/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<ERDiagram.png, id=12, 776.9025pt x 727.71875pt>
-File: ERDiagram.png Graphic file (type png)
- <use ERDiagram.png>
-Package pdftex.def Info: ERDiagram.png used on input line 153.
-(pdftex.def)             Requested size: 504.98064pt x 473.01158pt.
-
-Overfull \hbox (35.22565pt too wide) in paragraph at lines 153--155
-[]
- []
-
-[2 <./ERDiagram.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 157--159
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--162
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 163--165
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--168
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 172--174
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--183
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--185
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
-
- []
-
-
+{C:/Users/Roman/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] 
 AED: lastpage setting LastPage
-[3
+[2] (submission_06.aux)
 
-] (submission_06.aux) ) 
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 16819 strings out of 493673
- 317057 string characters out of 3145579
- 456617 words of memory out of 3000000
- 19851 multiletter control sequences out of 15000+200000
- 20174 words of font info for 69 fonts, out of 3000000 for 9000
+ 16769 strings out of 493673
+ 316391 string characters out of 3145579
+ 455617 words of memory out of 3000000
+ 19825 multiletter control sequences out of 15000+200000
+ 13627 words of font info for 47 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  55i,11n,66p,416b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX/fonts/enc/dvips/mnsymbol/MnSymb
-olC.enc}<C:/Program Files/MiKTeX/fonts/type1/public/mnsymbol/MnSymbol7.pfb><C:/
-Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on submission_06.pdf (3 pages, 125204 bytes).
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr9.pfb>
+Output written on submission_06.pdf (2 pages, 60556 bytes).
 PDF statistics:
- 47 PDF objects out of 1000 (max. 8388607)
+ 28 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
