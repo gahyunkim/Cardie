@@ -7,6 +7,7 @@ import ProductManager from './components/productmanager.js';
 import Upload from './components/upload';
 import Item from './components/item';
 import Chat from './components/chat';
+import ErrorBanner from './components/errorbanner';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class FeedPage extends React.Component {
@@ -47,7 +48,8 @@ class UploadPage extends React.Component {
 class App extends React.Component {
   render() {
     return (
-      <div>{this.props.children}</div>
+    <div>{this.props.children}</div>
+
     )
   }
 }
