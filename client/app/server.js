@@ -131,7 +131,10 @@ export function sendMessage(senderId, recipientId, message) {
 }
 
 export function getMessages(userId) {
-
+  sendXHR('GET', '/users/' + userId + '/messages',
+  undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function uploadItem(user, itemName, contents, category, picture, cb) {
