@@ -48,7 +48,7 @@ class UploadPage extends React.Component {
 class App extends React.Component {
   render() {
     return (
-    <div>{this.props.children}</div>
+    <div><ErrorBanner/>{this.props.children}</div>
 
     )
   }
