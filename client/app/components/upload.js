@@ -9,10 +9,24 @@ export default class Upload extends React.Component{
     this.state = {value: ""
     };
   }
-  handlePost(e) {
+  handleItemName(e) {
     e.preventDefault();
-    var itemNameText =this.state.value.trim();
+    var itemNameText = this.state.value.trim();
     if(itemNameText !== "") {
+      this.setState({value: ""});
+    }
+  }
+  handleCategory(e) {
+    e.preventDefault();
+    var itemCategory = this.state.value.trim();
+    if(itemCategory !== "") {
+      this.setState({value: ""});
+    }
+  }
+  handleItemDescrip(e) {
+    e.preventDefault();
+    var itemDescrip = this.state.value.trim();
+    if(itemDescrip !== "") {
       this.setState({value: ""});
     }
   }
