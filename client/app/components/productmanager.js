@@ -1,8 +1,6 @@
 
 import React from 'react';
-import Item from './item.js'
-import { getProductManager, getUserProfile, getItem, removeItem } from '../server';
-import {unixTimeToString} from './util'
+import { getProductManager, removeItem } from '../server';
 
 export default class ProductManager extends React.Component{
   constructor(props){

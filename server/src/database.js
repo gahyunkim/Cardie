@@ -118,8 +118,8 @@ var initialData = {
       "description" : "Nice lamp",
       "category" : "Dorm",
       //stores all the users that liked the item
-      "likeCounter": [2,3],
-      "dislikeCounter": [4,5],
+      "likeCounter": [],
+      "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
       "photoID" : 1,
       "vendorID" : 1
@@ -201,7 +201,7 @@ var initialData = {
       "description" : "this should not be in Electronics",
       "category" : "Electronics",
       //stores all the users that liked the item
-      "likeCounter": [5],
+      "likeCounter": [],
       "dislikeCounter": [],
       "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
       "photoID" : 8,

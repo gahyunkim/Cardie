@@ -95,15 +95,15 @@ export function getItem(itemId, cb){ //hardcoded 5, add user with all items?
   });
 }
 export function likeItem(itemId, userId,cb) {
-  sendXHR('PUT', '/users/' + userId + '/feeds/items/' + itemId + '/likeCounter/'+ userId,
-  undefined, (xhr) => {
-    cb(JSON.parse(xhr.responseText));
+  sendXHR('PUT', '/users/' + userId + '/feeds/items/' + itemId +'/like',
+  undefined, () => {
+    cb();
   });
 }
 export function dislikeItem(itemId, userId, cb) {
-  sendXHR('PUT', '/users/' + userId + '/feeds/items/' + itemId + '/dislikeCounter/'+ userId,
-  undefined, (xhr) => {
-    cb(JSON.parse(xhr.responseText));
+  sendXHR('PUT', '/users/' + userId + '/feeds/items/' + itemId + '/dislike',
+  undefined, () => {
+    cb();
   });
 }
 

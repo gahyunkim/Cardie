@@ -140,20 +140,23 @@ app.get('/items/:itemid', function(req, res) {
 
 
 // Like an item.
-app.put('/items/:itemid/likeCounter/:userid', function(req, res) {
+app.put('/users/:userid/feeds/items/:itemid/like', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   // Convert params from string to number.
-  var feedItemId = parseInt(req.params.feeditemid, 10);
+  var itemId = parseInt(req.params.itemid, 10);
   var userId = parseInt(req.params.userid, 10);
   if (fromUser === userId) {
-    var item = readDocument('items', feedItemId); // Add to likeCounter if not already present.
+    var item = readDocument('items', itemId);
+    var feed = readDocument('feeds', userId);
     if (item.likeCounter.indexOf(userId) === -1) {
       item.likeCounter.push(userId);
+      var itemIdx = feed.items.indexOf(itemId);
+      feed.items.splice(itemIdx, 1);
+      writeDocument('feeds', feed);
       writeDocument('items', item);
     }
     // Return a resolved version of the likeCounter
-    res.send(item.likeCounter.map((userId) =>
-    readDocument('users', userId)));
+    res.send();
   } else {
     // 401: Unauthorized.
     res.status(401).end();
@@ -161,20 +164,23 @@ app.put('/items/:itemid/likeCounter/:userid', function(req, res) {
 });
 
 // disike an item.
-app.put('/items/:itemid/dislikeCounter/:userid', function(req, res) {
+app.put('/users/:userid/feeds/items/:itemid/dislike', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   // Convert params from string to number.
-  var feedItemId = parseInt(req.params.feeditemid, 10);
+  var itemId = parseInt(req.params.itemid, 10);
   var userId = parseInt(req.params.userid, 10);
   if (fromUser === userId) {
-    var item = readDocument('items', feedItemId);
+    var item = readDocument('items', itemId);
+    var feed = readDocument('feeds', userId);
     if (item.dislikeCounter.indexOf(userId) === -1) {
       item.dislikeCounter.push(userId);
+      var itemIdx = feed.items.indexOf(itemId);
+      feed.items.splice(itemIdx, 1);
+      writeDocument('feeds', feed);
       writeDocument('items', item);
     }
     // Return a resolved version of the likeCounter
-    res.send(item.dislikeCounter.map((userId) =>
-    readDocument('users', userId)));
+    res.send();
   } else {
     // 401: Unauthorized.
     res.status(401).end();
@@ -185,7 +191,7 @@ app.get('/user/:userid/pm', function(req, res) {
   var userId = parseInt(req.params.userid, 10);
   if(fromUser === userId){
     var productManager = readDocument('users', userId).productManager;
-    productManager.items = productManager.items.map((item) => getItemSync(item));
+    productManager.items = productManager.items.map((item) => getItem(item));
     res.send(productManager);
   } else {
     res.status(401).end();
