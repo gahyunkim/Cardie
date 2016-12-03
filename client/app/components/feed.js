@@ -22,13 +22,11 @@ export default class Feed extends React.Component{
  likeItem(itemid) {
    likeItem(itemid, 5, () => {
      this.refresh();
-     this.render();
    });
  }
  dislikeItem(itemid){
    dislikeItem(itemid, 5, () => {
      this.refresh();
-     this.render();
    });
  }
 
@@ -51,7 +49,8 @@ export default class Feed extends React.Component{
              </button>
          </div>
          <div className="col-md-8">
-           <Item _id={firstItem._id} data={firstItem} isCat={false}/>
+           <img src={firstItem.contents} className="item_for_sale" />
+           <h1>{firstItem.name}</h1>
          </div>
          <div className="col-md-2">
             <button type="button"
