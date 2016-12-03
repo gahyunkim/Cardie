@@ -6,7 +6,8 @@ export default class Feed extends React.Component{
  constructor(props) {
    super(props);
    this.state = {
-     items: []
+     items: [],
+     showDescription:false
    };
  }
  refresh(){
@@ -29,16 +30,16 @@ export default class Feed extends React.Component{
      this.refresh();
    });
  }
+ showDescription(){
+   this.setState({showDescription: this.state.showDescription === true ? false : true});
+   this.refresh();
+ }
 
  render(){
-   if(this.state.items.length > 0){ //why are you sending Item id and length??
+   if(this.state.items.length > 0){
      var firstItem = this.state.items[0];
-
-/*
-   var items = this.state.items;
-   if(items.length > 0){ //why are you sending Item id and length??
-     var firstItem = items[0];
-*/
+     console.log(this.state.showDescription);
+     if(this.state.showDescription === false){
      return(
        <div>
          <div className="col-md-2">
@@ -49,8 +50,12 @@ export default class Feed extends React.Component{
              </button>
          </div>
          <div className="col-md-8">
-           <img src={firstItem.contents} className="item_for_sale" />
            <h1>{firstItem.name}</h1>
+           <button type="button"
+                  className="item_for_sale"
+                  onClick={() => this.showDescription()}>
+                  <img src={firstItem.contents} className="item_for_sale" />
+            </button>
          </div>
          <div className="col-md-2">
             <button type="button"
@@ -60,7 +65,37 @@ export default class Feed extends React.Component{
              </button>
          </div>
        </div>
-     )
+     )}
+     else{
+       return(
+         <div>
+           <div className="col-md-2">
+             <button type="button"
+                     className="dislike"
+                     onClick={() => this.dislikeItem(firstItem._id)}>
+                   <img src="img/no_dogs.JPG" className="no_dogs" />
+               </button>
+           </div>
+           <div className="col-md-8">
+             <h1>{firstItem.name}</h1>
+             <button type="button"
+                    className="item_for_sale"
+                    onClick={() => this.showDescription()}>
+                    <img src={firstItem.contents} className="item_for_sale" />
+              </button>
+              <h3>{firstItem.description}</h3>
+           </div>
+           <div className="col-md-2">
+              <button type="button"
+                      className="like"
+                      onClick={() => this.likeItem(firstItem._id)}>
+                   <img src="img/throw_a_bone.JPG" className="throw_a_bone" />
+               </button>
+           </div>
+         </div>
+       )
+
+     }
    }
    else{
      return(
