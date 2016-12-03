@@ -92,7 +92,7 @@ export default class Upload extends React.Component{
                     <div className="col-md-2">
                       <button className="btn btn-default btn-lg submitsubmitbutton btn-success" type="submit" onClick={(e) =>this.handlePost(e)}>
                         Upload
-                        <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                        <span className="glyphicon glyphicon-upload" aria-hidden="true" onClick={(e) =>this.handleUpload(e)}></span>
                       </button>
                     </div>
                   </div>
