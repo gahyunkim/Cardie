@@ -149,25 +149,39 @@
 %----------------------------------------------------------------------------------------
 \begin{homeworkProblem}[HTTP Requests]
 \begin{lstlisting}
-GET /feeds/:userid
+GET /profile/:userid
 \end{lstlisting} 
-\indent Returns the feed of the user with id :userid\\
+Returns the profile for user with :userid.\\
 \begin{lstlisting}
-POST /upload [item]
+GET /user/:userid/feed
 \end{lstlisting} 
-Where [item] is a JSON object describing a new item for sale\\
+\indent Returns the feed of the user with id :userid.\\
 \begin{lstlisting}
-PUT /feeds/:userid/item/:itemid/likeCounter
+POST /upload/:userid [item]
 \end{lstlisting} 
-Current user has their ID pushed on to the item's likeCounter with id :itemid\\
+Where [item] is a JSON object describing a new item for sale where :userid is the vendor of that item.\\
 \begin{lstlisting}
-PUT /feeds/:userid/item/:itemid/dislikeCounter
+PUT/users/:userid/feeds/items/:itemid/like
 \end{lstlisting} 
-Current user has their ID pushed on to the item's dislikeCounter with id :itemid\\
+Current user has their ID pushed on to the item's likeCounter with id :itemid.\\
 \begin{lstlisting}
-DELETE /pm/:userid/item/:itemid
+PUT /users/:userid/feeds/items/:itemid/dislike
 \end{lstlisting} 
-Removes item from vendors ProductManager and from the feeds of anyone that has this item\\
+Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
+\begin{lstlisting}
+GET /user/:userid/pm
+\end{lstlisting} 
+Returns the productManager of a user with :userid with all their items for sale.\\
+
+\begin{lstlisting}
+DELETE /user/:userid/pm/item/:itemid
+\end{lstlisting} 
+Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
+\begin{lstlisting}
+POST /resetdb
+\end{lstlisting} 
+Resets database on application.\\
+
 \end{homeworkProblem}
 
 % To have just one problem per page, simply put a \clearpage after each problem
