@@ -8,8 +8,8 @@ import Upload from './components/upload';
 import Item from './components/item';
 import Chat from './components/chat';
 import ErrorBanner from './components/errorbanner';
-import { IndexRoute, Router, Route, hashHistory } from 'react-router'
-import { ResetDatabase } from './database'
+import { IndexRoute, Router, Route, hashHistory } from 'react-router';
+import ResetDatabase from './components/resetdatabase';
 
 class FeedPage extends React.Component {
   render() {
