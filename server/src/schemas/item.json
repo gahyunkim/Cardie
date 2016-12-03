@@ -27,6 +27,7 @@
         "type": "array",
         "items": {
           "type": "integer"
+        }
       },
       "vendorID": {
         "id": "vendorID",
@@ -37,7 +38,7 @@
         "type": "integer"
       }
     },
-    "additionalProperties": false,
+    "additionalProperties": true,
     "required": [
       "name",
       "description",
