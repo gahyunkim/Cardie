@@ -253,8 +253,8 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
     });
     itemIdx = user.productManager.items.indexOf(itemId);
     user.productManager.items.splice(itemIdx, 1);
-    database.writeDocument('users', user);
-    database.deleteDocument('items', itemId);
+    writeDocument('users', user);
+    deleteDocument('items', itemId);
     res.send();
   } else {
     res.status(401).end();
