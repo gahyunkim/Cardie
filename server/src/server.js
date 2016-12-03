@@ -16,6 +16,8 @@ var readDocument = database.readDocument;
 var validate = require('express-jsonschema').validate;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
+var getCollection = database.getCollection;
+var deleteDocument = database.deleteDocument;
 
 /**
 * Get the user ID from a token. Returns -1 (an invalid ID)
@@ -48,19 +50,17 @@ function getUserIdFromToken(authorizationLine) {
 * Get the feed data for a particular user.
 */
 function getFeedData(user) {
-  var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);
+  var feed = readDocument('feeds', user);
   // While map takes a callback, it is synchronous, not asynchronous.
   // It calls the callback immediately.
-  feedData.items = feedData.items.map((item) => getItemSync(item));
+  feed.items = feed.items.map((item) => getItem(item));
   // Return FeedData with resolved references.
-  return feedData;
+  return feed;
 }
-app.get('/feeds/:userid', function(req, res) {
-  var userid = req.params.userid;
+app.get('/user/:userid/feed', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var useridNumber = parseInt(userid, 10);
-  if (fromUser === useridNumber) {
+  var userid = parseInt(req.params.userid, 10);
+  if (fromUser === userid) {
     // Send response.
     res.send(getFeedData(userid));
   } else {
@@ -83,7 +83,7 @@ function getCategories(user) {
 }
 function getCategorySync(cId){
   var category = readDocument('categories', cId);
-  category.items = category.items.map(getItemSync);
+  category.items = category.items.map((item) => getItem(item));
   return category;
 }
 app.get('/users/:userid/feeds/categories', function(req, res) {
@@ -114,13 +114,10 @@ app.get('/users/:userid/feeds/categories', function(req, res) {
   // Return FeedData with resolved references.
   return feedData;
 }*/
-function getItemSync(itemId) {
+function getItem(itemId) {
   var item = readDocument('items', itemId);
-  // Resolve 'like' and 'dislike' counter.
-  //item.likeCounter = item.likeCounter.map((id) => readDocument('users', id));
-  //item.dislikeCounter = item.dislikeCounter.map((id) => readDocument('users', id));
-  //item.vendorID = readDocument('users', item.vendorID);
   return item;
+
 }
 app.get('/items/:itemid', function(req, res) {
   /*var userid = req.params.userid;
@@ -135,8 +132,10 @@ app.get('/items/:itemid', function(req, res) {
     // 401: Unauthorized request.
     res.status(401).end();
   }*/
-  var itemid = req.params.itemid;
-  res.send(getItemSync(itemid));
+
+  var itemid = parseInt(req.params.itemid, 10);
+  var item = getItem(itemid);
+  res.send(item);
 });
 
 
@@ -181,26 +180,40 @@ app.put('/items/:itemid/dislikeCounter/:userid', function(req, res) {
     res.status(401).end();
   }
 });
+app.get('/user/:userid/pm', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  if(fromUser === userId){
+    var productManager = readDocument('users', userId).productManager;
+    productManager.items = productManager.items.map((item) => getItemSync(item));
+    res.send(productManager);
+  } else {
+    res.status(401).end();
+  }
+});
 
-app.delete('/pm/:userid/item/:itemid', function(res, req) {
+app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var itemId = parseInt(req.params.itemid, 10);
-  var item = readDocument('items', itemId);
-  var feeds = getCollection("feeds");
-  var feedIds = Object.keys('feeds');
+  var feeds = getCollection('feeds');
+  var feedKeys = Object.keys(feeds);
   var userId = parseInt(req.params.userid, 10);
+  var user = readDocument('users', userId);
+  var feed, itemIdx;
   if( fromUser === userId){
-    console.log(feedIds);
-    feedIds.forEach((feedId) => {
-      var feed = feeds[feedId];
-      var itemIdx = feed.contents.indexOf(itemId);
-      if (itemIdx !== -1) {
-        // Splice out of array.
-        feed.contents.splice(itemIdx, 1);
-        // Update feed.
+
+    feedKeys.forEach((key) => {
+      feed = readDocument('feeds', key);
+      itemIdx = feed.items.indexOf(itemId);
+      if(itemIdx !== -1){
+        feed.items.splice(itemIdx, 1);
         database.writeDocument('feeds', feed);
       }
     });
+    itemIdx = user.productManager.items.indexOf(itemId);
+    user.productManager.items.splice(itemIdx, 1);
+    database.writeDocument('users', user);
+    database.deleteDocument('items', itemId);
     res.send();
   } else {
     res.status(401).end();
@@ -239,6 +252,18 @@ function getMessages(user) {
   var messages = readDocument('messages', userData.messages);
   return messages;
 }
+
+app.get('/profile/:userid', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  if( fromUser === userId){
+    var profile = readDocument('users', userId);
+    res.send(profile);
+
+  } else {
+    res.status(401).end();
+  }
+});
 
 app.get('/users/:userid/messages', function(req, res) {
   var userId = req.params.userid;

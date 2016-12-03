@@ -8,7 +8,8 @@ import Upload from './components/upload';
 import Item from './components/item';
 import Chat from './components/chat';
 import ErrorBanner from './components/errorbanner';
-import { IndexRoute, Router, Route, hashHistory } from 'react-router'
+import { IndexRoute, Router, Route, hashHistory } from 'react-router';
+import ResetDatabase from './components/resetdatabase';
 
 class FeedPage extends React.Component {
   render() {
@@ -65,9 +66,8 @@ ReactDOM.render((
     <Route path="/" component={App}>
       {/* Show the Feed at / */}
       <IndexRoute component={FeedPage} />
-      <Route path="feeds/:userid" component={FeedPage} />
       <Route path="profile/:id" component={ProfilePage} />
-      <Route path="pm/:id" component={ProductManagerPage} />
+      <Route path="user/:id/pm" component={ProductManagerPage} />
       <Route path="chat/:id" component={ChatPage} />
       <Route path="trending" component={TrendingPage} />
       <Route path="upload" component={UploadPage} />
@@ -78,3 +78,4 @@ ReactDOM.render((
 document.getElementById('main-feed')
 
 );
+ReactDOM.render(<ResetDatabase />, document.getElementById('db-reset'));

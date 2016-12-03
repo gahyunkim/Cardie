@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from './item.js';
+import Item from './item';
 import {getFeedData, likeFeedItem, uploadItem} from '../server';
 
 export default class Feed extends React.Component{
@@ -15,20 +15,18 @@ export default class Feed extends React.Component{
    });
  }
 
- onPost(itemname, content, Category, picture){
-   //add
-   uploadItem(this.state._id, itemname, content, Category, picture, () => {this.refresh();});
-   // Database is now updated. Refresh the feed.
- }
-
  componentDidMount() {
    this.refresh();
  }
  render(){
-   console.log(this.state.items);
    if(this.state.items.length > 0){ //why are you sending Item id and length??
      var firstItem = (<Item _id={this.state.items[0]._id} item ={this.state.items[0]}
                       length ={this.state.items.length} isCat={false}/>);
+/*
+   var items = this.state.items;
+   if(items.length > 0){ //why are you sending Item id and length??
+     var firstItem = items[0];
+*/
      return(
        <div>
          {firstItem}
