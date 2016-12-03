@@ -1,5 +1,3 @@
-import {readDocument, writeDocument, addDocument} from './database.js';
-
 var token = 'eyJpZCI6NX0=';
 
 function sendXHR(verb, resource, body, cb) {
@@ -63,20 +61,6 @@ function sendXHR(verb, resource, body, cb) {
 }
 
 
-
-
-
-
-/**
-* Emulates how a REST call is *asynchronous* -- it calls your function back
-* some time in the future with data.
-*/
-function emulateServerReturn(data, cb) {
-  setTimeout(() => {
-    cb(data);
-  }, 4);
-}
-
 export function getProductManager(userId, cb){
   sendXHR("GET", "/user/" + userId + "/pm", undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
@@ -84,7 +68,6 @@ export function getProductManager(userId, cb){
 }
 
 export function removeItem(userId, itemId, cb){
-  console.log("???!124");
   sendXHR("DELETE", "/user/" + userId + "/pm/item/" + itemId, undefined, () => {
     cb();
   });
@@ -96,18 +79,8 @@ export function getUserProfile(userId, cb) {
   });
 }
 
-export function createUserDescription(content, userId, cb) {
-  var userData = readDocument('users', userId)
-  var description = userData.description;
-  if (description !== "") {
-    userData.description = content;
-    // userData.description.replace(description, content);
-  }
-  writeDocument('users', userId);
-  emulateServerReturn(userData, cb);
-}
 export function getFeedData(user, cb) {
-  sendXHR('GET', '/feeds/' + user, undefined, (xhr) => {
+  sendXHR('GET', '/user/' + user + '/feed' , undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
@@ -138,7 +111,7 @@ export function sendMessage(senderId, recipientId, message) {
 
 }
 
-export function getMessages(userId) {
+export function getMessages(userId, cb) {
   sendXHR('GET', '/users/' + userId + '/messages',
   undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
@@ -146,19 +119,19 @@ export function getMessages(userId) {
 }
 
 export function uploadItem(user, itemName, contents, category, picture, cb) {
-  var item = {
-    "_id" : user,
-    "name" : itemName,
-    "description" : contents,
-    "category" : category,
-    //stores all the users that liked the item
-    "likeCounter": [],
-    "dislikeCounter": [],
-    "contents" : "http://placehold.it/400x300" //replace with uploaded picture later
-  };
-  item = addDocument('items', item);
-  var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);  //update the feed
-  writeDocument('feeds', feedData);
-  emulateServerReturn(item, cb);
+  // var item = {
+  //   "_id" : user,
+  //   "name" : itemName,
+  //   "description" : contents,
+  //   "category" : category,
+  //   //stores all the users that liked the item
+  //   "likeCounter": [],
+  //   "dislikeCounter": [],
+  //   "contents" : "http://placehold.it/400x300" //replace with uploaded picture later
+  // };
+  // item = addDocument('items', item);
+  // var userData = readDocument('users', user);
+  // var feedData = readDocument('feeds', userData.feed);  //update the feed
+  // writeDocument('feeds', feedData);
+  // emulateServerReturn(item, cb);
 }

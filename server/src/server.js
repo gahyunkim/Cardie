@@ -53,11 +53,11 @@ function getFeedData(user) {
   var feed = readDocument('feeds', user);
   // While map takes a callback, it is synchronous, not asynchronous.
   // It calls the callback immediately.
-  feed.items = feed.items.map((item) => getItemSync(item));
+  feed.items = feed.items.map((item) => getItem(item));
   // Return FeedData with resolved references.
   return feed;
 }
-app.get('/feeds/:userid', function(req, res) {
+app.get('/user/:userid/feed', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var userid = parseInt(req.params.userid, 10);
   if (fromUser === userid) {
@@ -83,7 +83,7 @@ function getCategories(user) {
 }
 function getCategorySync(cId){
   var category = readDocument('categories', cId);
-  category.items = category.items.map(getItemSync);
+  category.items = category.items.map((item) => getItem(item));
   return category;
 }
 app.get('/users/:userid/feeds/categories', function(req, res) {
@@ -114,7 +114,7 @@ app.get('/users/:userid/feeds/categories', function(req, res) {
   // Return FeedData with resolved references.
   return feedData;
 }*/
-function getItemSync(itemId) {
+function getItem(itemId) {
   var item = readDocument('items', itemId);
   return item;
 
@@ -132,8 +132,10 @@ app.get('/items/:itemid', function(req, res) {
     // 401: Unauthorized request.
     res.status(401).end();
   }*/
-  var itemid = req.params.itemid;
-  res.send(getItemSync(itemid));
+
+  var itemid = parseInt(req.params.itemid, 10);
+  var item = getItem(itemid);
+  res.send(item);
 });
 
 
