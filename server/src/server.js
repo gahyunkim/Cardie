@@ -19,6 +19,8 @@ var addDocument = database.addDocument;
 var getCollection = database.getCollection;
 var deleteDocument = database.deleteDocument;
 
+var ItemSchema = require('./schemas/item.json');
+
 /**
 * Get the user ID from a token. Returns -1 (an invalid ID)
 * if it fails.
@@ -136,6 +138,39 @@ app.get('/items/:itemid', function(req, res) {
   var itemid = parseInt(req.params.itemid, 10);
   var item = getItem(itemid);
   res.send(item);
+});
+
+app.post('/upload/:userid', function(req, res){
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userid = parseInt(req.params.userid, 10);
+  if (fromUser === userid) {
+    var feeds = getCollection('feeds');
+    var feedKeys = Object.keys(feeds);
+    var newItem = {
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "vendorID": userid,
+      "contents": req.body.contents,
+      "name": req.body.name,
+      "category": req.body.category,
+      "description": req.body.description
+    }
+    newItem = addDocument('items', newItem);
+    var feed;
+    feedKeys.forEach((key) => {
+      if( key !== userid ){
+        feed = readDocument('feeds', key);
+        feed.items.push(newItem._id);
+        writeDocument('feeds', feed);
+      }
+    });
+    var vendor = readDocument('users', userid);
+    vendor.productManager.items.push(newItem._id);
+    writeDocument('users', vendor);
+    res.send();
+  } else {
+    res.status(401).end();
+  }
 });
 
 

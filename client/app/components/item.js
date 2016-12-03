@@ -23,7 +23,6 @@ export default class Item extends React.Component{
           <Link to={'/item/'+this.state.item._id}>
             <img className="img-responsive" src={this.state.item.contents} />
           </Link>
-          <h1>{this.state.item.name}</h1>
         </div>
       )
     }
