@@ -27,7 +27,7 @@ export default class Trending extends React.Component{
         <ul className="list-group">
           {allCategories.map((category)=>{
             return (
-              <Category key={category._id} data={category} />
+              <Category key={category._id} data={category}/>
             );
           })}
         </ul>

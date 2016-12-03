@@ -15,7 +15,7 @@ export default class Category extends React.Component{
   }
   render(){
     var allItems =this.state.items.map((item)=>{
-      return (<Item key={item._id} data={item} />);})
+      return (<Item key={item._id} item={item} isCat={true}/>);})
     var firstFourItems;
     var lastItems;
     if(allItems.length >4){

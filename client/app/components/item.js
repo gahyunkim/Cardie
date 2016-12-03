@@ -5,6 +5,12 @@ export default class Item extends React.Component{
   constructor(props){
     super(props);
     console.log(props);
+    this.state = {
+      id: props._id,
+      item: props.item,
+      length: props.length,
+      isCategory: props.isCat
+    };
     this.state = props;
   }
   didUserLike(item) {
@@ -60,17 +66,14 @@ export default class Item extends React.Component{
     }
   }
   refresh(){
-    getItem(this.state._id,(feedData)=>{
-      this.setState(feedData)});
   }
   render(){
     var check = this.state;
-    console.log(check);
-    if(check.data !== undefined){
+    if(this.state.isCat === true){
       return(
         <div className="col-lg-3 col-md-4 col-xs-6 thumb">
-          <Link to={'/item/'+this.state.data._id}>
-            <img className="img-responsive" src={this.state.data.contents} />
+          <Link to={'/item/'+this.state.item._id}>
+            <img className="img-responsive" src={this.state.item.contents} />
           </Link>
         </div>
       )
@@ -84,11 +87,12 @@ export default class Item extends React.Component{
       else{
         length = check.length;
       }
-      this.refresh()
+      getItem(this.state._id,(feedData)=>{
+        this.setState(feedData)});
         console.log(this);
-        var item = this;
         console.log("----------");
-        console.log(item.state);
+        console.log(this.state);
+        var item = this.state.item;
       var checkIfLike = this.didUserLike(item);
       var checkIfDislike = this.didUserDislike(item);
       if(checkIfLike || checkIfDislike){
