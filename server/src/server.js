@@ -50,19 +50,17 @@ function getUserIdFromToken(authorizationLine) {
 * Get the feed data for a particular user.
 */
 function getFeedData(user) {
-  var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);
+  var feed = readDocument('feeds', user);
   // While map takes a callback, it is synchronous, not asynchronous.
   // It calls the callback immediately.
-  feedData.items = feedData.items.map((item) => getItemSync(item));
+  feed.items = feed.items.map((item) => getItemSync(item));
   // Return FeedData with resolved references.
-  return feedData;
+  return feed;
 }
 app.get('/feeds/:userid', function(req, res) {
-  var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var useridNumber = parseInt(userid, 10);
-  if (fromUser === useridNumber) {
+  var userid = parseInt(req.params.userid, 10);
+  if (fromUser === userid) {
     // Send response.
     res.send(getFeedData(userid));
   } else {
@@ -195,13 +193,13 @@ app.get('/user/:userid/pm', function(req, res) {
 app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var itemId = parseInt(req.params.itemid, 10);
-  var item = readDocument('items', itemId);
   var feeds = getCollection('feeds');
   var feedKeys = Object.keys(feeds);
   var userId = parseInt(req.params.userid, 10);
   var user = readDocument('users', userId);
+  var feed, itemIdx;
   if( fromUser === userId){
-    var feed, itemIdx;
+
     feedKeys.forEach((key) => {
       feed = readDocument('feeds', key);
       itemIdx = feed.items.indexOf(itemId);
@@ -210,7 +208,7 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
         database.writeDocument('feeds', feed);
       }
     });
-    var itemIdx = user.productManager.items.indexOf(itemId);
+    itemIdx = user.productManager.items.indexOf(itemId);
     user.productManager.items.splice(itemIdx, 1);
     database.writeDocument('users', user);
     database.deleteDocument('items', itemId);
@@ -252,6 +250,18 @@ function getMessages(user) {
   var messages = readDocument('messages', userData.messages);
   return messages;
 }
+
+app.get('/profile/:userid', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  if( fromUser === userId){
+    var profile = readDocument('users', userId);
+    res.send(profile);
+
+  } else {
+    res.status(401).end();
+  }
+});
 
 app.get('/users/:userid/messages', function(req, res) {
   var userId = req.params.userid;

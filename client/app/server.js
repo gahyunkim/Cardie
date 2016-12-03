@@ -90,9 +90,10 @@ export function removeItem(userId, itemId, cb){
   });
 }
 
-export function getUserProfile(userId) {
-  var userData = readDocument('users', userId);
-  return userData;
+export function getUserProfile(userId, cb) {
+  sendXHR('GET', '/profile/' + userId, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function createUserDescription(content, userId, cb) {

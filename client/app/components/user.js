@@ -1,6 +1,6 @@
 import React from 'react';
 // import UserDescriptionEntry from './userdescriptionentry.js';
-import {getUserProfile} from '../server';
+import { getUserProfile } from '../server';
 import {Link} from 'react-router';
 
 export default class User extends React.Component{
@@ -8,11 +8,21 @@ export default class User extends React.Component{
     // super() calls the parent class constructor --
     // e.g. React.Component's constructor.
     super(props);
-    this.state = props.data
+    this.state ={}
+  }
+
+  refresh(){
+    getUserProfile(this.props.user, (user) => {
+      this.setState(user);
+    })
+  }
+
+  componentDidMount(){
+    this.refresh();
   }
 
   render(){
-    var userData = getUserProfile(this.props.user);
+    var userData = this.state;
     return(
       <div>
         <h1>{"Hello, " + userData.username}</h1>

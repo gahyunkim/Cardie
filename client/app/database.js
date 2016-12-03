@@ -17,7 +17,7 @@ var initialData = {
       "feed": 1,
       "productManager" : {
         "_id" : 1,
-        "items" : [1,3]
+        "items" : [1,5,6,7,8]
       }
     },
     "2" : {
@@ -76,27 +76,27 @@ var initialData = {
   "feeds" : {
     "1" : {
       "_id" : 1,
-      "items" : [2],
+      "items" : [2, 3, 4],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "2" : {
       "_id" : 2,
-      "items" : [1,2,3],
+      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "3" : {
       "_id" : 3,
-      "items" : [1,2,3],
+      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "4" : {
       "_id" : 4,
-      "items" : [1,2,3],
+      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "5" : {
       "_id" : 5,
-      "items" : [1,2,3,4,5,6,7,8],
+      "items" : [1, 5, 6, 7, 8],
       "categories" : ["Dorm","Snacks","Electronics"]
     }
 
@@ -275,19 +275,18 @@ export function resetDatabase() {
 /**
 * Reset database button.
 */
-class ResetDatabase extends React.Component {
+export class ResetDatabase extends React.Component {
   render() {
     return (
       <button className="btn btn-default" type="button" onClick={() => {
-          resetDatabase();
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/resetdb');
+        xhr.addEventListener('load', function() {
           window.alert("Database reset! Refreshing the page now...");
           document.location.reload(false);
-        }}>Reset Mock DB</button>
-      );
-    }
+        });
+        xhr.send();
+      }}>Reset Mock DB</button>
+    );
   }
-
-  ReactDOM.render(
-    <ResetDatabase />,
-    document.getElementById('db-reset')
-  );
+}
