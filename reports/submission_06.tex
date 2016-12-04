@@ -149,58 +149,120 @@
 %----------------------------------------------------------------------------------------
 \begin{homeworkProblem}[HTTP Requests]
 \begin{lstlisting}
+GET /items/:itemid 
+\end{lstlisting} 
+Does: Returns the item with :itemid.\\
+Replaces: getItem(itemId) in the old server\\
+Updates: Does not update the database\\
+Who is authorized: The current user has permission to get all Items in his feed\\
+\begin{lstlisting}
 GET /profile/:userid
 \end{lstlisting} 
-Returns the profile for user with :userid.\\
+Does: Returns the profile for user with :userid.\\
+Replaces: getUserProfile(userId)\\
+Updates: Does not update the database\\
+Who is authorized: Every user has access to their own profile\\
 \begin{lstlisting}
 GET /user/:userid/feed
 \end{lstlisting} 
-\indent Returns the feed of the user with id :userid.\\
+Does: Returns the feed of the user with id :userid.\\
+Replaces: getFeedData(user, cb)\\
+Updates: Does not update the database\\
+Who is authorized: Every user has access to their own feed\\
 \begin{lstlisting}
 POST /upload/:userid [item]
 \end{lstlisting} 
-Where [item] is a JSON object describing a new item for sale where :userid is the vendor of that item.\\
+Summary: Where [item] is a JSON object describing a new item for sale where :userid is the vendor of that item.\\
+Does: Uploads an [item] 
+Replaces: This was a bug in the old submission\\
+Updates: The item list in the database\\
+Who is authorized: Every user has access to upload their own items\\
 \begin{lstlisting}
 PUT/users/:userid/feeds/items/:itemid/like
 \end{lstlisting} 
-Current user has their ID pushed on to the item's likeCounter with id :itemid.\\
+Summary: Current user has their ID pushed on to the item's likeCounter with id :itemid.\\
+Does: Adds the user's id to the likeCounter\\
+Replaces: likeItem(itemId, userId)\\
+Updates: the likeCounter array for the specified item in the database\\
+Who is authorized: Every logged in user is authorized to like an item\\
 \begin{lstlisting}
 PUT /users/:userid/feeds/items/:itemid/dislike
 \end{lstlisting} 
-Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
+Summary: Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
+\begin{lstlisting}
+PUT /users/:userid/messages
+\end{lstlisting} 
+Summary: Sends a message which gets logged by both the sender and receiver\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 GET /user/:userid/pm
 \end{lstlisting} 
-Returns the productManager of a user with :userid with all their items for sale.\\
-
+Summary: Returns the productManager of a user with :userid with all their items for sale.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
+\begin{lstlisting}
+GET /users/:userid/messages
+\end{lstlisting} 
+Summary: Returns a list of all the messages for a particular user\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
+\begin{lstlisting}
+GET /profile/:userid
+\end{lstlisting} 
+Summary: Gets the current user's profile\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 DELETE /user/:userid/pm/item/:itemid
 \end{lstlisting} 
-Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
+Summary: Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 POST /resetdb
 \end{lstlisting} 
-Resets database on application.\\
-
+Summary: Resets database on application.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
+\end{homeworkProblem} 
+\newpage
+\begin{homeworkProblem}[Special Server Setup Procedure]
+We do not have any advanced features that require additional setup.
 \end{homeworkProblem}
-
 % To have just one problem per page, simply put a \clearpage after each problem
-\begin{homeworkProblem}[Contributions]
+\begin{homeworkProblem}[Individual Contributions]
 
 \begin{homeworkSection}{Daanial Ahmed}
 Daanial Ahmed contributed to the Upload component.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Richard Cui}
-Richard Cui contributed to the Chat component and the written report.
+Richard Cui contributed to the Chat component.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Roman Ganchin}
-Roman Ganchin contributed to the Trending, Category, and Item components.
+Roman Ganchin contributed to the Trending, Category, Item, and Report components.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Gahyun (Susie) Kim}
-Gahyun (Susie) Kim created ErrorBanner for server issues and contributed to Upload component.
+Gahyun (Susie) Kim implemented the error banner for server issues and fixed the button on uploaditem to allow the user to select a file.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Greg McGrath}
@@ -212,55 +274,16 @@ Francis Phan contributed to the ProductManager and Item components, the dummy da
 \end{homeworkSection}
 
 \end{homeworkProblem}
-
+\newpage
 %----------------------------------------------------------------------------------------
 %	PROBLEM 5
 %----------------------------------------------------------------------------------------
 
-\begin{homeworkProblem}[Cut Features]
-No features were cut from the project, though some features were pushed back until a server/database is implemented as they are not currently feasible at this time.
+\begin{homeworkProblem}[Lingering Bugs/Issues/Dropped Features]
+The user sees all items in trending and not only the items in his own feed. \newline
+When clicking an item from trending the functionality works as expected but the stays on initial clicked item. \newline
 \end{homeworkProblem}
-
-\end{document}
-\begin{homeworkProblem}[Diagram]
- \includegraphics[scale=.65]{ERDiagram.png}
-\end{homeworkProblem}
-\clearpage
-\begin{homeworkProblem}[Entity Description]
-\textbf{USER}: Anyone with an account in the system, that is formally logged in. A USER must have a \emph{name}, valid \emph{email}, and \emph{location}.
-\newline
-
-\textbf{FEED}: The FEED lists \emph{ITEMS} publicly open for sale by \textit{USERS}.
-\newline
-
-\textbf{ITEM}: A unique ITEM in our database. An item only ever belongs to a single \emph{USER}. A \emph{USER} can have many ITEMS for sale. An ITEM must have a \emph{photo}, \emph{name}, \emph{description}. 
-\newline
-
-\textbf{PRODUCT MANAGER}: A interface in which a USER can see all \textit{ITEMS} they have open for sale. Every \emph{USER} has one and only one.
-\newline
-
-\textbf{CHAT}: A CHAT must have exactly 2 \emph{users} associated with it. A \emph{USER} can have multiple CHATS with different people. 
-\newline
-
-\textbf{SETTINGS}: The set of preferences a \emph{USER} has. Ex. "Item search radius=25 miles" 
-\newline
-
-\textbf{VIEWER}: Someone not formally logged within our system. They have a \emph{FEED}, and can look at \emph{items}.\newline
-\end{homeworkProblem}
-\begin{homeworkProblem}[Page/Widget Description]
-\textbf{Main UI(public and private)}: the Main UI displays the \emph{Feed} which consists of \emph{Items}. The \emph{Feed} can be utilized by either a \emph{Viewer} or a \emph{User}. \newline
-
-\textbf{Trending Items}: the Trending Items page displays an assortment of popular \emph{Item$'$s} based on category.
-\newline
-\textbf{Sell Item}: this page allows a \emph{User} to upload an \emph{Item}. \newline
-
-\textbf{User Profile}: the User Profile displays the components of the \emph{User}. It also contains its \emph{Settings} and \emph{Product Manager}. \newline
-
-\textbf{Chat}: the Chat displays all \emph{Chat} entities belonging to a \emph{User}. \newline
- 
-\textbf{Item Manager}: the Item Manager displays the \emph{Product Manager} entity which displays all \emph{Item$'$s} put out by the \emph{User}. \newline
-\end{homeworkProblem}
- 
+\newpage
 %----------------------------------------------------------------------------------------
 
 \end{document}
