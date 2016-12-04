@@ -189,10 +189,10 @@ Who is authorized: Every logged in user is authorized to like an item\\
 PUT /users/:userid/feeds/items/:itemid/dislike
 \end{lstlisting} 
 Summary: Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
-Does: \\
+Does: Remove user's id from the likeCounter\\
 Replaces: \\
-Updates: \\
-Who is authorized: \\
+Updates: the likeCounter array for the specified item in the database\\
+Who is authorized: Every logged in user is authorized to like an item\\
 \begin{lstlisting}
 PUT /users/:userid/messages
 \end{lstlisting} 
