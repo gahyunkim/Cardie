@@ -197,25 +197,28 @@ POST /resetdb
 \end{lstlisting} 
 Resets database on application.\\
 
+\end{homeworkProblem} 
+\newpage
+\begin{homeworkProblem}[Special Server Setup Procedure]
+We do not have any advanced features that require additional setup.
 \end{homeworkProblem}
-
 % To have just one problem per page, simply put a \clearpage after each problem
-\begin{homeworkProblem}[Contributions]
+\begin{homeworkProblem}[Individual Contributions]
 
 \begin{homeworkSection}{Daanial Ahmed}
 Daanial Ahmed contributed to the Upload component.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Richard Cui}
-Richard Cui contributed to the Chat component server methods and schemas.
+Richard Cui contributed to the Chat component.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Roman Ganchin}
-Roman Ganchin contributed to the Trending, Category, and Item components.
+Roman Ganchin contributed to the Trending, Category, Item, and Report components.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Gahyun (Susie) Kim}
-Gahyun (Susie) Kim contributed to the User component.
+Gahyun (Susie) Kim contributed to the error banner for server issues and fixed the button on uploaditem to allow the user to select a file.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Greg McGrath}
@@ -227,55 +230,15 @@ Francis Phan contributed to the ProductManager and Item components, the dummy da
 \end{homeworkSection}
 
 \end{homeworkProblem}
-
+\newpage
 %----------------------------------------------------------------------------------------
 %	PROBLEM 5
 %----------------------------------------------------------------------------------------
 
-\begin{homeworkProblem}[Cut Features]
+\begin{homeworkProblem}[Lingering Bugs/Issues/Dropped Features]
 No features were cut from the project, though some features were pushed back until a server/database is implemented as they are not currently feasible at this time.
 \end{homeworkProblem}
-
-\end{document}
-\begin{homeworkProblem}[Diagram]
- \includegraphics[scale=.65]{ERDiagram.png}
-\end{homeworkProblem}
-\clearpage
-\begin{homeworkProblem}[Entity Description]
-\textbf{USER}: Anyone with an account in the system, that is formally logged in. A USER must have a \emph{name}, valid \emph{email}, and \emph{location}.
-\newline
-
-\textbf{FEED}: The FEED lists \emph{ITEMS} publicly open for sale by \textit{USERS}.
-\newline
-
-\textbf{ITEM}: A unique ITEM in our database. An item only ever belongs to a single \emph{USER}. A \emph{USER} can have many ITEMS for sale. An ITEM must have a \emph{photo}, \emph{name}, \emph{description}. 
-\newline
-
-\textbf{PRODUCT MANAGER}: A interface in which a USER can see all \textit{ITEMS} they have open for sale. Every \emph{USER} has one and only one.
-\newline
-
-\textbf{CHAT}: A CHAT must have exactly 2 \emph{users} associated with it. A \emph{USER} can have multiple CHATS with different people. 
-\newline
-
-\textbf{SETTINGS}: The set of preferences a \emph{USER} has. Ex. "Item search radius=25 miles" 
-\newline
-
-\textbf{VIEWER}: Someone not formally logged within our system. They have a \emph{FEED}, and can look at \emph{items}.\newline
-\end{homeworkProblem}
-\begin{homeworkProblem}[Page/Widget Description]
-\textbf{Main UI(public and private)}: the Main UI displays the \emph{Feed} which consists of \emph{Items}. The \emph{Feed} can be utilized by either a \emph{Viewer} or a \emph{User}. \newline
-
-\textbf{Trending Items}: the Trending Items page displays an assortment of popular \emph{Item$'$s} based on category.
-\newline
-\textbf{Sell Item}: this page allows a \emph{User} to upload an \emph{Item}. \newline
-
-\textbf{User Profile}: the User Profile displays the components of the \emph{User}. It also contains its \emph{Settings} and \emph{Product Manager}. \newline
-
-\textbf{Chat}: the Chat displays all \emph{Chat} entities belonging to a \emph{User}. \newline
- 
-\textbf{Item Manager}: the Item Manager displays the \emph{Product Manager} entity which displays all \emph{Item$'$s} put out by the \emph{User}. \newline
-\end{homeworkProblem}
- 
+\newpage
 %----------------------------------------------------------------------------------------
 
 \end{document}
