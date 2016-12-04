@@ -1,19 +1,29 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  3 DEC 2016 23:31
 =======
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  3 DEC 2016 23:31
 >>>>>>> 59694934beab702def39994453a1a53b489ed87a
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.21)  3 DEC 2016 23:35
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 entering extended mode
- restricted \write18 enabled.
- file:line:error style messages enabled.
- %&-line parsing enabled.
 **submission_06.tex
+<<<<<<< HEAD
 (./submission_06.tex
 LaTeX2e <2016/03/31>
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/size10.clo
+=======
+(submission_06.tex
+LaTeX2e <2015/01/01> patch level 2
+Babel <3.9m> and hyphenation patterns for 69 languages loaded.
+("C:\Program Files\MiKTeX\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX\tex\latex\base\size10.clo"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -28,11 +38,19 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/matlab-prettifier/matlab-prettifi
 er.sty
 Package: matlab-prettifier 2014/06/19 v0.3 A package for prettyprinting Matlab 
 source code
  (/usr/local/texlive/2016/texmf-dist/tex/latex/base/textcomp.sty
+=======
+("C:\Program Files\MiKTeX\tex\latex\matlab-prettifier\matlab-prettifier.sty"
+Package: matlab-prettifier 2014/06/19 v0.3 A package for prettyprinting Matlab 
+source code
+
+("C:\Program Files\MiKTeX\tex\latex\base\textcomp.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -47,7 +65,11 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1enc.def
+=======
+("C:\Program Files\MiKTeX\tex\latex\base\ts1enc.def"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
 LaTeX Info: Redefining \oldstylenums on input line 334.
@@ -114,6 +136,7 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
@@ -145,6 +168,39 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
 (/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
+=======
+("C:\Program Files\MiKTeX\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Program Files\MiKTeX\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+("C:\Program Files\MiKTeX\tex\latex\listings\listings.sty"
+("C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
@@ -161,13 +217,21 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \lst@lineno=\count93
 \lst@maxwidth=\dimen106
 
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
+=======
+("C:\Program Files\MiKTeX\tex\latex\listings\lstmisc.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count94
 \lst@skipnumbers=\count95
 \lst@framebox=\box27
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.cfg
+=======
+("C:\Program Files\MiKTeX\tex\latex\listings\listings.cfg"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
@@ -179,6 +243,7 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 \sectionRuleOffset@mlpr=\skip45
 \toks@mlpr=\toks16
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2016/03/10 v2.15b AMS math features
 \@mathmargin=\skip46
@@ -198,6 +263,27 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
+=======
+("C:\Program Files\MiKTeX\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip46
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files\MiKTeX\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks17
+\ex@=\dimen107
+))
+("C:\Program Files\MiKTeX\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen108
+)
+("C:\Program Files\MiKTeX\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 )
 \inf@bad=\count99
 LaTeX Info: Redefining \frac on input line 199.
@@ -237,10 +323,17 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 LaTeX Info: Redefining \[ on input line 2739.
 LaTeX Info: Redefining \] on input line 2740.
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/mnsymbol/MnSymbol.sty
 Package: MnSymbol 2007/01/21 v1.4 support for the MnSymbol font
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/eufrak.sty
+=======
+("C:\Program Files\MiKTeX\tex\latex\mnsymbol\MnSymbol.sty"
+Package: MnSymbol 2007/01/21 v1.4 support for the MnSymbol font
+
+("C:\Program Files\MiKTeX\tex\latex\amsfonts\eufrak.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 Package: eufrak 2009/06/22 v3.00 Euler Fraktur fonts
 LaTeX Font Info:    Overwriting math alphabet `\EuFrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 39.
@@ -309,13 +402,18 @@ LaTeX Font Info:    Redeclaring math accent \widehat on input line 1845.
 LaTeX Font Info:    Redeclaring math accent \widetilde on input line 1846.
 LaTeX Font Info:    Redeclaring math accent \vec on input line 1848.
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/wasysym/wasysym.sty
+=======
+("C:\Program Files\MiKTeX\tex\latex\wasysym\wasysym.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
 \symwasy=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
 LaTeX Font Info:    Redeclaring math symbol \invneg on input line 239.
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 )
@@ -324,10 +422,20 @@ Package: cancel 2013/04/12 v2.2 Cancel math terms
 (/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
+=======
+("C:\Program Files\MiKTeX\tex\latex\cancel\cancel.sty"
+Package: cancel 2013/04/12 v2.2 Cancel math terms
+)
+("C:\Program Files\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty"
+("C:\Program Files\MiKTeX\tex\latex\pgf\basiclayer\pgf.sty"
+("C:\Program Files\MiKTeX\tex\latex\pgf\utilities\pgfrcs.sty"
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfutil-common.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 \pgfutil@everybye=\toks22
 \pgfutil@tempdima=\dimen116
 \pgfutil@tempdimb=\dimen117
 
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
 sts.tex))
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
@@ -351,12 +459,39 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/01/02 v1.10 sample graphics configuration
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfutil-common-lists.tex"))
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfutil-latex.def"
+\pgfutil@abb=\box30
+
+("C:\Program Files\MiKTeX\tex\latex\ms\everyshi.sty"
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfrcs.code.tex"
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+("C:\Program Files\MiKTeX\tex\latex\pgf\basiclayer\pgfcore.sty"
+("C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX\tex\latex\graphics\graphics.sty"
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 )
 Package graphics Info: Driver file: pdftex.def on input line 96.
 )
 \Gin@req@height=\dimen118
 \Gin@req@width=\dimen119
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
@@ -366,6 +501,17 @@ Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
 ode.tex
+=======
+("C:\Program Files\MiKTeX\tex\latex\pgf\systemlayer\pgfsys.sty"
+("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex"
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks23
+\pgfkeys@temptoks=\toks24
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 \pgfkeys@tmptoks=\toks25
 ))
 \pgf@x=\dimen120
@@ -385,12 +531,17 @@ ode.tex
 \t@pgf@toka=\toks26
 \t@pgf@tokb=\toks27
 \t@pgf@tokc=\toks28
+<<<<<<< HEAD
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgf.cfg"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
 ef
 File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
@@ -415,6 +566,28 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def"
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def"
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+))) ("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.t
+ex"
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count115
+\pgfsyssoftpath@bigbuffer@items=\count116
+) ("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
+"
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) ("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex"
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex"
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathcalc.code.tex"
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathutil.code.tex")
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathparser.code.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 \pgfmath@dimen=\dimen128
 \pgfmath@count=\count117
 \pgfmath@box=\box31
@@ -422,6 +595,7 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 \pgfmath@stack@operand=\toks30
 \pgfmath@stack@operation=\toks31
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
@@ -445,6 +619,27 @@ erarithmetics.code.tex)))
 ))
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.code.tex"
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex"
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.trigonometric.c
+ode.tex")
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
+")
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.comparison.code
+.tex")
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.base.code.tex")
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.round.code.tex"
+) ("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex
+")
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.integerarithmet
+ics.code.tex")))
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfloat.code.tex"
+\c@pgfmathroundto@lastzeros=\count118
+))
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@picminx=\dimen129
 \pgf@picmaxx=\dimen130
@@ -461,12 +656,18 @@ File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@zx=\dimen141
 \pgf@zy=\dimen142
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.
+tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
 \pgf@path@lastx=\dimen143
 \pgf@path@lasty=\dimen144
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
@@ -475,12 +676,20 @@ File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
 )
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex"
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen145
+\pgf@shorten@start@additional=\dimen146
+) ("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
 \pgfpic=\box32
 \pgf@hbox=\box33
 \pgf@layerbox@main=\box34
 \pgf@picture@serial@count=\count119
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
@@ -488,11 +697,21 @@ File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
 )
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.t
+ex"
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen147
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransformations.cod
+e.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
 \pgf@pt@x=\dimen148
 \pgf@pt@y=\dimen149
 \pgf@pt@temp=\dimen150
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
@@ -512,10 +731,28 @@ File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
 )
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorequick.code.tex"
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex"
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code
+.tex"
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex"
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen151
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen152
 \pgf@sys@shading@range@num=\count120
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
@@ -539,9 +776,30 @@ File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 )))
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex"
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex"
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box35
+)) ("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex"
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransparency.code.t
+ex"
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex"
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+))) ("C:\Program Files\MiKTeX\tex\generic\pgf\modules\pgfmoduleshapes.code.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
 \pgfnodeparttextbox=\box36
+) ("C:\Program Files\MiKTeX\tex\generic\pgf\modules\pgfmoduleplot.code.tex"
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
 File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
@@ -565,17 +823,43 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+=======
+("C:\Program Files\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty"
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen153
+\pgf@nodesepend=\dimen154
+) ("C:\Program Files\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.st
+y"
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+)) ("C:\Program Files\MiKTeX\tex\latex\pgf\utilities\pgffor.sty"
+("C:\Program Files\MiKTeX\tex\latex\pgf\utilities\pgfkeys.sty"
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex"))
+("C:\Program Files\MiKTeX\tex\latex\pgf\math\pgfmath.sty"
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex"))
+("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgffor.code.tex"
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex")
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 \pgffor@iter=\dimen155
 \pgffor@skip=\dimen156
 \pgffor@stack=\toks32
 \pgffor@toks=\toks33
 ))
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
 Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex"
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\libraries\pgflibraryplothandlers.code
+.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \pgf@plot@mark@count=\count121
 \pgfplotmarksize=\dimen157
@@ -595,8 +879,12 @@ File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \tikznumberofcurrentchild=\count124
 \tikz@fig@count=\count125
 
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 \pgfmatrixcurrentrow=\count126
 \pgfmatrixcurrentcolumn=\count127
@@ -604,6 +892,7 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 )
 \tikz@expandcount=\count129
 
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
@@ -619,6 +908,24 @@ Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
 (/usr/local/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibr
+arytopaths.code.tex"
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+("C:\Program Files\MiKTeX\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\ifvtex.sty"
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files\MiKTeX\tex\generic\ifxetex\ifxetex.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count130
@@ -633,6 +940,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen170
 \Gm@layoutvoffset=\dimen171
 \Gm@dimlist=\toks34
+<<<<<<< HEAD
 )
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryautomata.code.tex
@@ -647,6 +955,23 @@ File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
 shapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
 
+=======
+
+("C:\Program Files\MiKTeX\tex\latex\geometry\geometry.cfg"))
+("C:\Program Files\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibr
+aryautomata.code.tex"
+File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibr
+aryshapes.multipart.code.tex"
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+("C:\Program Files\MiKTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.mul
+tipart.code.tex"
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 \pgfnodepartlowerbox=\box41
 \pgfnodeparttwobox=\box42
 \pgfnodepartthreebox=\box43
@@ -668,11 +993,19 @@ File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
 \pgfnodepartsixbox=\box59
 \pgfnodepartfivebox=\box60
 )))
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+=======
+("C:\Program Files\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibr
+arypositioning.code.tex"
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+)
+("C:\Program Files\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 \fancy@headwidth=\skip49
 \f@ncyO@elh=\skip50
 \f@ncyO@erh=\skip51
@@ -683,6 +1016,7 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 \f@ncyO@olf=\skip56
 \f@ncyO@orf=\skip57
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 )
@@ -694,6 +1028,19 @@ Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count133
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/enumitem/enumitem.sty
+=======
+("C:\Program Files\MiKTeX\tex\latex\lastpage\lastpage.sty"
+Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
+)
+("C:\Program Files\MiKTeX\tex\latex\fancyhdr\extramarks.sty"
+\@temptokenb=\toks35
+)
+("C:\Program Files\MiKTeX\tex\latex\lipsum\lipsum.sty"
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count133
+)
+("C:\Program Files\MiKTeX\tex\latex\enumitem\enumitem.sty"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip58
 \enit@outerparindent=\dimen172
@@ -702,10 +1049,7 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enitdp@description=\count134
 )
 \c@homeworkProblemCounter=\count135
-
-(./submission_06.aux)
-\openout1 = `submission_06.aux'.
-
+ (submission_06.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
 LaTeX Font Info:    ... okay on input line 132.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 132.
@@ -721,13 +1065,21 @@ LaTeX Font Info:    ... okay on input line 132.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 132.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 132.
 
+<<<<<<< HEAD
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd
+=======
+("C:\Program Files\MiKTeX\tex\latex\base\ts1cmr.fd"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 132.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+=======
+("C:\Program Files\MiKTeX\tex\context\base\supp-pdf.mkii"
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count136
 \scratchdimen=\dimen173
@@ -743,6 +1095,7 @@ LaTeX Font Info:    ... okay on input line 132.
 )
 \c@lstlisting=\count142
  ABD: EveryShipout initializing macros
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -787,6 +1140,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+=======
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -825,11 +1180,19 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
 (lastpage)             ! on input line 132.
 LaTeX Font Info:    Try loading font information for U+wasy on input line 134.
+<<<<<<< HEAD
 (/usr/local/texlive/2016/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 ) [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+=======
+("C:\Program Files\MiKTeX\tex\latex\wasysym\uwasy.fd"
+File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
+) [1
+
+{C:/Users/Roman/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 Underfull \hbox (badness 10000) in paragraph at lines 154--158
 
  []
@@ -881,8 +1244,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 224--229
 
 [3] [4] 
 AED: lastpage setting LastPage
-(./submission_06.aux) ) 
+(submission_06.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
 <<<<<<< HEAD
  17128 strings out of 493014
  325599 string characters out of 6133351
@@ -917,9 +1281,24 @@ ts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
 rm1000.pfb>
 Output written on submission_06.pdf (4 pages, 79520 bytes).
 >>>>>>> 59694934beab702def39994453a1a53b489ed87a
+=======
+ 16782 strings out of 493673
+ 316542 string characters out of 3145579
+ 459617 words of memory out of 3000000
+ 19836 multiletter control sequences out of 15000+200000
+ 14270 words of font info for 49 fonts, out of 3000000 for 9000
+ 1025 hyphenation exceptions out of 8191
+ 55i,11n,66p,416b,872s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
+jknappen\ec\dpi600\tcrm1000.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx
+12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pr
+ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb>
+Output written on submission_06.pdf (4 pages, 80741 bytes).
+>>>>>>> bddf2a56efba994335a8b938ba665b79b09a9e81
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
