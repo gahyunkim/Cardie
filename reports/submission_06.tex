@@ -215,35 +215,27 @@ Who is authorized: \\
 \begin{lstlisting}
 GET /users/:userid/messages
 \end{lstlisting} 
-Summary: Returns a list of all the messages for a particular user\\
-Does: \\
+Does: Returns a list of all the messages for a particular user\\
 Replaces: \\
 Updates: \\
 Who is authorized: \\
-\begin{lstlisting}
-GET /profile/:userid
-\end{lstlisting} 
-Summary: Gets the current user's profile\\
-Does: \\
-Replaces: \\
-Updates: \\
-Who is authorized: \\
+
 \begin{lstlisting}
 DELETE /user/:userid/pm/item/:itemid
 \end{lstlisting} 
 Summary: Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
-Does: \\
-Replaces: \\
-Updates: \\
-Who is authorized: \\
+Does: Deletes an item\\
+Replaces: removeItem\\
+Updates: the items that the user owns\\
+Who is authorized: Every user is authorized to remove their own items\\
 \begin{lstlisting}
 POST /resetdb
 \end{lstlisting} 
 Summary: Resets database on application.\\
-Does: \\
-Replaces: \\
-Updates: \\
-Who is authorized: \\
+Does: resets the database\\
+Replaces: Reset server functionality\\
+Updates: To the original database\\
+Who is authorized: Developer feature\\
 \end{homeworkProblem} 
 \newpage
 \begin{homeworkProblem}[Special Server Setup Procedure]
