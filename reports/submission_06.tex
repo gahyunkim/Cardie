@@ -172,7 +172,7 @@ Who is authorized: Every user has access to their own feed\\
 \begin{lstlisting}
 POST /upload/:userid [item]
 \end{lstlisting} 
-Where [item] is a JSON object describing a new item for sale where :userid is the vendor of that item.\\
+Summary: Where [item] is a JSON object describing a new item for sale where :userid is the vendor of that item.\\
 Does: Uploads an [item] 
 Replaces: This was a bug in the old submission\\
 Updates: The item list in the database\\
@@ -180,15 +180,15 @@ Who is authorized: Every user has access to upload their own items\\
 \begin{lstlisting}
 PUT/users/:userid/feeds/items/:itemid/like
 \end{lstlisting} 
-Current user has their ID pushed on to the item's likeCounter with id :itemid.\\
-Does: \\
-Replaces: \\
-Updates: \\
-Who is authorized: \\
+Summary: Current user has their ID pushed on to the item's likeCounter with id :itemid.\\
+Does: Adds the user's id to the likeCounter\\
+Replaces: likeItem(itemId, userId)\\
+Updates: the likeCounter array for the specified item in the database\\
+Who is authorized: Every logged in user is authorized to like an item\\
 \begin{lstlisting}
 PUT /users/:userid/feeds/items/:itemid/dislike
 \end{lstlisting} 
-Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
+Summary: Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
 Does: \\
 Replaces: \\
 Updates: \\
@@ -196,7 +196,7 @@ Who is authorized: \\
 \begin{lstlisting}
 PUT /users/:userid/messages
 \end{lstlisting} 
-Sends a message which gets logged by both the sender and receiver\\
+Summary: Sends a message which gets logged by both the sender and receiver\\
 Does: \\
 Replaces: \\
 Updates: \\
@@ -204,7 +204,7 @@ Who is authorized: \\
 \begin{lstlisting}
 GET /user/:userid/pm
 \end{lstlisting} 
-Returns the productManager of a user with :userid with all their items for sale.\\
+Summary: Returns the productManager of a user with :userid with all their items for sale.\\
 Does: \\
 Replaces: \\
 Updates: \\
@@ -212,7 +212,7 @@ Who is authorized: \\
 \begin{lstlisting}
 GET /users/:userid/messages
 \end{lstlisting} 
-Returns a list of all the messages for a particular user\\
+Summary: Returns a list of all the messages for a particular user\\
 Does: \\
 Replaces: \\
 Updates: \\
@@ -220,7 +220,7 @@ Who is authorized: \\
 \begin{lstlisting}
 GET /profile/:userid
 \end{lstlisting} 
-Gets the current user's profile\\
+Summary: Gets the current user's profile\\
 Does: \\
 Replaces: \\
 Updates: \\
@@ -228,7 +228,7 @@ Who is authorized: \\
 \begin{lstlisting}
 DELETE /user/:userid/pm/item/:itemid
 \end{lstlisting} 
-Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
+Summary: Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
 Does: \\
 Replaces: \\
 Updates: \\
@@ -236,7 +236,7 @@ Who is authorized: \\
 \begin{lstlisting}
 POST /resetdb
 \end{lstlisting} 
-Resets database on application.\\
+Summary: Resets database on application.\\
 Does: \\
 Replaces: \\
 Updates: \\
