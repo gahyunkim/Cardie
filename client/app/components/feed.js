@@ -51,6 +51,7 @@ export default class Feed extends React.Component{
             break;
           }
         }
+        console.log(current);
         firstItem = current;
       }
       if(this.state.showDescription === false){
@@ -111,11 +112,21 @@ export default class Feed extends React.Component{
         }
       }
       else{
-        return(
-          <div>
-            <h1>No More Items In Your Area</h1>
-          </div>
-        )
+        if(this.state.itemId ===undefined){
+          return(
+            <div>
+              <h1>No More Items In Your Area</h1>
+            </div>
+          )
+        }
+        else{
+          return(
+            <div>
+              <h1>The item you have picked is not in your feed, please go back and choose another item</h1>
+            </div>
+          )
+        }
+
       }
     }
   }
