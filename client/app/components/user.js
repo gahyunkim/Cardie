@@ -84,6 +84,12 @@ export default class User extends React.Component{
                                   Manage My Products
                                 </Link>
                               </font>
+                              <hr />
+                              <font size="+1" color="black">
+                                <Link to={"user/" + this.props.user + "/messages"}>
+                                  Messages
+                                </Link>
+                              </font>
                             </div>
                           </div>
                         </div>

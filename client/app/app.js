@@ -37,7 +37,7 @@ class ProductManagerPage extends React.Component {
 
 class ChatPage extends React.Component {
   render() {
-    return <Chat key={5} />;
+    return <Chat messages={5} />;
   }
 }
 
@@ -72,6 +72,7 @@ ReactDOM.render((
       <Route path="trending" component={TrendingPage} />
       <Route path="upload" component={UploadPage} />
       <Route path="item/:itemID" component={ItemPage} />
+      <Route path="user/:id/messages" component={ChatPage} />
     </Route>
   </Router>
 ),

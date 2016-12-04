@@ -13,6 +13,10 @@ var initialData = {
       "productManager" : {
         "_id" : 1,
         "items" : [1,5,6,7,8]
+      },
+      "messages" : {
+        "_id" : 1,
+        "messages" : []
       }
     },
     "2" : {
@@ -25,6 +29,10 @@ var initialData = {
       "productManager" : {
         "_id" : 2,
         "items" : []
+      },
+      "messages" : {
+        "_id" : 2,
+        "messages" : []
       }
     },
     "3" : {
@@ -37,6 +45,10 @@ var initialData = {
       "productManager" : {
         "_id" : 3,
         "items" : []
+      },
+      "messages" : {
+        "_id" : 3,
+        "messages" : []
       }
     },
     "4" : {
@@ -49,6 +61,10 @@ var initialData = {
       "productManager" : {
         "_id" : 4,
         "items" : []
+      },
+      "messages" : {
+        "_id" : 4,
+        "messages" : []
       }
     },
     "5" : {
@@ -63,6 +79,10 @@ var initialData = {
       "productManager" : {
         "_id" : 5,
         "items" : [2, 3, 4]
+      },
+      "messages" : {
+        "_id" : 5,
+        "messages": [1, 2]
       }
     }
   },
@@ -206,6 +226,23 @@ var initialData = {
       "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
       "photoID" : 8,
       "vendorID" : 1
+    }
+  },
+  // Messages
+  "messages" : {
+    "1" : {
+      "_id" : 1,
+      "sender" : 1,
+      "recipient" : 5,
+      "date" : "1/1/2016",
+      "contents" : "Hi"
+    },
+    "2" : {
+      "_id" : 2,
+      "sender" : 5,
+      "recipient" : 1,
+      "date" : "1/1/2016",
+      "contents" : "Bye"
     }
   }
 };
