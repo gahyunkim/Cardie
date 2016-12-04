@@ -13,7 +13,7 @@ export default class Chat extends React.Component{
   }
 
   refresh() {
-    getMessages(this.props.messages, (messages) => {
+    getMessages(5, (messages) => {
       this.setState(messages);
     });
   }
@@ -29,9 +29,19 @@ export default class Chat extends React.Component{
   }
 
   render() {
+    var messages = this.state.messages ? this.state.messages : [];
     return(
       <div>
-        Test
+        {messages.map((message) =>{
+          return(
+            <div>
+            {message.sender}
+            {message.recipient}
+            {message.date}
+            {message.contents}
+            </div>
+          )}
+        )}
       </div>
     )
   }

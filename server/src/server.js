@@ -284,15 +284,27 @@ function sendMessage(sender, recipient, contents) {
   return newMessage;
 }
 
-app.put('/users/:userid/messages', function(req, res){
+app.put('/user/:userid/messages', function(req, res){
 
 });
 
-function getMessages(user) {
-  var userData = readDocument('users', user);
-  var messages = readDocument('messages', userData.messages);
-  return messages;
+function getMessage(messageid) {
+  var message = readDocument('messages', messageid);
+  return message;
 }
+
+app.get('/user/:userid/messages', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  console.log(userId);
+  if(fromUser === userId){
+    var messages = readDocument('users', userId).messages;
+    messages.messages = messages.messages.map((message) => getMessage(message));
+    res.send(messages);
+  } else {
+    res.status(401).end();
+  }
+});
 
 app.get('/profile/:userid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
@@ -302,19 +314,6 @@ app.get('/profile/:userid', function(req, res) {
     res.send(profile);
 
   } else {
-    res.status(401).end();
-  }
-});
-
-app.get('/users/:userid/messages', function(req, res) {
-  var userId = req.params.userid;
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userIdNumber = parseInt(userId, 10);
-  if (fromUser === userIdNumber) {
-    // Send response.
-    res.send(getMessages(userId));
-  } else {
-    // 401: Unauthorized request.
     res.status(401).end();
   }
 });

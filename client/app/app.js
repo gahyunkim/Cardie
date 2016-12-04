@@ -37,7 +37,7 @@ class ProductManagerPage extends React.Component {
 
 class ChatPage extends React.Component {
   render() {
-    return <Chat messages={5} />;
+    return <Chat key={5} />;
   }
 }
 
