@@ -7,7 +7,8 @@ export default class Feed extends React.Component{
     super(props);
     this.state = {
       items: [],
-      showDescription:false
+      showDescription:false,
+      itemId: props.itemId
     };
   }
   refresh(){
@@ -37,8 +38,21 @@ export default class Feed extends React.Component{
 
   render(){
     if(this.state.items.length > 0){
-      var firstItem = this.state.items[0];
-      console.log(this.state.showDescription);
+      var firstItem;
+      if(this.state.itemId ===undefined){
+        firstItem = this.state.items[0];
+      }
+      else{
+        var id = this.state.itemId
+        var current;
+        for(let index in this.state.items) {
+          current = this.state.items[index];
+          if(current._id == id){
+            break;
+          }
+        }
+        firstItem = current;
+      }
       if(this.state.showDescription === false){
         return(
           <div>

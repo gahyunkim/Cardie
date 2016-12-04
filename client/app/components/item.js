@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {getItem} from '../server.js'
+import Feed from './feed';
+import {getItem, likeItem, dislikeItem} from '../server.js'
 export default class Item extends React.Component{
   constructor(props){
     super(props);
@@ -15,10 +16,22 @@ export default class Item extends React.Component{
   componentDidMount(){
     this.refresh();
   }
+  likeItem(itemid) {
+    likeItem(itemid, 5, () => {
+      this.refresh();
+    });
+  }
+  dislikeItem(itemid){
+    dislikeItem(itemid, 5, () => {
+      this.refresh();
+    });
+  }
+  showDescription(){
+    this.setState({showDescription: this.state.showDescription === true ? false : true});
+    this.refresh();
+  }
   render(){
-    console.log(this.state);
     var item = this.state;
-    console.log(item);
     if(item.isCat === true){
       return(
         <div className="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -31,8 +44,7 @@ export default class Item extends React.Component{
     else{
         return(
           <div>
-              <img src={item.contents} className="item_for_sale" />
-              <h1>{item.name}</h1>
+            <Feed itemId={item._id}/>
           </div>
         );
     }
