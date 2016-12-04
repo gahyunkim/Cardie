@@ -149,54 +149,98 @@
 %----------------------------------------------------------------------------------------
 \begin{homeworkProblem}[HTTP Requests]
 \begin{lstlisting}
-GET /items/:itemid
+GET /items/:itemid 
 \end{lstlisting} 
-Returns the item with :itemid.\\
+Does: Returns the item with :itemid.\\
+Replaces: getItem(itemId) in the old server\\
+Updates: Does not update the database\\
+Who is authorized: The current user has permission to get all Items in his feed\\
 \begin{lstlisting}
 GET /profile/:userid
 \end{lstlisting} 
-Returns the profile for user with :userid.\\
+Does: Returns the profile for user with :userid.\\
+Replaces: getUserProfile(userId)\\
+Updates: Does not update the database\\
+Who is authorized: Every user has access to their own profile\\
 \begin{lstlisting}
 GET /user/:userid/feed
 \end{lstlisting} 
-\indent Returns the feed of the user with id :userid.\\
+Does: Returns the feed of the user with id :userid.\\
+Replaces: getFeedData(user, cb)\\
+Updates: Does not update the database\\
+Who is authorized: Every user has access to their own feed\\
 \begin{lstlisting}
 POST /upload/:userid [item]
 \end{lstlisting} 
 Where [item] is a JSON object describing a new item for sale where :userid is the vendor of that item.\\
+Does: Uploads an [item] 
+Replaces: This was a bug in the old submission\\
+Updates: The item list in the database\\
+Who is authorized: Every user has access to upload their own items\\
 \begin{lstlisting}
 PUT/users/:userid/feeds/items/:itemid/like
 \end{lstlisting} 
 Current user has their ID pushed on to the item's likeCounter with id :itemid.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 PUT /users/:userid/feeds/items/:itemid/dislike
 \end{lstlisting} 
 Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 PUT /users/:userid/messages
 \end{lstlisting} 
 Sends a message which gets logged by both the sender and receiver\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 GET /user/:userid/pm
 \end{lstlisting} 
 Returns the productManager of a user with :userid with all their items for sale.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 GET /users/:userid/messages
 \end{lstlisting} 
 Returns a list of all the messages for a particular user\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 GET /profile/:userid
 \end{lstlisting} 
 Gets the current user's profile\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 DELETE /user/:userid/pm/item/:itemid
 \end{lstlisting} 
 Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \begin{lstlisting}
 POST /resetdb
 \end{lstlisting} 
 Resets database on application.\\
-
+Does: \\
+Replaces: \\
+Updates: \\
+Who is authorized: \\
 \end{homeworkProblem} 
 \newpage
 \begin{homeworkProblem}[Special Server Setup Procedure]
@@ -236,7 +280,8 @@ Francis Phan contributed to the ProductManager and Item components, the dummy da
 %----------------------------------------------------------------------------------------
 
 \begin{homeworkProblem}[Lingering Bugs/Issues/Dropped Features]
-No features were cut from the project, though some features were pushed back until a server/database is implemented as they are not currently feasible at this time.
+The user sees all items in trending and not only the items in his own feed. \newline
+When clicking an item from trending the functionality works as expected but the stays on initial clicked item. \newline
 \end{homeworkProblem}
 \newpage
 %----------------------------------------------------------------------------------------

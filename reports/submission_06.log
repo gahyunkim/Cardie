@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.21)  3 DEC 2016 21:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.21)  3 DEC 2016 22:16
 entering extended mode
 **submission_06.tex
 (submission_06.tex
@@ -747,73 +747,68 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 ) [1
 
 {C:/Users/Roman/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 154--158
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
+Underfull \hbox (badness 10000) in paragraph at lines 161--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 168--172
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 175--180
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 183--188
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
+Underfull \hbox (badness 10000) in paragraph at lines 191--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 199--204
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 207--212
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
+Underfull \hbox (badness 10000) in paragraph at lines 215--220
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
+Underfull \hbox (badness 10000) in paragraph at lines 223--228
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 231--236
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--199
-
- []
-
-[2] [3] [4] 
+[3] [4] [5] 
 AED: lastpage setting LastPage
 (submission_06.aux) ) 
 Here is how much of TeX's memory you used:
- 16771 strings out of 493673
- 316404 string characters out of 3145579
- 462617 words of memory out of 3000000
- 19827 multiletter control sequences out of 15000+200000
+ 16772 strings out of 493673
+ 316420 string characters out of 3145579
+ 460617 words of memory out of 3000000
+ 19828 multiletter control sequences out of 15000+200000
  13627 words of font info for 47 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  55i,11n,66p,416b,872s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -821,9 +816,9 @@ Here is how much of TeX's memory you used:
 bx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/
 Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-Output written on submission_06.pdf (4 pages, 66699 bytes).
+Output written on submission_06.pdf (5 pages, 68375 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
+ 37 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
