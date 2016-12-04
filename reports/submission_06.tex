@@ -149,6 +149,10 @@
 %----------------------------------------------------------------------------------------
 \begin{homeworkProblem}[HTTP Requests]
 \begin{lstlisting}
+GET /items/:itemid
+\end{lstlisting} 
+Returns the item with :itemid.\\
+\begin{lstlisting}
 GET /profile/:userid
 \end{lstlisting} 
 Returns the profile for user with :userid.\\
@@ -169,10 +173,21 @@ PUT /users/:userid/feeds/items/:itemid/dislike
 \end{lstlisting} 
 Current user has their ID pushed on to the item's dislikeCounter with id :itemid.\\
 \begin{lstlisting}
+PUT /users/:userid/messages
+\end{lstlisting} 
+Sends a message which gets logged by both the sender and receiver\\
+\begin{lstlisting}
 GET /user/:userid/pm
 \end{lstlisting} 
 Returns the productManager of a user with :userid with all their items for sale.\\
-
+\begin{lstlisting}
+GET /users/:userid/messages
+\end{lstlisting} 
+Returns a list of all the messages for a particular user\\
+\begin{lstlisting}
+GET /profile/:userid
+\end{lstlisting} 
+Gets the current user's profile\\
 \begin{lstlisting}
 DELETE /user/:userid/pm/item/:itemid
 \end{lstlisting} 
@@ -192,7 +207,7 @@ Daanial Ahmed contributed to the Upload component.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Richard Cui}
-Richard Cui contributed to the Chat component and the written report.
+Richard Cui contributed to the Chat component server methods and schemas.
 \end{homeworkSection}
 
 \begin{homeworkSection}{Roman Ganchin}
