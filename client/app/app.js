@@ -7,6 +7,7 @@ import ProductManager from './components/productmanager.js';
 import Upload from './components/upload';
 import Item from './components/item';
 import Chat from './components/chat';
+import SendChat from './components/sendchat';
 import ErrorBanner from './components/errorbanner';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router';
 import ResetDatabase from './components/resetdatabase';
@@ -38,6 +39,12 @@ class ProductManagerPage extends React.Component {
 class ChatPage extends React.Component {
   render() {
     return <Chat key={5} />;
+  }
+}
+
+class SendChatPage extends React.Component {
+  render() {
+    return <SendChat key={5} />;
   }
 }
 
@@ -73,6 +80,7 @@ ReactDOM.render((
       <Route path="upload" component={UploadPage} />
       <Route path="item/:itemID" component={ItemPage} />
       <Route path="user/:id/messages" component={ChatPage} />
+      <Route path="user/:id/messages/send" component={SendChatPage} />
     </Route>
   </Router>
 ),

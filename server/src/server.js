@@ -284,6 +284,30 @@ function sendMessage(sender, recipient, contents) {
   return newMessage;
 }
 
+// HTTP request to send message to database
+app.post( '/user/:userid/messages', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userid = parseInt(req.params.userid, 10);
+  if (fromUser === userid) {
+    var recipientid = req.body.recipient;
+    var newMessage = {
+      "sender" : userid,
+      "recipient" : recipientid,
+      "date" : new Date().getTime(),
+      "contents" : req.body.contents
+    }
+    newMessage = addDocument('messages', newMessage);
+    var sender = readDocument('users', userid);
+    var recipient = readDocument('users', recipientid);
+    sender.messages.push(newMessage._id);
+    recipient.messages.push(newMessage._id);
+    writeDocument('users', sender);
+    writeDocument('users', recipient);
+  } else {
+    res.status(401).end();
+  }
+});
+
 
 // Get message
 function getMessage(messageid) {
@@ -291,7 +315,7 @@ function getMessage(messageid) {
   return message;
 }
 
-// HTTP request for messages from databse
+// HTTP request for messages from database
 app.get('/user/:userid/messages', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var userId = parseInt(req.params.userid, 10);

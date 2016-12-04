@@ -1,5 +1,6 @@
 import React from 'react';
-import {getUserProfile, getMessages, sendMessage} from '../server';
+import {Link} from 'react-router';
+import {getMessages, sendMessage} from '../server';
 
 export default class Chat extends React.Component{
 
@@ -61,9 +62,11 @@ export default class Chat extends React.Component{
             </div>
           </div>
           <div className="panel panel-footer">
-            <button type="button" className="btn btn-default chat-btn">
-              Send a Message!
-            </button>
+            <Link to={"user/" + this.props.user + "/messages/send"}>
+              <button type="button" className="btn btn-default chat-btn">
+                Send a Message!
+              </button>
+            </Link>
           </div>
         </div>
       </div>
