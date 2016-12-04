@@ -40,6 +40,7 @@ a {
   background-color: #009a3d;
   box-shadow: 1px;
   color: white;
+  display: table;
 }
 
 .chat-preview {
@@ -65,5 +66,8 @@ a {
 }
 
 .chat-foot {
-  height:50px;
+}
+
+.chat-btn {
+  display: table-cell;
 }

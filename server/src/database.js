@@ -16,7 +16,7 @@ var initialData = {
       },
       "messages" : {
         "_id" : 1,
-        "messages" : []
+        "messages" : [1, 2, 3]
       }
     },
     "2" : {
@@ -82,7 +82,7 @@ var initialData = {
       },
       "messages" : {
         "_id" : 5,
-        "messages": [1, 2]
+        "messages": [1, 2, 3]
       }
     }
   },
@@ -235,14 +235,21 @@ var initialData = {
       "sender" : 1,
       "recipient" : 5,
       "date" : "1/1/2016",
-      "contents" : "Hi"
+      "contents" : "Hi, I would like to buy your tiger."
     },
     "2" : {
       "_id" : 2,
       "sender" : 5,
       "recipient" : 1,
       "date" : "1/1/2016",
-      "contents" : "Bye"
+      "contents" : "I am willing to trade my tiger for your dongle."
+    },
+    "3" : {
+      "_id" : 3,
+      "sender" : 1,
+      "recipient" : 5,
+      "date" : "1/1/2016",
+      "contents" : "Ok I will meet you at the campus zoo."
     }
   }
 };

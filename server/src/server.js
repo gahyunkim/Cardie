@@ -284,19 +284,17 @@ function sendMessage(sender, recipient, contents) {
   return newMessage;
 }
 
-app.put('/user/:userid/messages', function(req, res){
 
-});
-
+// Get message
 function getMessage(messageid) {
   var message = readDocument('messages', messageid);
   return message;
 }
 
+// HTTP request for messages from databse
 app.get('/user/:userid/messages', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var userId = parseInt(req.params.userid, 10);
-  console.log(userId);
   if(fromUser === userId){
     var messages = readDocument('users', userId).messages;
     messages.messages = messages.messages.map((message) => getMessage(message));

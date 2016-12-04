@@ -31,17 +31,41 @@ export default class Chat extends React.Component{
   render() {
     var messages = this.state.messages ? this.state.messages : [];
     return(
-      <div>
-        {messages.map((message) =>{
-          return(
-            <div>
-            {message.sender}
-            {message.recipient}
-            {message.date}
-            {message.contents}
+      <div className="row">
+        <div className="panel panel-default">
+          <div className="panel panel-heading">
+            Messages
+          </div>
+          <div className="panel panel-body">
+            <div className="row">
+              <table>
+                <tbody>
+                  <tr>
+                    <td> Date </td>
+                    <td> From </td>
+                    <td> To </td>
+                    <td width="80%"> Contents </td>
+                  </tr>
+                  {messages.map((message) => {
+                    return (
+                      <tr>
+                      <td> {message.date} </td>
+                      <td> {message.sender} </td>
+                      <td> {message.recipient}</td>
+                      <td> {message.contents} </td>
+                      </tr>
+                    )}
+                  )}
+                </tbody>
+              </table>
             </div>
-          )}
-        )}
+          </div>
+          <div className="panel panel-footer">
+            <button type="button" className="btn btn-default chat-btn">
+              Send a Message!
+            </button>
+          </div>
+        </div>
       </div>
     )
   }
