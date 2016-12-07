@@ -12,7 +12,7 @@ export default class Feed extends React.Component{
     };
   }
   refresh(){
-    getFeedData(5, (feedData)=>{
+    getFeedData("000000000000000000000005", (feedData)=>{
       this.setState(feedData);
     });
   }
@@ -22,12 +22,12 @@ export default class Feed extends React.Component{
   }
 
   likeItem(itemid) {
-    likeItem(itemid, 5, () => {
+    likeItem(itemid, "000000000000000000000005", () => {
       this.refresh();
     });
   }
   dislikeItem(itemid){
-    dislikeItem(itemid, 5, () => {
+    dislikeItem(itemid, "000000000000000000000005", () => {
       this.refresh();
     });
   }
