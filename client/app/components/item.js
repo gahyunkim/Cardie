@@ -17,12 +17,12 @@ export default class Item extends React.Component{
     this.refresh();
   }
   likeItem(itemid) {
-    likeItem(itemid, 5, () => {
+    likeItem(itemid, "000000000000000000000005", () => {
       this.refresh();
     });
   }
   dislikeItem(itemid){
-    dislikeItem(itemid, 5, () => {
+    dislikeItem(itemid, "000000000000000000000005", () => {
       this.refresh();
     });
   }
