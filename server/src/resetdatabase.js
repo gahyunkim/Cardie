@@ -11,14 +11,15 @@ var initialData = {
       "fullName" : "Francis Phan",
       "email" : "fphan@umass.edu",
       "location" : "Amherst, MA",
-      "feed": 1,
+      "feed": new ObjectID("000000000000000000000001"),
       "productManager" : {
         "_id" : new ObjectID("000000000000000000000001"),
-        "items" : [1,5,6,7,8]
+        "items" : [new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000005"),
+        new ObjectID("000000000000000000000006"),new ObjectID("000000000000000000000007"),new ObjectID("000000000000000000000008")]
       },
       "messages" : {
         "_id" : new ObjectID("000000000000000000000001"),
-        "messages" : [1, 2, 3]
+        "messages" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003")]
       }
     },
     "2" : {
@@ -27,13 +28,13 @@ var initialData = {
       "fullName" : "Richard Cui",
       "email" : "rcui@umass.edu",
       "location" : "Amherst, MA",
-      "feed": 2,
+      "feed": new ObjectID("000000000000000000000002"),
       "productManager" : {
-        "_id" : 2,
+        "_id" : new ObjectID("000000000000000000000002"),
         "items" : []
       },
       "messages" : {
-        "_id" : 2,
+        "_id" : new ObjectID("000000000000000000000002"),
         "messages" : []
       }
     },
@@ -43,13 +44,13 @@ var initialData = {
       "fullName" : "Roman Ganchin",
       "email" : "rganchin@umass.edu",
       "location" : "Amherst, MA",
-      "feed": 3,
+      "feed": new ObjectID("000000000000000000000003"),
       "productManager" : {
-        "_id" : 3,
+        "_id" : new ObjectID("000000000000000000000003"),
         "items" : []
       },
       "messages" : {
-        "_id" : 3,
+        "_id" : new ObjectID("000000000000000000000003"),
         "messages" : []
       }
     },
@@ -59,7 +60,7 @@ var initialData = {
       "fullName" : "Suzie Kim",
       "email" : "gahyunkim@umass.edu",
       "location" : "Amherst, MA",
-      "feed": 4,
+      "feed": new ObjectID("000000000000000000000004"),
       "productManager" : {
         "_id" : new ObjectID("000000000000000000000004"),
         "items" : []
@@ -77,14 +78,14 @@ var initialData = {
       "fullName" : "Cardie Duncan",
       "email" : "cardieduncan@umass.edu",
       "location" : "Amherst, MA",
-      "feed": 5,
+      "feed": new ObjectID("000000000000000000000005"),
       "productManager" : {
-        "_id" : 5,
-        "items" : [2, 3, 4]
+        "_id" : new ObjectID("000000000000000000000005"),
+        "items" : [new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004")]
       },
       "messages" : {
-        "_id" : 5,
-        "messages": [1, 2, 3]
+        "_id" : new ObjectID("000000000000000000000005"),
+        "messages": [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003")]
       }
     }
   },
@@ -93,27 +94,34 @@ var initialData = {
   "feeds" : {
     "1" : {
       "_id" : new ObjectID("000000000000000000000001"),
-      "items" : [2, 3, 4],
+      "items" : [new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004")],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "2" : {
       "_id" : new ObjectID("000000000000000000000002"),
-      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
+      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
+       new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"),
+        new ObjectID("000000000000000000000006"), new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "3" : {
       "_id" : new ObjectID("000000000000000000000003"),
-      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
+      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"),
+       new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"), new ObjectID("000000000000000000000006"),
+        new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "4" : {
       "_id" : new ObjectID("000000000000000000000004"),
-      "items" : [1, 2, 3, 4, 5, 6, 7, 8],
+      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
+       new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"),
+        new ObjectID("000000000000000000000006"), new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Snacks","Electronics"]
     },
     "5" : {
       "_id" : new ObjectID("000000000000000000000005"),
-      "items" : [1, 5, 6, 7, 8],
+      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000005"), new ObjectID("000000000000000000000006"),
+       new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Snacks","Electronics"]
     }
 
@@ -121,15 +129,17 @@ var initialData = {
   "categories":{
     "Dorm": {
       "_id": "Dorm",
-      "items" : [1]
+      "items" : [new ObjectID("000000000000000000000001")]
     },
     "Snacks":{
       "_id": "Snacks",
-      "items": [2]
+      "items": [new ObjectID("000000000000000000000002")]
     },
     "Electronics":{
       "_id": "Electronics",
-      "items":[3,4,5,6,7,8]
+      "items":[new ObjectID("000000000000000000000003"),new ObjectID("000000000000000000000004"),
+      new ObjectID("000000000000000000000005"),new ObjectID("000000000000000000000006"),new ObjectID("000000000000000000000007"),
+      new ObjectID("000000000000000000000008")]
     }
   },
   // ITEMS
@@ -143,8 +153,8 @@ var initialData = {
       "likeCounter": [],
       "dislikeCounter": [],
       "contents" : "http://placehold.it/400x300",
-      "photoID" : 1,
-      "vendorID" : 1
+      "photoID" : new ObjectID("000000000000000000000001"),
+      "vendorID" : new ObjectID("000000000000000000000001")
     },
     "2" :{
       "_id" : new ObjectID("000000000000000000000002"),
