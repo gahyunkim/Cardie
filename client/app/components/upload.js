@@ -18,7 +18,7 @@ export default class Upload extends React.Component{
   * Triggers the `Upload` prop if the post isn't empty, and clears* the component.
   */
   handleUpload() {
-    uploadItem(this.state, 5, () => {
+    uploadItem(this.state, "000000000000000000000005", () => {
       this.refresh();
     });
   }
