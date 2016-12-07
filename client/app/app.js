@@ -14,7 +14,7 @@ import ResetDatabase from './components/resetdatabase';
 
 class FeedPage extends React.Component {
   render() {
-    return <Feed key={5} />;
+    return <Feed key={"000000000000000000000005"} />;
   }
 }
 
@@ -26,25 +26,25 @@ class TrendingPage extends React.Component {
 
 class ProfilePage extends React.Component {
   render() {
-    return <User user={5}/>;
+    return <User user={"000000000000000000000005"}/>;
   }
 }
 
 class ProductManagerPage extends React.Component {
   render() {
-    return <ProductManager pm={5} />;
+    return <ProductManager pm={"000000000000000000000005"} />;
   }
 }
 
 class ChatPage extends React.Component {
   render() {
-    return <Chat key={5} />;
+    return <Chat key={"000000000000000000000005"} />;
   }
 }
 
 class SendChatPage extends React.Component {
   render() {
-    return <SendChat key={5} />;
+    return <SendChat key={"000000000000000000000005"} />;
   }
 }
 
