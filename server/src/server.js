@@ -284,15 +284,49 @@ function sendMessage(sender, recipient, contents) {
   return newMessage;
 }
 
-app.put('/users/:userid/messages', function(req, res){
-
+// HTTP request to send message to database
+app.post( '/user/:userid/messages', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userid = parseInt(req.params.userid, 10);
+  if (fromUser === userid) {
+    var recipientid = req.body.recipient;
+    var newMessage = {
+      "sender" : userid,
+      "recipient" : recipientid,
+      "date" : new Date().getTime(),
+      "contents" : req.body.contents
+    }
+    newMessage = addDocument('messages', newMessage);
+    var sender = readDocument('users', userid);
+    var recipient = readDocument('users', recipientid);
+    sender.messages.push(newMessage._id);
+    recipient.messages.push(newMessage._id);
+    writeDocument('users', sender);
+    writeDocument('users', recipient);
+  } else {
+    res.status(401).end();
+  }
 });
 
-function getMessages(user) {
-  var userData = readDocument('users', user);
-  var messages = readDocument('messages', userData.messages);
-  return messages;
+
+// Get message
+function getMessage(messageid) {
+  var message = readDocument('messages', messageid);
+  return message;
 }
+
+// HTTP request for messages from database
+app.get('/user/:userid/messages', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  if(fromUser === userId){
+    var messages = readDocument('users', userId).messages;
+    messages.messages = messages.messages.map((message) => getMessage(message));
+    res.send(messages);
+  } else {
+    res.status(401).end();
+  }
+});
 
 app.get('/profile/:userid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
@@ -302,19 +336,6 @@ app.get('/profile/:userid', function(req, res) {
     res.send(profile);
 
   } else {
-    res.status(401).end();
-  }
-});
-
-app.get('/users/:userid/messages', function(req, res) {
-  var userId = req.params.userid;
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userIdNumber = parseInt(userId, 10);
-  if (fromUser === userIdNumber) {
-    // Send response.
-    res.send(getMessages(userId));
-  } else {
-    // 401: Unauthorized request.
     res.status(401).end();
   }
 });

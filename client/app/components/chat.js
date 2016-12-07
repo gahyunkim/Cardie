@@ -1,5 +1,6 @@
 import React from 'react';
-import {getUserProfile, getMessages, sendMessage} from '../server';
+import {Link} from 'react-router';
+import {getMessages, sendMessage} from '../server';
 
 export default class Chat extends React.Component{
 
@@ -13,7 +14,7 @@ export default class Chat extends React.Component{
   }
 
   refresh() {
-    getMessages(this.props.messages, (messages) => {
+    getMessages(5, (messages) => {
       this.setState(messages);
     });
   }
@@ -29,9 +30,45 @@ export default class Chat extends React.Component{
   }
 
   render() {
+    var messages = this.state.messages ? this.state.messages : [];
     return(
-      <div>
-        Test
+      <div className="row">
+        <div className="panel panel-default">
+          <div className="panel panel-heading">
+            Messages
+          </div>
+          <div className="panel panel-body">
+            <div className="row">
+              <table>
+                <tbody>
+                  <tr>
+                    <td> Date </td>
+                    <td> From </td>
+                    <td> To </td>
+                    <td width="80%"> Contents </td>
+                  </tr>
+                  {messages.map((message) => {
+                    return (
+                      <tr>
+                      <td> {message.date} </td>
+                      <td> {message.sender} </td>
+                      <td> {message.recipient}</td>
+                      <td> {message.contents} </td>
+                      </tr>
+                    )}
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="panel panel-footer">
+            <Link to={"user/" + this.props.user + "/messages/send"}>
+              <button type="button" className="btn btn-default chat-btn">
+                Send a Message!
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     )
   }
