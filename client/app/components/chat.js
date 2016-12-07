@@ -14,7 +14,7 @@ export default class Chat extends React.Component{
   }
 
   refresh() {
-    getMessages(5, (messages) => {
+    getMessages("000000000000000000000005", (messages) => {
       this.setState(messages);
     });
   }
