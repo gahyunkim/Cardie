@@ -5,7 +5,7 @@
     "properties": {
       "sender": {
         "id": "sender",
-        "type": "integer"
+        "type": "string"
       },
       "recipient": {
         "id": "recipient",
