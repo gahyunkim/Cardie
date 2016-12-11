@@ -673,8 +673,27 @@ function getMessages(userId, callback) {
               return callback(err);
             } else if (messageData === null) {
               return callback(null, null);
+            }
+            var messages = [];
+            function processNextMessage(i) {
+              getMessage(messageData.contents[i], function(err, message) {
+                if (err) {
+                  return callback(err);
+                } else {
+                  messages.push[message];
+                  if (messages.length === messageData.contents.length) {
+                    messageData.contents = messages;
+                    callback(null, messageData);
+                  } else {
+                    processNextMessage(i + 1);
+                  }
+                }
+              });
+            }
+            if (messageData.contents.length === 0) {
+              callback(null, messageData);
             } else {
-              return callback(null, messageData);
+              processNextMessage(0);
             }
           }
         );
@@ -684,35 +703,24 @@ function getMessages(userId, callback) {
 }
 
 // HTTP request for messages from database
-// app.get('/user/:userid/messages', function(req, res) {
-//   var fromUser = getUserIdFromToken(req.get('Authorization'));
-//   var userId = req.params.userid;
-//   if(fromUser === userId){
-//     // var messages = readDocument('users', userId).messages;
-//     getMessages( new ObjectID(userId), function (err, messageData) {
-//       if (err) {
-//         res.status(500).send("Database error: " + err);
-//       } else if (messageData === null) {
-//         res.status(400).send("Could not look up messages for user " + userId);
-//       } else {
-//         messageData.messages = messageData.messages.map((message) =>
-//         getMessage(new Object(messageid), function (err, message) {
-//           if (err) {
-//             res.status(500).send("Database error: " + err);
-//           } else if (messageData === null) {
-//             res.status(400).send("Could not look up message " + messageid);
-//           } else {
-//             return callback(null, message);
-//           }
-//         })
-//       );
-//     }
-//   });
-//   res.send(messages);
-// } else {
-//   res.status(403).end();
-// }
-// });
+app.get('/user/:userid/messages', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = req.params.userid;
+  if(fromUser === userId){
+    // var messages = readDocument('users', userId).messages;
+    getMessages(new ObjectID(userId), function(err, messageData) {
+      if (err) {
+        res.status(500).send("Database error: " + err);
+      } else if (messageData === null) {
+        res.status(400).send("Could not look up messages for user " + userId);
+      } else {
+        res.send(messageData);
+      }
+    });
+  } else {
+    res.status(403).end();
+  }
+});
 
 
 

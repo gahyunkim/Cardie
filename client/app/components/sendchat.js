@@ -10,7 +10,7 @@ export default class Chat extends React.Component{
     super(props);
     this.state = {
       sender: "000000000000000000000005",
-      recipient: "000000000000000000000000",
+      recipient: "000000000000000000000001",
       date: "",
       contents: ""
 
