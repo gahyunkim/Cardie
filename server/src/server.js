@@ -666,37 +666,28 @@ function getMessages(userId, callback) {
         return callback(err);
       } else if (userData === null) {
         return callback(null, null);
-      } else {
-        db.collection('messages').findOne({ _id: userData.messages },
-          function(err, messageData) {
-            if (err) {
-              return callback(err);
-            } else if (messageData === null) {
-              return callback(null, null);
-            }
-            var messages = [];
-            function processNextMessage(i) {
-              getMessage(messageData.contents[i], function(err, message) {
-                if (err) {
-                  return callback(err);
-                } else {
-                  messages.push[message];
-                  if (messages.length === messageData.contents.length) {
-                    messageData.contents = messages;
-                    callback(null, messageData);
-                  } else {
-                    processNextMessage(i + 1);
-                  }
-                }
-              });
-            }
-            if (messageData.contents.length === 0) {
+      }
+      var messageData = userData.messages;
+      var messages = [];
+      function processNextMessage(i) {
+        getMessage(messageData.messages[i], function(err, message) {
+          if (err) {
+            return callback(err);
+          } else {
+            messages.push(message);
+            if (messages.length === messageData.messages.length) {
+              messageData.messages = messages;
               callback(null, messageData);
             } else {
-              processNextMessage(0);
+              processNextMessage(i + 1);
             }
           }
-        );
+        });
+      }
+      if (messageData.messages.length === 0) {
+        callback(null, messageData);
+      } else {
+        processNextMessage(0);
       }
     }
   );

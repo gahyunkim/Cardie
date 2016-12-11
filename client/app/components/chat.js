@@ -35,7 +35,7 @@ export default class Chat extends React.Component{
       <div className="row">
         <div className="panel panel-default">
           <div className="panel panel-heading">
-            Messages
+            <h1>Messages</h1>
           </div>
           <div className="panel panel-body">
             <div className="row">
