@@ -18,6 +18,12 @@ export default class Category extends React.Component{
       return (<Item _id={item._id} item={item} isCat={true}/>);})
       var firstFourItems;
       var lastItems;
+      if(allItems.length == 0){
+        return(
+          <div>
+          </div>
+        )
+      }
       if(allItems.length >4){
         firstFourItems = allItems.slice(0, 4);
         lastItems = allItems.slice(4, allItems.length);
