@@ -165,8 +165,8 @@ We do not have any advanced features that require additional setup.
   \item Another entry in the list
 \end{itemize}
 \item \textbf{Roman Ganchin} \begin{itemize}
-  \item Changed getCategories to work with actual database
-  \item Changed getCategorySync to work with actual database
+  \item Changed getCategories to work with MongoDB
+  \item Changed getCategorySync to work with MongoDB
   \item app.get('/users/:userid/feeds/categories') changed http GET request for categories. 
   \item Stringified trending.js in client
 \end{itemize}
@@ -178,10 +178,10 @@ We do not have any advanced features that require additional setup.
   \item Updated GET/profile/:userid
 \end{itemize}
 \item \textbf{Greg McGrath} \begin{itemize}
-  \item Fixed getUserIdFromToken
-  \item Changed getFeedData to work with updated database
-  \item Fixed app.get(/user/:userid/feed)
-  \item Changed getItem to work with actual database
+  \item Fixed getUserIdFromToken to work with MongoDB
+  \item Changed getFeedData to work with MongoDB
+  \item Fixed app.get(/user/:userid/feed) for feed
+  \item Changed getItem to work with MongoDB
   \item Changed app.get('/items/:itemid) for get item
 \end{itemize} 
 \item \textbf{Francis Phan} \begin{itemize}
