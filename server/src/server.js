@@ -56,7 +56,7 @@ MongoClient.connect(url, function(err, db) {
       var tokenObj = JSON.parse(regularString);
       var id = tokenObj['id'];
       // Check that id is a number.
-      if (typeof id === 'number') {
+      if (typeof id === 'string') {
         return id;
       }
       else {
@@ -72,25 +72,55 @@ MongoClient.connect(url, function(err, db) {
   /**
   * Get the feed data for a particular user.
   */
-  function getFeedData(user) {
-    var feed = readDocument('feeds', user);
-    // While map takes a callback, it is synchronous, not asynchronous.
-    // It calls the callback immediately.
-    feed.items = feed.items.map((item) => getItem(item));
-    // Return FeedData with resolved references.
-    return feed;
-  }
+  function getFeedData(user, callback) {
+    db.collection('feeds').findOne({
+      _id: user
+    }, function(err, feedData) {
+      if (err) {
+        return callback(err);
+      } else if (feedData === null) {
+        // Feed not found.
+        return callback(null, null);
+      }
+      var resolvedContents = [];
 
-  function getProfile
+      function processNextFeedItem(i) {
+        getItem(feedData.items[i], function(err, feedItem) {
+          if (err) {
+            callback(err);
+          } else {
+            resolvedContents.push(feedItem);
+            if (resolvedContents.length === feedData.items.length) {
+              feedData.items = resolvedContents;
+              callback(null, feedData);
+            } else {
+              processNextFeedItem(i + 1);
+            }
+          }
+        });
+      }
+      if (feedData.items.length === 0) {
+        callback(null, feedData);
+      } else {
+        processNextFeedItem(0);
+      }
+    });
+  }
 
   app.get('/user/:userid/feed', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userid = parseInt(req.params.userid, 10);
+    var userid = req.params.userid;
     if (fromUser === userid) {
-      // Send response.
-      res.send(getFeedData(userid));
+      getFeedData(new ObjectID(userid), function(err, feedData) {
+        if (err) {
+          res.status(500).send("Database error: " + err);
+        } else if (feedData === null) {
+          res.status(400).send("Could not look up feed for user " + userid);
+        } else {
+          res.send(feedData);
+        }
+      });
     } else {
-      // 401: Unauthorized request.
       res.status(401).end();
     }
   });
@@ -131,37 +161,30 @@ MongoClient.connect(url, function(err, db) {
   /**
   * Resolves a feed item. Internal to the server, since it's synchronous.
   */
-  /*function getItems(user) {
-    var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
-    // While map takes a callback, it is synchronous, not asynchronous.
-    // It calls the callback immediately.
-    feedData.items = feedData.items.map((item) => getItemSync(item));
-    // Return FeedData with resolved references.
-    return feedData;
-  }*/
-  function getItem(itemId) {
-    var item = readDocument('items', itemId);
-    return item;
-
+  function getItem(itemId, callback) {
+    db.collection('items').findOne({
+      _id: itemId
+      }, function(err, item) {
+        if (err) {
+          return callback(err);
+        }
+        else if (item === null) {
+          return callback(null, null);
+        }
+        callback(null, item);
+    });
   }
   app.get('/items/:itemid', function(req, res) {
-    /*var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var useridNumber = parseInt(userid, 10);
-
-    if (fromUser === useridNumber) {
-      // Send response.
-      var feedData = getItems(userid);
-      res.send(feedData);
-    } else {
-      // 401: Unauthorized request.
-      res.status(401).end();
-    }*/
-
-    var itemid = parseInt(req.params.itemid, 10);
-    var item = getItem(itemid);
-    res.send(item);
+    var itemid = new ObjectID(req.params.itemid);
+    getItem(itemid, function(err, item) {
+      if (err) {
+        res.status(500).send("Database error: " + err);
+      } else if (item === null) {
+        res.status(400).send("Could not look up item " + req.params.itemid);
+      } else {
+        res.send(item);
+      }
+    });
   });
 
   app.post('/upload/:userid', function(req, res){
@@ -195,6 +218,45 @@ MongoClient.connect(url, function(err, db) {
     } else {
       res.status(401).end();
     }
+
+/*    // Adds the item to the database.
+  db.collection('feedItems').insertOne(newItem, function(err, result) {
+    if (err) {
+      return callback(err);
+    }
+    // Unlike the mock database, MongoDB does not return the newly added object
+    // with the _id set.
+    // Attach the new feed item's ID to the newStatusUpdate object. We will
+    // return this object to the client when we are done.
+    // (When performing an insert operation, result.insertedId contains the new
+    // document's ID.)
+    newItem._id = result.insertedId;
+
+    // Retrieve the author's user object.
+    db.collection('users').findOne({ _id: user }, function(err, userObject) {
+      if (err) {
+        return callback(err);
+      }
+      // Update the author's feed with the new status update's ID.
+      db.collection('feeds').updateOne({ _id: userObject.feed },
+        {
+          $push: {
+            contents: {
+              $each: [newItem._id],
+              $position: 0
+            }
+          }
+        },
+        function(err) {
+          if (err) {
+            return callback(err);
+          }
+          // Return the new status update to the application.
+          callback(null, newItem);
+        }
+      );
+    });
+  }); */
   });
 
 
