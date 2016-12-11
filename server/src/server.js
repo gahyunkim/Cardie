@@ -22,8 +22,6 @@ var MongoClient = MongoDB.MongoClient;
 var ObjectID = MongoDB.ObjectID;
 var url = 'mongodb://localhost:27017/Cardie';
 
-var ResetDatabase = require('./resetdatabase');
-
 MongoClient.connect(url, function(err, db) {
   // Put everything that uses `app` into this callback function.
   // from app.use(bodyParser.text());
@@ -319,13 +317,66 @@ MongoClient.connect(url, function(err, db) {
         "date" : new Date().getTime(),
         "contents" : req.body.contents
       }
-      newMessage = addDocument('messages', newMessage);
-      var sender = readDocument('users', userid);
-      var recipient = readDocument('users', recipientid);
-      sender.messages.push(newMessage._id);
-      recipient.messages.push(newMessage._id);
-      writeDocument('users', sender);
-      writeDocument('users', recipient);
+      // newMessage = addDocument('messages', newMessage);
+      db.collection('messages').insertOne(newMessage, function(err, result){
+        if (err) {
+          return callback(err);
+        } else {
+          newMessage._id = result.insertedId;
+          db.collection('users').findOne({ _id: userid }, function(err, userObject){
+            if (err) {
+              return callback(err);
+            } else {
+              db.collection('messages').updateOne({ _id: userObject.messages },
+                {
+                  $push: {
+                    contents: {
+                      $each: [newMessage._id],
+                      $position: 0
+                    }
+                  }
+                },
+                function(err) {
+                  if (err) {
+                    return callback(err);
+                  } else {
+                    callback(null, newMessage);
+                  }
+                }
+              );
+            }
+          });
+          db.collection('users').findOne({ _id: recipientid }, function(err, userObject){
+            if (err) {
+              return callback(err);
+            } else {
+              db.collection('messages').updateOne({ _id: userObject.messages },
+                {
+                  $push: {
+                    contents: {
+                      $each: [newMessage._id],
+                      $position: 0
+                    }
+                  }
+                },
+                function(err) {
+                  if (err) {
+                    return callback(err);
+                  } else {
+                    callback(null, newMessage);
+                  }
+                }
+              );
+            }
+          });
+        }
+      });
+      // var sender = readDocument('users', userid);
+      // var recipient = readDocument('users', recipientid);
+      // sender.messages.push(newMessage._id);
+      // recipient.messages.push(newMessage._id);
+      // writeDocument('users', sender);
+      // writeDocument('users', recipient);
     } else {
       res.status(401).end();
     }
