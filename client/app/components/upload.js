@@ -91,13 +91,11 @@ export default class Upload extends React.Component{
                     <select className="form-control input-lg categoriesbutton"
                             value={this.state.category}
                             onChange={(e) => this.handleCategoryChange(e)}>
-                      <option>Category</option>
+                      <option selected>Category</option>
                       <option>Auto</option>
                       <option>Electronics</option>
                       <option>Dorm</option>
-                      <option>Home & Furniture</option>
-                      <option>Sports & Outdoor</option>
-                      <option>TV, Movies, Books</option>
+                      <option>Entertainment</option>
                       <option>Food</option>
                       <option>Supplies</option>
                       <option>Other</option>
