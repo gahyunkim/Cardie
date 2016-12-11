@@ -51,7 +51,13 @@ export default class Feed extends React.Component{
             break;
           }
         }
-        console.log(current);
+        if(current._id !== id){
+          return(
+            <div>
+              <h1>The item you have picked is not in your feed, please go back and choose another item</h1>
+            </div>
+          )
+        }
         firstItem = current;
       }
       if(this.state.showDescription === false){
