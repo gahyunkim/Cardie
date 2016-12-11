@@ -1,5 +1,7 @@
 .thumb {
   margin-bottom: 5px;
+  width: 400 !important;
+  height: 300 !important;
 }
 body{
   padding-top: 50px;
@@ -9,9 +11,14 @@ footer {
 }
 
 .seeMoreButtons{
-  text-align: center;
+  align: center;
 }
-
+/*.center {
+    //margin: auto;
+    width: 50%;
+    //border: 3px solid green;
+    //padding: 10px;
+}*/
 /*probably change color scheme later*/
 .btn{
   background-color: #9FED9F;

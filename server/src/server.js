@@ -431,29 +431,48 @@ MongoClient.connect(url, function(err, db) {
   });
 
 
-// disike an item.
-app.put('/users/:userid/feeds/items/:itemid/dislike', function(req, res) {
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  // Convert params from string to number.
-  var itemId = parseInt(req.params.itemid, 10);
-  var userId = parseInt(req.params.userid, 10);
-  if (fromUser === userId) {
-    var item = readDocument('items', itemId);
-    var feed = readDocument('feeds', userId);
-    if (item.dislikeCounter.indexOf(userId) === -1) {
-      item.dislikeCounter.push(userId);
-      var itemIdx = feed.items.indexOf(itemId);
-      feed.items.splice(itemIdx, 1);
-      writeDocument('feeds', feed);
-      writeDocument('items', item);
+  // disike an item.
+  app.put('/users/:userid/feeds/items/:itemid/dislike', function(req, res) {
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    var itemId = new ObjectID(req.params.itemid, 10);
+    var userId = req.params.userid;
+    if (fromUser === userId) {
+      // First, we can update the like counter.
+      db.collection('items').updateOne({ _id: itemId },
+        {
+          $addToSet: {
+            dislikeCounter: new ObjectID(userId)
+          }
+        }, function(err) {
+          if (err) {
+            return sendDatabaseError(res, err);
+          }
+          db.collection('items').findOne({ _id: itemId }, function(err, item) {
+            if (err) {
+              return sendDatabaseError(res, err);
+            }
+            resolveUserObjects(item.dislikeCounter, function(err, userMap) {
+              if (err) {
+                return sendDatabaseError(res, err);
+              }
+              item.dislikeCounter.map((userId) => userMap[userId]);
+            });
+          }
+        );
+      });
+      db.collection('feeds').updateOne({_id: new ObjectID(userId)},
+        {
+          $pull: { items: itemId }
+        }, function(err) {
+            if (err){
+              return sendDatabaseError(res,err);
+            }
+      });
+      res.send();
+    } else {
+      res.status(401).end();
     }
-    // Return a resolved version of the likeCounter
-    res.send();
-  } else {
-    // 401: Unauthorized.
-    res.status(401).end();
-  }
-});
+  });
 function getProductManager(user, cb){
   db.collection('users').findOne({
     _id: user

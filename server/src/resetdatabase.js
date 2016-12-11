@@ -152,7 +152,7 @@ var initialData = {
       //stores all the users that liked the item
       "likeCounter": [],
       "dislikeCounter": [],
-      "contents" : "http://placehold.it/400x300",
+      "contents" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsMCzxryx0QSwPsKr-ScRGc3kSxdaosqJu8chDkyEwXiC4aqU1Aw",
       "photoID" : new ObjectID("000000000000000000000001"),
       "vendorID" : new ObjectID("000000000000000000000001")
     },
@@ -164,7 +164,7 @@ var initialData = {
       //stores all the users that liked the item
       "likeCounter": [],
       "dislikeCounter": [],
-      "contents" : "http://placehold.it/400x300",
+      "contents" : "http://www.osm.net/images/08/06/broccoli/pasta-400-300.jpg",
       "photoID" : new ObjectID("000000000000000000000002"),
       "vendorID" : new ObjectID("000000000000000000000005")
     },
@@ -176,7 +176,7 @@ var initialData = {
       //stores all the users that liked the item
       "likeCounter": [],
       "dislikeCounter": [],
-      "contents" : "http://placehold.it/400x300",
+      "contents" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFFC_pYolfXwKK57BaDEBjLKNFJe6rhZzqHahgv2txwgCKs02Y",
       "photoID" : new ObjectID("000000000000000000000003"),
       "vendorID" : new ObjectID("000000000000000000000005")
     },
@@ -188,7 +188,7 @@ var initialData = {
       //stores all the users that liked the item
       "likeCounter": [],
       "dislikeCounter": [],
-      "contents" : "http://placehold.it/400x300",
+      "contents" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMsS2HU6CFHO0I1KvzaQNGMeClVRmXpkjhQPQ5eqI0pVpajJk2",
       "photoID" : new ObjectID("000000000000000000000004"),
       "vendorID" : new ObjectID("000000000000000000000005")
     },
@@ -212,7 +212,7 @@ var initialData = {
       //stores all the users that liked the item
       "likeCounter": [],
       "dislikeCounter": [],
-      "contents" : "http://placehold.it/400x300",
+      "contents" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG-Hryk1gJouTvAZapfsJncUDPyKnaqpp2s391AqhhcNkCd3MC",
       "photoID" : new ObjectID("000000000000000000000006"),
       "vendorID" : new ObjectID("000000000000000000000001")
     },
@@ -223,7 +223,7 @@ var initialData = {
       "category" : "Electronics",
       "likeCounter": [],
       "dislikeCounter": [],
-      "contents" : "http://placehold.it/400x300",
+      "contents" : "https://s-media-cache-ak0.pinimg.com/564x/1e/a8/07/1ea80716e093c6de3e8f341c503533d8.jpg",
       "photoID" : new ObjectID("000000000000000000000007"),
       "vendorID" : new ObjectID("000000000000000000000001")
     },
