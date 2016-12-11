@@ -619,8 +619,66 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
 //   return newMessage;
 // }
 
-function sendMessage(sender, recipient, callback) {
-  return null;
+function sendMessage(sender, recipient, message, callback) {
+  var newMessage = {
+    "sender": sender,
+    "recipient": recipient,
+    "date": new Date().getTime(),
+    "contents": message
+  }
+  db.collection('messages').insertOne(newMessage, function(err, result){
+    if (err) {
+      return callback(err);
+    }
+    newMessage._id = result.insertedId;
+
+    db.collection('users').find(
+      {
+        $and: [
+          { _id: new ObjectID(sender) },
+          { _id: new ObjectID(recipient) }
+        ]
+      },
+      function(err) {
+        if (err) {
+          return callback(err);
+        }
+        db.collection('users').updateMany(
+          {
+            $and: [
+              { _id: new ObjectID(sender) },
+              { _id: new ObjectID(recipient) }
+            ]
+          },
+          {
+            $push: {
+              "messages.messages": newMessage._id
+            }
+          }
+        );
+        db.collection('messages').updateMany(
+          {
+            $and: [
+              { _id: new ObjectID(sender) },
+              { _id: new ObjectID(recipient) }
+            ]
+          },
+          {
+            $push: {
+              messages: {
+                $each: [newMessage._id]
+              }
+            }
+          },
+          function(err) {
+            if (err) {
+              return callback(err)
+            }
+            return callback(null, newMessage);
+        });
+      }
+    );
+  });
 }
 
 // HTTP request to send message to database
@@ -628,21 +686,15 @@ app.post( '/user/:userid/messages', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var userid = req.params.userid;
   if (fromUser === userid) {
-    var recipientid = req.body.recipient;
-    var newMessage = {
-      "sender" : userid,
-      "recipient" : recipientid,
-      "date" : new Date().getTime(),
-      "contents" : req.body.contents
-    }
-    // newMessage = addDocument('messages', newMessage);
-
-    // var sender = readDocument('users', userid);
-    // var recipient = readDocument('users', recipientid);
-    // sender.messages.push(newMessage._id);
-    // recipient.messages.push(newMessage._id);
-    // writeDocument('users', sender);
-    // writeDocument('users', recipient);
+    sendMessage(userid, req.body.recipient, req.body.message, function(err, newMessage) {
+      if (err) {
+        res.status(500).send("A database error occurred: " + err);
+      } else {
+        res.status(201);
+        res.set('Location', '/users/' + userid + '/messages/' + newMessage._id);
+        res.send(newMessage);
+      }
+    });
   } else {
     res.status(401).end();
   }
