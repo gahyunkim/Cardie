@@ -189,10 +189,81 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
+  /**
+   * Adds a new status update to the database.
+   * @param user ObjectID of the user.
+   */
+  function postItem(contents, name, category, description, userid, callback) {
+    // The new status update. The database will assign the ID for us.
+    var newItem = {
+      "likeCounter": [],
+      "dislikeCounter": [],
+      "vendorID": userid,
+      "contents": contents,
+      "name": name,
+      "category": category,
+      "description": description
+    }
+
+    // Add the status update to the database.
+    db.collection('feedItems').insertOne(newItem, function(err, result) {
+      if (err) {
+        return callback(err);
+      }
+      // Unlike the mock database, MongoDB does not return the newly added object
+      // with the _id set.
+      // Attach the new feed item's ID to the newStatusUpdate object. We will
+      // return this object to the client when we are done.
+      // (When performing an insert operation, result.insertedId contains the new
+      // document's ID.)
+      newItem._id = result.insertedId;
+
+      // Retrieve the author's user object.
+      db.collection('users').findOne({ _id: userid }, function(err, userObject) {
+        if (err) {
+          return callback(err);
+        }
+        // Update the author's feed with the new status update's ID.
+        db.collection('feeds').updateOne({ _id: userObject.feed },
+          {
+            $push: {
+              contents: {
+                $each: [newItem._id],
+                $position: 0
+              }
+            }
+          },
+          function(err) {
+            if (err) {
+              return callback(err);
+            }
+            // Return the new status update to the application.
+            callback(null, newItem);
+          }
+        );
+      });
+    });
+  }
+
   app.post('/upload/:userid', function(req, res){
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userid = parseInt(req.params.userid, 10);
+    var userid = req.params.userid;
     if (fromUser === userid) {
+      postItem(req.body.contents, req.body.name, req.body.category, req.body.description, userid, function(err, newUpdate) {
+      if (err) {
+        // A database error happened.
+        // 500: Internal error.
+        res.status(500).send("A database error occurred: " + err);
+      } else {
+        // When POST creates a new resource, we should tell the client about it
+        // in the 'Location' header and use status code 201.
+        res.status(201);
+        res.set('Location', '/feeditem/' + newUpdate._id);
+          // Send the update!
+        res.send(newUpdate);
+      }
+    });
+      /*
       var feeds = getCollection('feeds');
       var feedKeys = Object.keys(feeds);
       var newItem = {
@@ -217,48 +288,9 @@ MongoClient.connect(url, function(err, db) {
       vendor.productManager.items.push(newItem._id);
       writeDocument('users', vendor);
       res.send();
-    } else {
+    */} else {
       res.status(401).end();
     }
-
-/*    // Adds the item to the database.
-  db.collection('feedItems').insertOne(newItem, function(err, result) {
-    if (err) {
-      return callback(err);
-    }
-    // Unlike the mock database, MongoDB does not return the newly added object
-    // with the _id set.
-    // Attach the new feed item's ID to the newStatusUpdate object. We will
-    // return this object to the client when we are done.
-    // (When performing an insert operation, result.insertedId contains the new
-    // document's ID.)
-    newItem._id = result.insertedId;
-
-    // Retrieve the author's user object.
-    db.collection('users').findOne({ _id: user }, function(err, userObject) {
-      if (err) {
-        return callback(err);
-      }
-      // Update the author's feed with the new status update's ID.
-      db.collection('feeds').updateOne({ _id: userObject.feed },
-        {
-          $push: {
-            contents: {
-              $each: [newItem._id],
-              $position: 0
-            }
-          }
-        },
-        function(err) {
-          if (err) {
-            return callback(err);
-          }
-          // Return the new status update to the application.
-          callback(null, newItem);
-        }
-      );
-    });
-  }); */
   });
 
 
