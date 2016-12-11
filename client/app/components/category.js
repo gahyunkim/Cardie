@@ -24,11 +24,13 @@ export default class Category extends React.Component{
         return(
           <li className="list-group-item">
             <div className="panel panel-default">
-              <div className="panel-heading">{this.state._id}</div>
+              <div className="panel-heading">{this.state._id}
+                <input className="right" type="submit" value="More/Less" onClick={this.onClick.bind(this)} />
+              </div>
               <div className="panel-body">
                 {firstFourItems}
                 {this.state.showResults ? lastItems : null }
-                <div className="center"><input className="seeMoreButtons btn" type="submit" value="More/Less" onClick={this.onClick.bind(this)} /></div>        
+
               </div>
             </div>
           </li>
