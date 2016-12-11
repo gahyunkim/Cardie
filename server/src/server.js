@@ -491,7 +491,7 @@ MongoClient.connect(url, function(err, db) {
   // HTTP request to send message to database
   app.post( '/user/:userid/messages', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userid = parseInt(req.params.userid, 10);
+    var userid = req.params.userid;
     if (fromUser === userid) {
       var recipientid = req.body.recipient;
       var newMessage = {
@@ -567,30 +567,73 @@ MongoClient.connect(url, function(err, db) {
 
 
   // Get message
-  function getMessage(messageid) {
-    var message = readDocument('messages', messageid);
-    return message;
+  function getMessage(messageid, callback) {
+    // var message = readDocument('messages', messageid);
+    db.collection('messages').findOne({ _id: messageid },
+      function(err, message) {
+        if (err) {
+          callback(err);
+        } else if (message === null) {
+          callback(null, null);
+        } else {
+          callback(null, message)
+        }
+      }
+    );
+  }
+
+  function getMessages(userId, callback) {
+    db.collection('users').findOne({ _id: userId },
+      function(err, userData) {
+        if (err) {
+          return callback(err);
+        } else if (userData === null) {
+          return callback(null, null);
+        } else {
+          db.collection('messages').findOne({ _id: userData.messages },
+            function(err, messageData) {
+              if (err) {
+                return callback(err);
+              } else if (messageData === null) {
+                return callback(null, null);
+              } else {
+                return callback(null, messages);
+              }
+            }
+          );
+        }
+      }
+    );
   }
 
   // HTTP request for messages from database
   app.get('/user/:userid/messages', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = parseInt(req.params.userid, 10);
+    var userId = req.params.userid;
     if(fromUser === userId){
       // var messages = readDocument('users', userId).messages;
-      db.collection('users').findOne({ _id: userId },
-        function(err, userData) {
-          if (err) {
-            return callback(err);
-          } else {
-
-          }
+      getMessages( new ObjectID(userId), function (err, messageData) {
+        if (err) {
+          res.status(500).send("Database error: " + err);
+        } else if (messageData === null) {
+          res.status(400).send("Could not look up messages for user " + userId);
+        } else {
+          messages.messages = messages.messages.map((message) =>
+            getMessage(new Object(messageid), function (err, message) {
+              if (err) {
+                res.status(500).send("Database error: " + err);
+              } else if (messageData === null) {
+                res.status(400).send("Could not look up message " + messageid);
+              } else {
+                return callback(null, message);
+              }
+            })
+          );
         }
-      );
-      messages.messages = messages.messages.map((message) => getMessage(message));
+      });
       res.send(messages);
     } else {
-      res.status(401).end();
+      res.status(403).end();
     }
   });
 
