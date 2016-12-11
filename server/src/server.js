@@ -533,10 +533,10 @@ MongoClient.connect(url, function(err, db) {
   app.post('/resetdb', function(req, res) {
     console.log("Resetting database...");
     // This is a debug route, so don't do any validation.
-    database.resetDatabase();
-    // res.send() sends an empty response with status code 200
+    ResetDatabase(db, function() {
     res.send();
   });
+
 
   // Starts the server on port 3000!
   app.listen(3000, function () {
