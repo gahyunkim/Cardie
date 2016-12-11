@@ -140,7 +140,7 @@ var initialData = {
       //stores all the users that liked the item
       "likeCounter": [],
       "dislikeCounter": [],
-      "contents" : "http://placehold.it/400x300",
+      "contents" : "http://www.osm.net/images/08/06/broccoli/pasta-400-300.jpg",
       "photoID" : 1,
       "vendorID" : 1
     },
