@@ -318,7 +318,7 @@ MongoClient.connect(url, function(err, db) {
           }
         }
       })
-      db.collection('feeds').updateMany({_id: { $ne: userid}}, {
+      db.collection('feeds').updateMany({_id: { $ne: new ObjectID(userid)}}, {
         $push: {
           items: {
             $each: [newItem._id]
