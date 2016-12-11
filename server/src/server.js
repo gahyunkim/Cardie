@@ -311,13 +311,11 @@ MongoClient.connect(url, function(err, db) {
           return callback(err);
         }
 
-      db.collection('users').updateOne({_id: userid}, {
+      db.collection('users').updateOne({_id: new ObjectID(userid)}, {
         $push: {
-          productManager: {
-            items: [newItem._id]
-          }
+          "productManager.items": newItem._id
         }
-      })
+      });
       db.collection('feeds').updateMany({_id: { $ne: new ObjectID(userid)}}, {
         $push: {
           items: {
@@ -330,7 +328,7 @@ MongoClient.connect(url, function(err, db) {
           }
           callback(null, newItem);
         }
-      })
+      });
       });
     });
   }
