@@ -153,15 +153,35 @@ We do not have any advanced features that require additional setup.
 \end{homeworkProblem}
 % To have just one problem per page, simply put a \clearpage after each problem
 \begin{homeworkProblem}[Individual Contributions]
-
-\begin{itemize}
-\item \textbf{Daanial Ahmed} contributed to the Upload component. Contributed to the dynamic functionality of the component (uploading the JSON object to the mock database when the upload button is clicked) which was missing from the previous submission.
-\item \textbf{Richard Cui} contributed to the Chat component. Added functions to retrieve chats from database as well as send chats to other users. Updated database to include support for messages for both senders and recipients. Handled HTTP requests for both functions. 
-\item \textbf{Roman Ganchin} contributed to the Trending, Category, Item , Server, and Report components. Added server functionality for dislike item, getCategories, and categorySync. Fixed bug in item.js to enable clicking on images in trending. Changed categories.js so that items could be displayed after they were clicked in feed. Helped writing the report with general outline and filled out the Route components. Updated package.json, and helped move old server functionality into new server.js in server. 
-\item \textbf{Gahyun (Susie) Kim} added Bootstrap Warning alert above Cardie layout to display any server issues to client. Installed global function (CardieError) and let code display info in alert box and directed user to try reloading the webpage. Fixed button on uploadItem page to allow the user to select a file. Helped finish writing report.
-\item \textbf{Greg McGrath} contributed to the Feed and item components. Made it so clicking on an item on the homepage no longer goes to item page, but unhides the description that was pre-rendered and hidden. Added server functionality for getItem, and getFeed components. Changed feed.js so that it would contain the functionality for displaying one item at a time. 
-\item \textbf{Francis Phan} contributed to the ProductManager and Item components, the dummy database, and linking and routing all of the components into one application. Responsible for implementation of HTTP requests used by ProductManager, Item, Feed, and Upload both from client and server.  Refactored ResetDatabase from dummy client-side database to new component that sends HTTP request to reset database on server-side dummy database. Created Schema for Items to be sold. 
+\renewcommand\labelitemi{$\textendash$}
+\begin{enumerate}
+\item \textbf{Daanial Ahmed}
+ \begin{itemize}
+  \item One entry in the list
+  \item Another entry in the list
 \end{itemize}
+\item \textbf{Richard Cui} \begin{itemize}
+  \item One entry in the list
+  \item Another entry in the list
+\end{itemize}
+\item \textbf{Roman Ganchin} \begin{itemize}
+  \item One entry in the list
+  \item Another entry in the list
+\end{itemize}
+\item \textbf{Gahyun (Susie) Kim} \begin{itemize}
+  \item Added MongoDB and Express to server node\_modules
+  \item Changed mock database IDs to MongoDB ObjectIDs and changed Integer type to String in schema, changed token
+  \item Stringified app.js, feed, chat, item, sendchat, and upload 
+\end{itemize}
+\item \textbf{Greg McGrath} \begin{itemize}
+  \item One entry in the list
+  \item Another entry in the list
+\end{itemize} 
+\item \textbf{Francis Phan} \begin{itemize}
+  \item One entry in the list
+  \item Another entry in the list
+\end{itemize} 
+\end{enumerate}
 
 \end{homeworkProblem}
 
