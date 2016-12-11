@@ -329,6 +329,11 @@ MongoClient.connect(url, function(err, db) {
           callback(null, newItem);
         }
       });
+      db.collection('categories').updateOne({_id: newItem.category}, {
+        $push: {
+          items: new ObjectID(newItem._id)
+        }
+      });
       });
     });
   }
