@@ -108,7 +108,12 @@ export function dislikeItem(itemId, userId, cb) {
 }
 
 export function sendMessage(senderId, recipientId, message, cb) {
-
+  sendXHR('POST', '/users/' + senderId + '/messages', message, () => {
+    cb();
+  });
+  sendXHR('POST', '/users/' + recipientId + '/messages', message, () => {
+    cb();
+  });
 }
 
 export function getMessages(userId, cb) {
