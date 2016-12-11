@@ -461,7 +461,16 @@ MongoClient.connect(url, function(err, db) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var userId = parseInt(req.params.userid, 10);
     if(fromUser === userId){
-      var messages = readDocument('users', userId).messages;
+      // var messages = readDocument('users', userId).messages;
+      db.collection('users').findOne({ _id: userId },
+        function(err, userData) {
+          if (err) {
+            return callback(err);
+          } else {
+
+          }
+        }
+      );
       messages.messages = messages.messages.map((message) => getMessage(message));
       res.send(messages);
     } else {
