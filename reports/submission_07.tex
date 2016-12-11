@@ -165,21 +165,29 @@ We do not have any advanced features that require additional setup.
   \item Another entry in the list
 \end{itemize}
 \item \textbf{Roman Ganchin} \begin{itemize}
-  \item One entry in the list
-  \item Another entry in the list
+  \item Changed getCategories to work with MongoDB
+  \item Changed getCategorySync to work with MongoDB
+  \item app.get('/users/:userid/feeds/categories') changed http GET request for categories. 
+  \item Stringified trending.js in client
+  \item Made resolveUserObjects for likeItem and dislikeItem to get them to work with MongoDB
 \end{itemize}
 \item \textbf{Gahyun (Susie) Kim} \begin{itemize}
   \item Added MongoDB and Express to server node\_modules
   \item Changed mock database IDs to MongoDB ObjectIDs and changed Integer type to String in schema, changed token
   \item Stringified app.js, feed, chat, item, sendchat, and upload 
+  \item Created function getUserProfile to retrieve user profile data with the given ID
+  \item Updated GET/profile/:userid
 \end{itemize}
 \item \textbf{Greg McGrath} \begin{itemize}
-  \item One entry in the list
-  \item Another entry in the list
+  \item Fixed getUserIdFromToken to work with MongoDB
+  \item Changed getFeedData to work with MongoDB
+  \item Fixed app.get(/user/:userid/feed) for feed
+  \item Changed getItem to work with MongoDB
+  \item Changed app.get('/items/:itemid) for get item
 \end{itemize} 
 \item \textbf{Francis Phan} \begin{itemize}
-  \item One entry in the list
-  \item Another entry in the list
+  \item GET Product Manager now fully interacts with MongoDB
+  \item getProductManager added to accommodate mongoDB
 \end{itemize} 
 \end{enumerate}
 
