@@ -74,7 +74,7 @@ MongoClient.connect(url, function(err, db) {
   */
   function getFeedData(user, callback) {
     db.collection('feeds').findOne({
-      _id: user.feed
+      _id: user
     }, function(err, feedData) {
       if (err) {
         return callback(err);
@@ -99,7 +99,7 @@ MongoClient.connect(url, function(err, db) {
           }
         });
       }
-      if (feedData.contents.length === 0) {
+      if (feedData.items.length === 0) {
         callback(null, feedData);
       } else {
         processNextFeedItem(0);
@@ -110,8 +110,6 @@ MongoClient.connect(url, function(err, db) {
   app.get('/user/:userid/feed', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var userid = req.params.userid;
-    console.log(fromUser);
-    console.log(userid);
     if (fromUser === userid) {
       getFeedData(new ObjectID(userid), function(err, feedData) {
         if (err) {
@@ -491,7 +489,6 @@ MongoClient.connect(url, function(err, db) {
       } else {
         return callback(null, userData)
       }
-
     })
   }
 
@@ -499,13 +496,24 @@ MongoClient.connect(url, function(err, db) {
   app.get('/profile/:userid', function(req, res) {
     var userid = req.params.userid;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = parseInt(req.params.userid, 10);
     if(fromUser === userid){
-      var profile = readDocument('users', userId);
-      res.send(profile);
-
+      // Convert userid into an ObjectID before passing it to database queries.
+      getUserProfile(new ObjectID(userid), function(err, userData) {
+        if (err) {
+          // A database error happened.
+          // Internal Error: 500.
+          res.status(500).send("Database error: " + err);
+        } else if (userData === null) {
+          // Couldn't find the user profile data in the database.
+          res.status(400).send("Could not look up profile data for user " + userid);
+        } else {
+          // Send data
+          res.send(userData);
+        }
+      })
     } else {
-      res.status(401).end();
+      // 403: Unauthorized request.
+      res.status(403).end();
     }
   });
 
