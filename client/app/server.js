@@ -80,7 +80,7 @@ export function getUserProfile(userId, cb) {
 }
 
 export function getFeedData(user, cb) {
-  sendXHR('GET', '/user/' + user + '/feed' , undefined, (xhr) => {
+  sendXHR('GET', '/user/' + "000000000000000000000005" + '/feed' , undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
