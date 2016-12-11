@@ -47,6 +47,15 @@ MongoClient.connect(url, function(err, db) {
   * resolve user object
   * only needed for dislike and like item
   */
+
+  /**
+  * Get the user ID from a token. Returns -1 (an invalid ID)
+  * if it fails.
+  */
+  function sendDatabaseError(res, err){
+    res.status(500).send("A database error occurred: " + err);
+  }
+
   function resolveUserObjects(userList, callback) {
      if (userList.length === 0) {
        callback(null, {});
@@ -463,29 +472,36 @@ app.get('/user/:userid/pm', function(req, res) {
 
 app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var itemId = parseInt(req.params.itemid, 10);
-  var feeds = getCollection('feeds');
-  var feedKeys = Object.keys(feeds);
-  var userId = parseInt(req.params.userid, 10);
-  var user = readDocument('users', userId);
-  var feed, itemIdx;
-  if( fromUser === userId){
-
-    feedKeys.forEach((key) => {
-      feed = readDocument('feeds', key);
-      itemIdx = feed.items.indexOf(itemId);
-      if(itemIdx !== -1){
-        feed.items.splice(itemIdx, 1);
-        database.writeDocument('feeds', feed);
+  var itemId = new ObjectID(req.params.itemid);
+  var userId = req.params.userid;
+  if(userId === fromUser){
+    db.collection('items').findOne({
+      _id: itemId,
+      vendorID: new ObjectID(fromUser)
+    }, function(err, itemData) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      } else if (itemData === null){
+        return res.status(400).end();
       }
+      db.collection('feeds').updateMany({}, {
+        $pull: {
+          items: itemId
+        }
+      }, function(err) {
+        if(err) {
+          return sendDatabaseError(res, err);
+        }
+        db.collection('items').deleteOne({
+          _id: itemId
+        }, function(err) {
+          if (err) {
+            return sendDatabaseError(res,err);
+          }
+          res.send();
+        });
+      });
     });
-    itemIdx = user.productManager.items.indexOf(itemId);
-    user.productManager.items.splice(itemIdx, 1);
-    writeDocument('users', user);
-    deleteDocument('items', itemId);
-    res.send();
-  } else {
-    res.status(401).end();
   }
 });
 
