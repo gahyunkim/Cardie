@@ -402,10 +402,29 @@ MongoClient.connect(url, function(err, db) {
     }
   });
 
+
+  function getUserProfile(user, callback) {
+    db.collection('users').findOne({
+      _id: user
+    }, function(err, userData) {
+      if (err) {
+        return callback(err);
+      } else if (userData === null) {
+        //User not found
+        return callback(null, null)
+      } else {
+        return callback(null, userData)
+      }
+
+    })
+  }
+
+
   app.get('/profile/:userid', function(req, res) {
+    var userid = req.params.userid;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var userId = parseInt(req.params.userid, 10);
-    if( fromUser === userId){
+    if(fromUser === userid){
       var profile = readDocument('users', userId);
       res.send(profile);
 
