@@ -487,27 +487,31 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
   }
 });
 
-function sendMessage(sender, recipient, contents) {
-  var senderData = readDocument('users', sender);
-  var recipientData = readDocument('users', recipient);
-  var senderMessages = readDocument('messages', senderData.messages);
-  var recipientMessages = readDocument('messages', recipientData.messages);
+// function sendMessage(sender, recipient, contents) {
+//   var senderData = readDocument('users', sender);
+//   var recipientData = readDocument('users', recipient);
+//   var senderMessages = readDocument('messages', senderData.messages);
+//   var recipientMessages = readDocument('messages', recipientData.messages);
+//
+//   var date = new Date().getTime();
+//   var newMessage = {
+//     "type" : "message",
+//     "contents" : {
+//       "sender" : sender,
+//       "recipient" : recipient,
+//       "date" : date,
+//       "contents" : contents
+//     }
+//   }
+//   senderMessages.push(newMessage);
+//   recipientMessages.push(newMessage);
+//   senderMessages.writeDocument('messages', newMessage);
+//   recipientMessages.writeDocument('messages', newMessage);
+//   return newMessage;
+// }
 
-  var date = new Date().getTime();
-  var newMessage = {
-    "type" : "message",
-    "contents" : {
-      "sender" : sender,
-      "recipient" : recipient,
-      "date" : date,
-      "contents" : contents
-    }
-  }
-  senderMessages.push(newMessage);
-  recipientMessages.push(newMessage);
-  senderMessages.writeDocument('messages', newMessage);
-  recipientMessages.writeDocument('messages', newMessage);
-  return newMessage;
+function sendMessage(sender, recipient, callback) {
+  return null;
 }
 
 // HTTP request to send message to database
@@ -523,59 +527,7 @@ app.post( '/user/:userid/messages', function(req, res) {
       "contents" : req.body.contents
     }
     // newMessage = addDocument('messages', newMessage);
-    db.collection('messages').insertOne(newMessage, function(err, result){
-      if (err) {
-        return callback(err);
-      } else {
-        newMessage._id = result.insertedId;
-        db.collection('users').findOne({ _id: userid }, function(err, userObject){
-          if (err) {
-            return callback(err);
-          } else {
-            db.collection('messages').updateOne({ _id: userObject.messages },
-              {
-                $push: {
-                  contents: {
-                    $each: [newMessage._id],
-                    $position: 0
-                  }
-                }
-              },
-              function(err) {
-                if (err) {
-                  return callback(err);
-                } else {
-                  callback(null, newMessage);
-                }
-              }
-            );
-          }
-        });
-        db.collection('users').findOne({ _id: recipientid }, function(err, userObject){
-          if (err) {
-            return callback(err);
-          } else {
-            db.collection('messages').updateOne({ _id: userObject.messages },
-              {
-                $push: {
-                  contents: {
-                    $each: [newMessage._id],
-                    $position: 0
-                  }
-                }
-              },
-              function(err) {
-                if (err) {
-                  return callback(err);
-                } else {
-                  callback(null, newMessage);
-                }
-              }
-            );
-          }
-        });
-      }
-    });
+
     // var sender = readDocument('users', userid);
     // var recipient = readDocument('users', recipientid);
     // sender.messages.push(newMessage._id);
@@ -619,7 +571,7 @@ function getMessages(userId, callback) {
             } else if (messageData === null) {
               return callback(null, null);
             } else {
-              return callback(null, messages);
+              return callback(null, messageData);
             }
           }
         );
@@ -629,35 +581,35 @@ function getMessages(userId, callback) {
 }
 
 // HTTP request for messages from database
-app.get('/user/:userid/messages', function(req, res) {
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userId = req.params.userid;
-  if(fromUser === userId){
-    // var messages = readDocument('users', userId).messages;
-    getMessages( new ObjectID(userId), function (err, messageData) {
-      if (err) {
-        res.status(500).send("Database error: " + err);
-      } else if (messageData === null) {
-        res.status(400).send("Could not look up messages for user " + userId);
-      } else {
-        messages.messages = messages.messages.map((message) =>
-        getMessage(new Object(messageid), function (err, message) {
-          if (err) {
-            res.status(500).send("Database error: " + err);
-          } else if (messageData === null) {
-            res.status(400).send("Could not look up message " + messageid);
-          } else {
-            return callback(null, message);
-          }
-        })
-      );
-    }
-  });
-  res.send(messages);
-} else {
-  res.status(403).end();
-}
-});
+// app.get('/user/:userid/messages', function(req, res) {
+//   var fromUser = getUserIdFromToken(req.get('Authorization'));
+//   var userId = req.params.userid;
+//   if(fromUser === userId){
+//     // var messages = readDocument('users', userId).messages;
+//     getMessages( new ObjectID(userId), function (err, messageData) {
+//       if (err) {
+//         res.status(500).send("Database error: " + err);
+//       } else if (messageData === null) {
+//         res.status(400).send("Could not look up messages for user " + userId);
+//       } else {
+//         messageData.messages = messageData.messages.map((message) =>
+//         getMessage(new Object(messageid), function (err, message) {
+//           if (err) {
+//             res.status(500).send("Database error: " + err);
+//           } else if (messageData === null) {
+//             res.status(400).send("Could not look up message " + messageid);
+//           } else {
+//             return callback(null, message);
+//           }
+//         })
+//       );
+//     }
+//   });
+//   res.send(messages);
+// } else {
+//   res.status(403).end();
+// }
+// });
 
 
 
@@ -675,77 +627,6 @@ function getUserProfile(user, callback) {
     }
   });
 }
-
-  // Get message
-  function getMessage(messageid, callback) {
-    // var message = readDocument('messages', messageid);
-    db.collection('messages').findOne({ _id: messageid },
-      function(err, message) {
-        if (err) {
-          callback(err);
-        } else if (message === null) {
-          callback(null, null);
-        } else {
-          callback(null, message);
-        }
-      }
-    );
-  }
-
-  function getMessages(userId, callback) {
-    db.collection('users').findOne({ _id: userId },
-      function(err, userData) {
-        if (err) {
-          return callback(err);
-        } else if (userData === null) {
-          return callback(null, null);
-        } else {
-          db.collection('messages').findOne({ _id: userData.messages },
-            function(err, messageData) {
-              if (err) {
-                return callback(err);
-              } else if (messageData === null) {
-                return callback(null, null);
-              } else {
-                return callback(null, messages);
-              }
-            }
-          );
-        }
-      }
-    );
-  }
-
-  // HTTP request for messages from database
-  app.get('/user/:userid/messages', function(req, res) {
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = req.params.userid;
-    if(fromUser === userId){
-      // var messages = readDocument('users', userId).messages;
-      getMessages( new ObjectID(userId), function (err, messageData) {
-        if (err) {
-          res.status(500).send("Database error: " + err);
-        } else if (messageData === null) {
-          res.status(400).send("Could not look up messages for user " + userId);
-        } else {
-          messages.messages = messages.messages.map((message) =>
-            getMessage(new Object(messageid), function (err, message) {
-              if (err) {
-                res.status(500).send("Database error: " + err);
-              } else if (messageData === null) {
-                res.status(400).send("Could not look up message " + messageid);
-              } else {
-                return callback(null, message);
-              }
-            }));
-        }
-      });
-      res.send(messages);
-    } else {
-      return callback(null, userData);
-    }
-  });
-
 
 
 app.get('/profile/:userid', function(req, res) {
