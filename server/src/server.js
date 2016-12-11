@@ -74,7 +74,7 @@ MongoClient.connect(url, function(err, db) {
   */
   function getFeedData(user, callback) {
     db.collection('feeds').findOne({
-      _id: user.feed
+      _id: user
     }, function(err, feedData) {
       if (err) {
         return callback(err);
@@ -99,7 +99,7 @@ MongoClient.connect(url, function(err, db) {
           }
         });
       }
-      if (feedData.contents.length === 0) {
+      if (feedData.items.length === 0) {
         callback(null, feedData);
       } else {
         processNextFeedItem(0);
@@ -110,8 +110,6 @@ MongoClient.connect(url, function(err, db) {
   app.get('/user/:userid/feed', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var userid = req.params.userid;
-    console.log(fromUser);
-    console.log(userid);
     if (fromUser === userid) {
       getFeedData(new ObjectID(userid), function(err, feedData) {
         if (err) {
