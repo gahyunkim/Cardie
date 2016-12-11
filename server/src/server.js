@@ -313,13 +313,13 @@ MongoClient.connect(url, function(err, db) {
 
       db.collection('users').updateOne({_id: new ObjectID(userid)}, {
         $push: {
-          "productManager.items": newItem._id
+          "productManager.items": new ObjectID(newItem._id)
         }
       });
       db.collection('feeds').updateMany({_id: { $ne: new ObjectID(userid)}}, {
         $push: {
           items: {
-            $each: [newItem._id]
+            $each: [new ObjectID(newItem._id)]
           }
         },
         function(err){
@@ -565,23 +565,24 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
         if(err) {
           return sendDatabaseError(res, err);
         }
-        db.collection('items').deleteOne({
-          _id: itemId
-        }, function(err) {
-          if (err) {
-            return sendDatabaseError(res,err);
-          }
-        });
       });
-      db.collection('users').updateOne({_id: new ObjectID(userId)}, {
-        $pull: {
-          "productManager.items": itemId
-        }
-      }, function(err) {
-        if(err) {
-          return sendDatabaseError(res,err);
-        }
-      });
+    });
+
+    db.collection('users').updateOne({_id: new ObjectID(userId)}, {
+      $pull: {
+        "productManager.items": itemId
+      }
+    }, function(err) {
+      if(err) {
+        return sendDatabaseError(res, err);
+      }
+    });
+    db.collection('items').deleteOne({
+      _id: itemId
+    }, function(err) {
+      if (err) {
+        return sendDatabaseError(res,err);
+      }
     });
 
     res.send();
