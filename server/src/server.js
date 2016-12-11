@@ -80,6 +80,9 @@ MongoClient.connect(url, function(err, db) {
     // Return FeedData with resolved references.
     return feed;
   }
+
+  function getProfile
+
   app.get('/user/:userid/feed', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var userid = parseInt(req.params.userid, 10);
@@ -415,7 +418,6 @@ MongoClient.connect(url, function(err, db) {
       } else {
         return callback(null, userData)
       }
-
     })
   }
 
@@ -423,13 +425,24 @@ MongoClient.connect(url, function(err, db) {
   app.get('/profile/:userid', function(req, res) {
     var userid = req.params.userid;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = parseInt(req.params.userid, 10);
     if(fromUser === userid){
-      var profile = readDocument('users', userId);
-      res.send(profile);
-
+      // Convert userid into an ObjectID before passing it to database queries.
+      getUserProfile(new ObjectID(userid), function(err, userData) {
+        if (err) {
+          // A database error happened.
+          // Internal Error: 500.
+          res.status(500).send("Database error: " + err);
+        } else if (userData === null) {
+          // Couldn't find the user profile data in the database.
+          res.status(400).send("Could not look up profile data for user " + userid);
+        } else {
+          // Send data
+          res.send(userData);
+        }
+      })
     } else {
-      res.status(401).end();
+      // 403: Unauthorized request.
+      res.status(403).end();
     }
   });
 
