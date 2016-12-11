@@ -1,0 +1,272 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage{amsmath}%
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\usepackage{cancel}
+\usepackage{tikz}
+\usepackage{graphicx}
+\graphicspath{ {C:/Users/Roman/Documents/CS326/team-project-client-template/ERDiagram} }
+\usepackage[margin=1in]{geometry} 
+\usetikzlibrary{automata,positioning}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{enumitem}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{} % Header and footer within the environment
+}{
+\exitProblemHeader{} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+%\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Adding a Database} % Assignment title
+\newcommand{\hmwkDueDate}{Wednesday,\ December 14,\ 2016} % Due date
+\newcommand{\hmwkClass}{CS\ 326} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Professor Tim Richards} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{ \hmwkClassInstructor}
+\vspace{3in}
+}
+\author{Daanial Ahmed, Richard Cui, Roman Ganchin, \\Gahyun (Susie) Kim, Greg McGrath, Francis Phan}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9.10.1
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}[HTTP Requests]
+\begin{lstlisting}
+GET /items/:itemid 
+\end{lstlisting} 
+Does: Returns the item with :itemid.\\
+Replaces: getItem(itemId) in the old server\\
+Updates: Does not update the database\\
+Who is authorized: The current user has permission to get all Items in his feed\\
+\begin{lstlisting}
+GET /profile/:userid
+\end{lstlisting} 
+Does: Returns the profile for user with :userid.\\
+Replaces: getUserProfile(userId)\\
+Updates: Does not update the database\\
+Who is authorized: Every user has access to their own profile\\
+\begin{lstlisting}
+GET /user/:userid/feed
+\end{lstlisting} 
+Does: Returns the feed of the user with id :userid.\\
+Replaces: getFeedData(user, cb)\\
+Updates: Does not update the database\\
+Who is authorized: Every user has access to their own feed\\
+\begin{lstlisting}
+POST /upload/:userid [item]
+\end{lstlisting} 
+Summary: Where [item] is a JSON object describing a new item for sale where :userid is the vendor of that item.\\
+Does: Uploads an [item] 
+Replaces: This was a bug in the old submission\\
+Updates: The item list in the database\\
+Who is authorized: Every user has access to upload their own items\\
+\begin{lstlisting}
+PUT/users/:userid/feeds/items/:itemid/like
+\end{lstlisting} 
+Summary: Current user has their ID pushed on to the item's likeCounter with id :itemid.\\
+Does: Adds the user's id to the likeCounter\\
+Replaces: likeItem(itemId, userId)\\
+Updates: the likeCounter array for the specified item in the database\\
+Who is authorized: Every logged in user is authorized to like an item\\
+\begin{lstlisting}
+PUT /users/:userid/feeds/items/:itemid/dislike
+\end{lstlisting} 
+Does: Adds user id to the dislike counter\\
+Replaces: dislikeItem(itemId, userId)\\
+Updates: the dislike counter array for the specified item in the database\\
+Who is authorized: Every logged in user is authorized to dislike an item\\
+
+\newpage
+
+
+\begin{lstlisting}
+PUT /users/:userid/messages
+\end{lstlisting} 
+Does: Sends a message which gets logged by both the sender and receiver\\
+Replaces: New Functionality\\
+Updates: The messages for a particular user\\
+Who is authorized: \\
+\begin{lstlisting}
+GET /user/:userid/pm
+\end{lstlisting} 
+Does: Returns the productManager of a user with :userid with all\\
+Replaces: Newly added\\
+Updates: Does not update the database\\
+Who is authorized: Every user is authorized access to their product manager\\
+\begin{lstlisting}
+GET /users/:userid/messages
+\end{lstlisting} 
+Does: Returns a list of all the messages for a particular user\\
+Replaces: Newly added\\
+Updates: Messages\\
+Who is authorized: The current user looking at his messages\\
+
+\begin{lstlisting}
+DELETE /user/:userid/pm/item/:itemid
+\end{lstlisting} 
+Summary: Item with :itemid is deleted from user with :userid productManager as it has been sold or removed by user. Also removes the item from all other feeds as it is no longer for sale.\\
+Does: Deletes an item\\
+Replaces: removeItem\\
+Updates: the items that the user owns\\
+Who is authorized: Every user is authorized to remove their own items\\
+\begin{lstlisting}
+POST /resetdb
+\end{lstlisting} 
+Summary: Resets database on application.\\
+Does: resets the database\\
+Replaces: Reset server functionality\\
+Updates: To the original database\\
+Who is authorized: Developer feature\\
+\end{homeworkProblem} 
+\newpage
+\begin{homeworkProblem}[Special Server Setup Procedure]
+We do not have any advanced features that require additional setup.
+\end{homeworkProblem}
+% To have just one problem per page, simply put a \clearpage after each problem
+\begin{homeworkProblem}[Individual Contributions]
+
+\begin{itemize}
+\item \textbf{Daanial Ahmed} contributed to the Upload component. Contributed to the dynamic functionality of the component (uploading the JSON object to the mock database when the upload button is clicked) which was missing from the previous submission.
+\item \textbf{Richard Cui} contributed to the Chat component. Added functions to retrieve chats from database as well as send chats to other users. Updated database to include support for messages for both senders and recipients. Handled HTTP requests for both functions. 
+\item \textbf{Roman Ganchin} contributed to the Trending, Category, Item , Server, and Report components. Added server functionality for dislike item, getCategories, and categorySync. Fixed bug in item.js to enable clicking on images in trending. Changed categories.js so that items could be displayed after they were clicked in feed. Helped writing the report with general outline and filled out the Route components. Updated package.json, and helped move old server functionality into new server.js in server. 
+\item \textbf{Gahyun (Susie) Kim} added Bootstrap Warning alert above Cardie layout to display any server issues to client. Installed global function (CardieError) and let code display info in alert box and directed user to try reloading the webpage. Fixed button on uploadItem page to allow the user to select a file. Helped finish writing report.
+\item \textbf{Greg McGrath} contributed to the Feed and item components. Made it so clicking on an item on the homepage no longer goes to item page, but unhides the description that was pre-rendered and hidden. Added server functionality for getItem, and getFeed components. Changed feed.js so that it would contain the functionality for displaying one item at a time. 
+\item \textbf{Francis Phan} contributed to the ProductManager and Item components, the dummy database, and linking and routing all of the components into one application. Responsible for implementation of HTTP requests used by ProductManager, Item, Feed, and Upload both from client and server.  Refactored ResetDatabase from dummy client-side database to new component that sends HTTP request to reset database on server-side dummy database. Created Schema for Items to be sold. 
+\end{itemize}
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}[Lingering Bugs/Issues/Dropped Features]
+
+\textbf{Bugs/Issues}
+\begin{itemize}
+\item When clicking an item from trending the functionality works as expected but the url does not change and stays on initial clicked item. Result of changes in item and feed components.  
+\item Chat feature still under development due to complexities with server.
+\end{itemize}
+
+\end{homeworkProblem}
+\newpage
+%----------------------------------------------------------------------------------------
+
+\end{document}
