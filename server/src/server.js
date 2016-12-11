@@ -41,7 +41,29 @@ MongoClient.connect(url, function(err, db) {
   app.use(bodyParser.text());
   // Support receiving JSON in HTTP request bodies
   app.use(bodyParser.json());
-
+  /*
+  * resolve user object
+  * only needed for dislike and like item
+  */
+  function resolveUserObjects(userList, callback) {
+     if (userList.length === 0) {
+       callback(null, {});
+     } else {
+       var query = {
+         $or: userList.map((id) => { return {_id: id } })
+       };
+       db.collection('users').find(query).toArray(function(err, users) {
+         if (err) {
+           return callback(err);
+         }
+         var userMap = {};
+         users.forEach((user) => {
+           userMap[user._id] = user;
+         });
+         callback(null, userMap);
+       });
+     }
+   }
   /**
   * Get the user ID from a token. Returns -1 (an invalid ID)
   * if it fails.
