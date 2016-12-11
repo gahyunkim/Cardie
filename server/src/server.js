@@ -128,14 +128,38 @@ MongoClient.connect(url, function(err, db) {
   /**
   * Get the categories for a particular user.
   */
-  function getCategories(user) {
-    var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
-    // While map takes a callback, it is synchronous, not asynchronous.
-    // It calls the callback immediately.
-    feedData.categories = feedData.categories.map((catagory) => getCategorySync(catagory));
-    // Return FeedData with resolved references.
-    return feedData;
+  function getCategories(user, callback) {
+    db.collection('feeds').findOne({
+      _id: user
+    }, function(err, feedData) {
+      if (err) {
+        return callback(err);
+      } else if (feedData === null) {
+        // Feed not found.
+        return callback(null, null);
+      }
+      var resolvedContents = [];
+      function processNextCategory(i) {
+        getCategorySync(feedData.categories[i], function(err, category) {
+          if (err) {
+            callback(err);
+          } else {
+            resolvedContents.push(category);
+            if (resolvedContents.length === feedData.categories.length) {
+              feedData.categories = resolvedContents;
+              callback(null, feedData);
+            } else {
+              processNextCategory(i + 1);
+            }
+          }
+        });
+      }
+      if (feedData.categories.length === 0) {
+        callback(null, feedData);
+      } else {
+        processNextCategory(0);
+      }
+    });
   }
   function getCategorySync(cId){
     var category = readDocument('categories', cId);
