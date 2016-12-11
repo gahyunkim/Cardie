@@ -10,3 +10,8 @@ client/.DS_STORE
 client/app/.DS_STORE
 
 npm-debug.log
+
+reports/*.synctex.gz
+reports/*.log
+reports/*.toc
+reports/*.aux
