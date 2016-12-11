@@ -22,6 +22,8 @@ var MongoClient = MongoDB.MongoClient;
 var ObjectID = MongoDB.ObjectID;
 var url = 'mongodb://localhost:27017/Cardie';
 
+var ResetDatabase = require('./resetdatabase');
+
 MongoClient.connect(url, function(err, db) {
   // Put everything that uses `app` into this callback function.
   // from app.use(bodyParser.text());
