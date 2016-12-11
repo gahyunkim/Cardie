@@ -128,34 +128,92 @@ MongoClient.connect(url, function(err, db) {
   /**
   * Get the categories for a particular user.
   */
-  function getCategories(user) {
-    var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
-    // While map takes a callback, it is synchronous, not asynchronous.
-    // It calls the callback immediately.
-    feedData.categories = feedData.categories.map((catagory) => getCategorySync(catagory));
-    // Return FeedData with resolved references.
-    return feedData;
+  function getCategories(user, callback) {
+    db.collection('feeds').findOne({
+      _id: user
+    }, function(err, feedData) {
+      if (err) {
+        return callback(err);
+      } else if (feedData === null) {
+        // Feed not found.
+        return callback(null, null);
+      }
+      var resolvedContents = [];
+      function processNextCategory(i) {
+        getCategorySync(feedData.categories[i], function(err, category) {
+          if (err) {
+            callback(err);
+          } else {
+            resolvedContents.push(category);
+            if (resolvedContents.length === feedData.categories.length) {
+              feedData.categories = resolvedContents;
+              callback(null, feedData);
+            } else {
+              processNextCategory(i + 1);
+            }
+          }
+        });
+      }
+      if (feedData.categories.length === 0) {
+        callback(null, feedData);
+      } else {
+        processNextCategory(0);
+      }
+    });
   }
-  function getCategorySync(cId){
-    var category = readDocument('categories', cId);
-    category.items = category.items.map((item) => getItem(item));
-    return category;
+  function getCategorySync(categoryId, callback){
+    db.collection('categories').findOne({
+      _id: categoryId
+    }, function(err, catagory) {
+      if (err) {
+        return callback(err);
+      } else if (catagory === null) {
+        // Feed not found.
+        return callback(null, null);
+      }
+      var resolvedContents = [];
+      function processNextFeedItem(i) {
+        getItem(catagory.items[i], function(err, feedItem) {
+          if (err) {
+            callback(err);
+          } else {
+            resolvedContents.push(feedItem);
+            if (resolvedContents.length === catagory.items.length) {
+              catagory.items = resolvedContents;
+              callback(null, catagory);
+            } else {
+              processNextFeedItem(i + 1);
+            }
+          }
+        });
+      }
+      if (catagory.items.length === 0) {
+        callback(null, catagory);
+      } else {
+        processNextFeedItem(0);
+      }
+    });
   }
   app.get('/users/:userid/feeds/categories', function(req, res) {
-    var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var useridNumber = parseInt(userid, 10);
-
-    if (fromUser === useridNumber) {
-      // Send response.
-      var feedData = getCategories(userid);
-      res.send(feedData);
-    } else {
-      // 401: Unauthorized request.
-      res.status(401).end();
-    }
-  });
+      var userid = req.params.userid;
+      var fromUser = getUserIdFromToken(req.get('Authorization'));
+      console.log(fromUser);
+      console.log(userid);
+      if (fromUser === userid) {
+        getCategories(new ObjectID(userid), function(err, categories) {
+          if (err) {
+            res.status(500).send("Database error: " + err);
+          } else if (categories === null) {
+            res.status(400).send("Could not look up category for user " + userid);
+          } else {
+            res.send(categories);
+          }
+        });
+      } else {
+        // 401: Unauthorized request.
+        res.status(401).end();
+      }
+    });
 
 
   /**
@@ -307,15 +365,75 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
   });
+  function getProductManager(user, cb){
+    db.collection('users').findOne({
+      _id: user
+    }, function(err, userData) {
+      if (err) {
+        return callback(err);
+      } else if (userData === null) {
+        // User not found.
+        return callback(null, null);
+      }
+      var productManager = userData.productManager
+      var resolvedContents = [];
+      function processNextItem(i) {
+        // Asynchronously resolve a feed item.
+        getItem(productManager.items[i], function(err, item) {
+          if (err) {
+            // Pass an error to the callback.
+            cb(err);
+          } else {
+            // Success!
+            resolvedContents.push(item);
+            if (resolvedContents.length === productManager.items.length) {
+              // I am the final feed item; all others are resolved.
+              // Pass the resolved feed document back to the callback.
+              productManager.items = resolvedContents;
+              cb(null, productManager);
+            } else {
+              // Process the next feed item.
+              processNextItem(i + 1);
+            }
+          }
+        });
+      }
+      if (productManager.items.length === 0) {
+          callback(null, productManager);
+        } else {
+          processNextItem(0);
+        }
+    });
+  }
+
   app.get('/user/:userid/pm', function(req, res) {
+    // var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // var userId = parseInt(req.params.userid, 10);
+    // if(fromUser === userId){
+    //   var productManager = readDocument('users', userId).productManager;
+    //   productManager.items = productManager.items.map((item) => getItem(item));
+    //   res.send(productManager);
+    // } else {
+    //   res.status(401).end();
+    // }
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = parseInt(req.params.userid, 10);
+    var userId = req.params.userid;
     if(fromUser === userId){
-      var productManager = readDocument('users', userId).productManager;
-      productManager.items = productManager.items.map((item) => getItem(item));
-      res.send(productManager);
+      getProductManager(new ObjectID(userId), function(err, pm) {
+        if (err) {
+          // A database error happened.
+          // Internal Error: 500.
+          res.status(500).send("Database error: " + err);
+        } else if (pm === null) {
+          // Couldn't find the feed in the database.
+          res.status(400).send("Could not look up product manager for user " + userId);
+        } else {
+          // Send data.
+          res.send(pm);
+        }
+      });
     } else {
-      res.status(401).end();
+      res.status(403).end();
     }
   });
 

@@ -11,7 +11,7 @@ export default class Trending extends React.Component{
     };
   }
   refresh(){
-    getCategories(5, (feedData)=>{
+    getCategories("000000000000000000000005", (feedData)=>{
       this.setState(feedData);
     });
 
