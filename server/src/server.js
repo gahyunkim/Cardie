@@ -598,7 +598,7 @@ MongoClient.connect(url, function(err, db) {
         } else if (message === null) {
           callback(null, null);
         } else {
-          callback(null, message)
+          callback(null, message);
         }
       }
     );
@@ -649,8 +649,7 @@ MongoClient.connect(url, function(err, db) {
               } else {
                 return callback(null, message);
               }
-            })
-          );
+            }));
         }
       });
       res.send(messages);
