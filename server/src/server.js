@@ -318,14 +318,16 @@ MongoClient.connect(url, function(err, db) {
   });
 
 
+  
+
   // Like an item.
   app.put('/users/:userid/feeds/items/:itemid/like', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     // Convert params from string to number.
-    var itemId = parseInt(req.params.itemid, 10);
-    var userId = parseInt(req.params.userid, 10);
+    var itemId = new ObjectID(req.params.itemid, 10);
+    var userId = req.params.userid;
     if (fromUser === userId) {
-      var item = readDocument('items', itemId);
+      /*var item = readDocument('items', itemId);
       var feed = readDocument('feeds', userId);
       if (item.likeCounter.indexOf(userId) === -1) {
         item.likeCounter.push(userId);
@@ -335,9 +337,41 @@ MongoClient.connect(url, function(err, db) {
         writeDocument('items', item);
       }
       // Return a resolved version of the likeCounter
+      res.send();*/
+
+      // First, we can update the like counter.
+      db.collection('items').updateOne({ _id: itemId },
+        {
+          $addToSet: {
+            likeCounter: new ObjectID(userId)
+          }
+        }, function(err) {
+          if (err) {
+            return sendDatabaseError(res, err);
+          }
+          db.collection('items').findOne({ _id: itemId }, function(err, item) {
+            if (err) {
+              return sendDatabaseError(res, err);
+            }
+            resolveUserObjects(item.likeCounter, function(err, userMap) {
+              if (err) {
+                return sendDatabaseError(res, err);
+              }
+              item.likeCounter.map((userId) => userMap[userId]);
+            });
+          }
+        );
+      });
+      db.collections('feeds').updateOne({_id: new ObjectID(userId)},
+        {
+          $pull: { items: itemId }
+        }, function(err) {
+            if (err){
+              return sendDatabaseError(res,err);
+            }
+      });
       res.send();
     } else {
-      // 401: Unauthorized.
       res.status(401).end();
     }
   });
