@@ -307,15 +307,75 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
   });
+  function getProductManager(user, cb){
+    db.collection('users').findOne({
+      _id: user
+    }, function(err, userData) {
+      if (err) {
+        return callback(err);
+      } else if (userData === null) {
+        // User not found.
+        return callback(null, null);
+      }
+      var productManager = userData.productManager
+      var resolvedContents = [];
+      function processNextItem(i) {
+        // Asynchronously resolve a feed item.
+        getItem(productManager.items[i], function(err, item) {
+          if (err) {
+            // Pass an error to the callback.
+            cb(err);
+          } else {
+            // Success!
+            resolvedContents.push(item);
+            if (resolvedContents.length === productManager.items.length) {
+              // I am the final feed item; all others are resolved.
+              // Pass the resolved feed document back to the callback.
+              productManager.items = resolvedContents;
+              cb(null, productManager);
+            } else {
+              // Process the next feed item.
+              processNextItem(i + 1);
+            }
+          }
+        });
+      }
+      if (productManager.items.length === 0) {
+          callback(null, productManager);
+        } else {
+          processNextItem(0);
+        }
+    });
+  }
+
   app.get('/user/:userid/pm', function(req, res) {
+    // var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // var userId = parseInt(req.params.userid, 10);
+    // if(fromUser === userId){
+    //   var productManager = readDocument('users', userId).productManager;
+    //   productManager.items = productManager.items.map((item) => getItem(item));
+    //   res.send(productManager);
+    // } else {
+    //   res.status(401).end();
+    // }
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = parseInt(req.params.userid, 10);
+    var userId = req.params.userid;
     if(fromUser === userId){
-      var productManager = readDocument('users', userId).productManager;
-      productManager.items = productManager.items.map((item) => getItem(item));
-      res.send(productManager);
+      getProductManager(new ObjectID(userId), function(err, pm) {
+        if (err) {
+          // A database error happened.
+          // Internal Error: 500.
+          res.status(500).send("Database error: " + err);
+        } else if (pm === null) {
+          // Couldn't find the feed in the database.
+          res.status(400).send("Could not look up product manager for user " + userId);
+        } else {
+          // Send data.
+          res.send(pm);
+        }
+      });
     } else {
-      res.status(401).end();
+      res.status(403).end();
     }
   });
 
