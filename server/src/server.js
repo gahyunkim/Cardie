@@ -478,10 +478,10 @@ function getProductManager(user, cb){
     _id: user
   }, function(err, userData) {
     if (err) {
-      return callback(err);
+      return cb(err);
     } else if (userData === null) {
       // User not found.
-      return callback(null, null);
+      return cb(null, null);
     }
     var productManager = userData.productManager
     var resolvedContents = [];
@@ -507,7 +507,7 @@ function getProductManager(user, cb){
       });
     }
     if (productManager.items.length === 0) {
-      callback(null, productManager);
+      cb(null, productManager);
     } else {
       processNextItem(0);
     }
@@ -573,10 +573,22 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
           if (err) {
             return sendDatabaseError(res,err);
           }
-          res.send();
         });
       });
+      db.collection('users').updateOne({_id: new ObjectID(userId)}, {
+        $pull: {
+          "productManager.items": itemId
+        }
+      }, function(err) {
+        if(err) {
+          return sendDatabaseError(res,err);
+        }
+      });
     });
+
+    res.send();
+  } else {
+    res.status(401).end();
   }
 });
 
