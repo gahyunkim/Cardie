@@ -195,25 +195,25 @@ MongoClient.connect(url, function(err, db) {
     });
   }
   app.get('/users/:userid/feeds/categories', function(req, res) {
-      var userid = req.params.userid;
-      var fromUser = getUserIdFromToken(req.get('Authorization'));
-      console.log(fromUser);
-      console.log(userid);
-      if (fromUser === userid) {
-        getCategories(new ObjectID(userid), function(err, categories) {
-          if (err) {
-            res.status(500).send("Database error: " + err);
-          } else if (categories === null) {
-            res.status(400).send("Could not look up category for user " + userid);
-          } else {
-            res.send(categories);
-          }
-        });
-      } else {
-        // 401: Unauthorized request.
-        res.status(401).end();
-      }
-    });
+    var userid = req.params.userid;
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    console.log(fromUser);
+    console.log(userid);
+    if (fromUser === userid) {
+      getCategories(new ObjectID(userid), function(err, categories) {
+        if (err) {
+          res.status(500).send("Database error: " + err);
+        } else if (categories === null) {
+          res.status(400).send("Could not look up category for user " + userid);
+        } else {
+          res.send(categories);
+        }
+      });
+    } else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
 
 
   /**
@@ -222,14 +222,14 @@ MongoClient.connect(url, function(err, db) {
   function getItem(itemId, callback) {
     db.collection('items').findOne({
       _id: itemId
-      }, function(err, item) {
-        if (err) {
-          return callback(err);
-        }
-        else if (item === null) {
-          return callback(null, null);
-        }
-        callback(null, item);
+    }, function(err, item) {
+      if (err) {
+        return callback(err);
+      }
+      else if (item === null) {
+        return callback(null, null);
+      }
+      callback(null, item);
     });
   }
   app.get('/items/:itemid', function(req, res) {
@@ -277,431 +277,431 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
 
-/*    // Adds the item to the database.
-  db.collection('feedItems').insertOne(newItem, function(err, result) {
+    /*    // Adds the item to the database.
+    db.collection('feedItems').insertOne(newItem, function(err, result) {
+    if (err) {
+    return callback(err);
+  }
+  // Unlike the mock database, MongoDB does not return the newly added object
+  // with the _id set.
+  // Attach the new feed item's ID to the newStatusUpdate object. We will
+  // return this object to the client when we are done.
+  // (When performing an insert operation, result.insertedId contains the new
+  // document's ID.)
+  newItem._id = result.insertedId;
+
+  // Retrieve the author's user object.
+  db.collection('users').findOne({ _id: user }, function(err, userObject) {
+  if (err) {
+  return callback(err);
+}
+// Update the author's feed with the new status update's ID.
+db.collection('feeds').updateOne({ _id: userObject.feed },
+{
+$push: {
+contents: {
+$each: [newItem._id],
+$position: 0
+}
+}
+},
+function(err) {
+if (err) {
+return callback(err);
+}
+// Return the new status update to the application.
+callback(null, newItem);
+}
+);
+});
+}); */
+});
+
+
+// Like an item.
+app.put('/users/:userid/feeds/items/:itemid/like', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // Convert params from string to number.
+  var itemId = parseInt(req.params.itemid, 10);
+  var userId = parseInt(req.params.userid, 10);
+  if (fromUser === userId) {
+    var item = readDocument('items', itemId);
+    var feed = readDocument('feeds', userId);
+    if (item.likeCounter.indexOf(userId) === -1) {
+      item.likeCounter.push(userId);
+      var itemIdx = feed.items.indexOf(itemId);
+      feed.items.splice(itemIdx, 1);
+      writeDocument('feeds', feed);
+      writeDocument('items', item);
+    }
+    // Return a resolved version of the likeCounter
+    res.send();
+  } else {
+    // 401: Unauthorized.
+    res.status(401).end();
+  }
+});
+
+// disike an item.
+app.put('/users/:userid/feeds/items/:itemid/dislike', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // Convert params from string to number.
+  var itemId = parseInt(req.params.itemid, 10);
+  var userId = parseInt(req.params.userid, 10);
+  if (fromUser === userId) {
+    var item = readDocument('items', itemId);
+    var feed = readDocument('feeds', userId);
+    if (item.dislikeCounter.indexOf(userId) === -1) {
+      item.dislikeCounter.push(userId);
+      var itemIdx = feed.items.indexOf(itemId);
+      feed.items.splice(itemIdx, 1);
+      writeDocument('feeds', feed);
+      writeDocument('items', item);
+    }
+    // Return a resolved version of the likeCounter
+    res.send();
+  } else {
+    // 401: Unauthorized.
+    res.status(401).end();
+  }
+});
+function getProductManager(user, cb){
+  db.collection('users').findOne({
+    _id: user
+  }, function(err, userData) {
     if (err) {
       return callback(err);
+    } else if (userData === null) {
+      // User not found.
+      return callback(null, null);
     }
-    // Unlike the mock database, MongoDB does not return the newly added object
-    // with the _id set.
-    // Attach the new feed item's ID to the newStatusUpdate object. We will
-    // return this object to the client when we are done.
-    // (When performing an insert operation, result.insertedId contains the new
-    // document's ID.)
-    newItem._id = result.insertedId;
+    var productManager = userData.productManager
+    var resolvedContents = [];
+    function processNextItem(i) {
+      // Asynchronously resolve a feed item.
+      getItem(productManager.items[i], function(err, item) {
+        if (err) {
+          // Pass an error to the callback.
+          cb(err);
+        } else {
+          // Success!
+          resolvedContents.push(item);
+          if (resolvedContents.length === productManager.items.length) {
+            // I am the final feed item; all others are resolved.
+            // Pass the resolved feed document back to the callback.
+            productManager.items = resolvedContents;
+            cb(null, productManager);
+          } else {
+            // Process the next feed item.
+            processNextItem(i + 1);
+          }
+        }
+      });
+    }
+    if (productManager.items.length === 0) {
+      callback(null, productManager);
+    } else {
+      processNextItem(0);
+    }
+  });
+}
 
-    // Retrieve the author's user object.
-    db.collection('users').findOne({ _id: user }, function(err, userObject) {
+app.get('/user/:userid/pm', function(req, res) {
+  // var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // var userId = parseInt(req.params.userid, 10);
+  // if(fromUser === userId){
+  //   var productManager = readDocument('users', userId).productManager;
+  //   productManager.items = productManager.items.map((item) => getItem(item));
+  //   res.send(productManager);
+  // } else {
+  //   res.status(401).end();
+  // }
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = req.params.userid;
+  if(fromUser === userId){
+    getProductManager(new ObjectID(userId), function(err, pm) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (pm === null) {
+        // Couldn't find the feed in the database.
+        res.status(400).send("Could not look up product manager for user " + userId);
+      } else {
+        // Send data.
+        res.send(pm);
+      }
+    });
+  } else {
+    res.status(403).end();
+  }
+});
+
+app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var itemId = parseInt(req.params.itemid, 10);
+  var feeds = getCollection('feeds');
+  var feedKeys = Object.keys(feeds);
+  var userId = parseInt(req.params.userid, 10);
+  var user = readDocument('users', userId);
+  var feed, itemIdx;
+  if( fromUser === userId){
+
+    feedKeys.forEach((key) => {
+      feed = readDocument('feeds', key);
+      itemIdx = feed.items.indexOf(itemId);
+      if(itemIdx !== -1){
+        feed.items.splice(itemIdx, 1);
+        database.writeDocument('feeds', feed);
+      }
+    });
+    itemIdx = user.productManager.items.indexOf(itemId);
+    user.productManager.items.splice(itemIdx, 1);
+    writeDocument('users', user);
+    deleteDocument('items', itemId);
+    res.send();
+  } else {
+    res.status(401).end();
+  }
+});
+
+function sendMessage(sender, recipient, contents) {
+  var senderData = readDocument('users', sender);
+  var recipientData = readDocument('users', recipient);
+  var senderMessages = readDocument('messages', senderData.messages);
+  var recipientMessages = readDocument('messages', recipientData.messages);
+
+  var date = new Date().getTime();
+  var newMessage = {
+    "type" : "message",
+    "contents" : {
+      "sender" : sender,
+      "recipient" : recipient,
+      "date" : date,
+      "contents" : contents
+    }
+  }
+  senderMessages.push(newMessage);
+  recipientMessages.push(newMessage);
+  senderMessages.writeDocument('messages', newMessage);
+  recipientMessages.writeDocument('messages', newMessage);
+  return newMessage;
+}
+
+// HTTP request to send message to database
+app.post( '/user/:userid/messages', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userid = req.params.userid;
+  if (fromUser === userid) {
+    var recipientid = req.body.recipient;
+    var newMessage = {
+      "sender" : userid,
+      "recipient" : recipientid,
+      "date" : new Date().getTime(),
+      "contents" : req.body.contents
+    }
+    // newMessage = addDocument('messages', newMessage);
+    db.collection('messages').insertOne(newMessage, function(err, result){
       if (err) {
         return callback(err);
-      }
-      // Update the author's feed with the new status update's ID.
-      db.collection('feeds').updateOne({ _id: userObject.feed },
-        {
-          $push: {
-            contents: {
-              $each: [newItem._id],
-              $position: 0
-            }
-          }
-        },
-        function(err) {
+      } else {
+        newMessage._id = result.insertedId;
+        db.collection('users').findOne({ _id: userid }, function(err, userObject){
           if (err) {
             return callback(err);
-          }
-          // Return the new status update to the application.
-          callback(null, newItem);
-        }
-      );
-    });
-  }); */
-  });
-
-
-  // Like an item.
-  app.put('/users/:userid/feeds/items/:itemid/like', function(req, res) {
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // Convert params from string to number.
-    var itemId = parseInt(req.params.itemid, 10);
-    var userId = parseInt(req.params.userid, 10);
-    if (fromUser === userId) {
-      var item = readDocument('items', itemId);
-      var feed = readDocument('feeds', userId);
-      if (item.likeCounter.indexOf(userId) === -1) {
-        item.likeCounter.push(userId);
-        var itemIdx = feed.items.indexOf(itemId);
-        feed.items.splice(itemIdx, 1);
-        writeDocument('feeds', feed);
-        writeDocument('items', item);
-      }
-      // Return a resolved version of the likeCounter
-      res.send();
-    } else {
-      // 401: Unauthorized.
-      res.status(401).end();
-    }
-  });
-
-  // disike an item.
-  app.put('/users/:userid/feeds/items/:itemid/dislike', function(req, res) {
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // Convert params from string to number.
-    var itemId = parseInt(req.params.itemid, 10);
-    var userId = parseInt(req.params.userid, 10);
-    if (fromUser === userId) {
-      var item = readDocument('items', itemId);
-      var feed = readDocument('feeds', userId);
-      if (item.dislikeCounter.indexOf(userId) === -1) {
-        item.dislikeCounter.push(userId);
-        var itemIdx = feed.items.indexOf(itemId);
-        feed.items.splice(itemIdx, 1);
-        writeDocument('feeds', feed);
-        writeDocument('items', item);
-      }
-      // Return a resolved version of the likeCounter
-      res.send();
-    } else {
-      // 401: Unauthorized.
-      res.status(401).end();
-    }
-  });
-  function getProductManager(user, cb){
-    db.collection('users').findOne({
-      _id: user
-    }, function(err, userData) {
-      if (err) {
-        return callback(err);
-      } else if (userData === null) {
-        // User not found.
-        return callback(null, null);
-      }
-      var productManager = userData.productManager
-      var resolvedContents = [];
-      function processNextItem(i) {
-        // Asynchronously resolve a feed item.
-        getItem(productManager.items[i], function(err, item) {
-          if (err) {
-            // Pass an error to the callback.
-            cb(err);
           } else {
-            // Success!
-            resolvedContents.push(item);
-            if (resolvedContents.length === productManager.items.length) {
-              // I am the final feed item; all others are resolved.
-              // Pass the resolved feed document back to the callback.
-              productManager.items = resolvedContents;
-              cb(null, productManager);
-            } else {
-              // Process the next feed item.
-              processNextItem(i + 1);
-            }
+            db.collection('messages').updateOne({ _id: userObject.messages },
+              {
+                $push: {
+                  contents: {
+                    $each: [newMessage._id],
+                    $position: 0
+                  }
+                }
+              },
+              function(err) {
+                if (err) {
+                  return callback(err);
+                } else {
+                  callback(null, newMessage);
+                }
+              }
+            );
+          }
+        });
+        db.collection('users').findOne({ _id: recipientid }, function(err, userObject){
+          if (err) {
+            return callback(err);
+          } else {
+            db.collection('messages').updateOne({ _id: userObject.messages },
+              {
+                $push: {
+                  contents: {
+                    $each: [newMessage._id],
+                    $position: 0
+                  }
+                }
+              },
+              function(err) {
+                if (err) {
+                  return callback(err);
+                } else {
+                  callback(null, newMessage);
+                }
+              }
+            );
           }
         });
       }
-      if (productManager.items.length === 0) {
-          callback(null, productManager);
-        } else {
-          processNextItem(0);
-        }
     });
+    // var sender = readDocument('users', userid);
+    // var recipient = readDocument('users', recipientid);
+    // sender.messages.push(newMessage._id);
+    // recipient.messages.push(newMessage._id);
+    // writeDocument('users', sender);
+    // writeDocument('users', recipient);
+  } else {
+    res.status(401).end();
   }
+});
 
-  app.get('/user/:userid/pm', function(req, res) {
-    // var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // var userId = parseInt(req.params.userid, 10);
-    // if(fromUser === userId){
-    //   var productManager = readDocument('users', userId).productManager;
-    //   productManager.items = productManager.items.map((item) => getItem(item));
-    //   res.send(productManager);
-    // } else {
-    //   res.status(401).end();
-    // }
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = req.params.userid;
-    if(fromUser === userId){
-      getProductManager(new ObjectID(userId), function(err, pm) {
-        if (err) {
-          // A database error happened.
-          // Internal Error: 500.
-          res.status(500).send("Database error: " + err);
-        } else if (pm === null) {
-          // Couldn't find the feed in the database.
-          res.status(400).send("Could not look up product manager for user " + userId);
-        } else {
-          // Send data.
-          res.send(pm);
-        }
-      });
-    } else {
-      res.status(403).end();
-    }
-  });
 
-  app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var itemId = parseInt(req.params.itemid, 10);
-    var feeds = getCollection('feeds');
-    var feedKeys = Object.keys(feeds);
-    var userId = parseInt(req.params.userid, 10);
-    var user = readDocument('users', userId);
-    var feed, itemIdx;
-    if( fromUser === userId){
-
-      feedKeys.forEach((key) => {
-        feed = readDocument('feeds', key);
-        itemIdx = feed.items.indexOf(itemId);
-        if(itemIdx !== -1){
-          feed.items.splice(itemIdx, 1);
-          database.writeDocument('feeds', feed);
-        }
-      });
-      itemIdx = user.productManager.items.indexOf(itemId);
-      user.productManager.items.splice(itemIdx, 1);
-      writeDocument('users', user);
-      deleteDocument('items', itemId);
-      res.send();
-    } else {
-      res.status(401).end();
-    }
-  });
-
-  function sendMessage(sender, recipient, contents) {
-    var senderData = readDocument('users', sender);
-    var recipientData = readDocument('users', recipient);
-    var senderMessages = readDocument('messages', senderData.messages);
-    var recipientMessages = readDocument('messages', recipientData.messages);
-
-    var date = new Date().getTime();
-    var newMessage = {
-      "type" : "message",
-      "contents" : {
-        "sender" : sender,
-        "recipient" : recipient,
-        "date" : date,
-        "contents" : contents
+// Get message
+function getMessage(messageid, callback) {
+  // var message = readDocument('messages', messageid);
+  db.collection('messages').findOne({ _id: messageid },
+    function(err, message) {
+      if (err) {
+        callback(err);
+      } else if (message === null) {
+        callback(null, null);
+      } else {
+        callback(null, message)
       }
     }
-    senderMessages.push(newMessage);
-    recipientMessages.push(newMessage);
-    senderMessages.writeDocument('messages', newMessage);
-    recipientMessages.writeDocument('messages', newMessage);
-    return newMessage;
-  }
+  );
+}
 
-  // HTTP request to send message to database
-  app.post( '/user/:userid/messages', function(req, res) {
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userid = req.params.userid;
-    if (fromUser === userid) {
-      var recipientid = req.body.recipient;
-      var newMessage = {
-        "sender" : userid,
-        "recipient" : recipientid,
-        "date" : new Date().getTime(),
-        "contents" : req.body.contents
-      }
-      // newMessage = addDocument('messages', newMessage);
-      db.collection('messages').insertOne(newMessage, function(err, result){
-        if (err) {
-          return callback(err);
-        } else {
-          newMessage._id = result.insertedId;
-          db.collection('users').findOne({ _id: userid }, function(err, userObject){
-            if (err) {
-              return callback(err);
-            } else {
-              db.collection('messages').updateOne({ _id: userObject.messages },
-                {
-                  $push: {
-                    contents: {
-                      $each: [newMessage._id],
-                      $position: 0
-                    }
-                  }
-                },
-                function(err) {
-                  if (err) {
-                    return callback(err);
-                  } else {
-                    callback(null, newMessage);
-                  }
-                }
-              );
-            }
-          });
-          db.collection('users').findOne({ _id: recipientid }, function(err, userObject){
-            if (err) {
-              return callback(err);
-            } else {
-              db.collection('messages').updateOne({ _id: userObject.messages },
-                {
-                  $push: {
-                    contents: {
-                      $each: [newMessage._id],
-                      $position: 0
-                    }
-                  }
-                },
-                function(err) {
-                  if (err) {
-                    return callback(err);
-                  } else {
-                    callback(null, newMessage);
-                  }
-                }
-              );
-            }
-          });
-        }
-      });
-      // var sender = readDocument('users', userid);
-      // var recipient = readDocument('users', recipientid);
-      // sender.messages.push(newMessage._id);
-      // recipient.messages.push(newMessage._id);
-      // writeDocument('users', sender);
-      // writeDocument('users', recipient);
-    } else {
-      res.status(401).end();
-    }
-  });
-
-
-  // Get message
-  function getMessage(messageid, callback) {
-    // var message = readDocument('messages', messageid);
-    db.collection('messages').findOne({ _id: messageid },
-      function(err, message) {
-        if (err) {
-          callback(err);
-        } else if (message === null) {
-          callback(null, null);
-        } else {
-          callback(null, message)
-        }
-      }
-    );
-  }
-
-  function getMessages(userId, callback) {
-    db.collection('users').findOne({ _id: userId },
-      function(err, userData) {
-        if (err) {
-          return callback(err);
-        } else if (userData === null) {
-          return callback(null, null);
-        } else {
-          db.collection('messages').findOne({ _id: userData.messages },
-            function(err, messageData) {
-              if (err) {
-                return callback(err);
-              } else if (messageData === null) {
-                return callback(null, null);
-              } else {
-                return callback(null, messages);
-              }
-            }
-          );
-        }
-      }
-    );
-  }
-
-  // HTTP request for messages from database
-  app.get('/user/:userid/messages', function(req, res) {
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = req.params.userid;
-    if(fromUser === userId){
-      // var messages = readDocument('users', userId).messages;
-      getMessages( new ObjectID(userId), function (err, messageData) {
-        if (err) {
-          res.status(500).send("Database error: " + err);
-        } else if (messageData === null) {
-          res.status(400).send("Could not look up messages for user " + userId);
-        } else {
-          messages.messages = messages.messages.map((message) =>
-            getMessage(new Object(messageid), function (err, message) {
-              if (err) {
-                res.status(500).send("Database error: " + err);
-              } else if (messageData === null) {
-                res.status(400).send("Could not look up message " + messageid);
-              } else {
-                return callback(null, message);
-              }
-            })
-          );
-        }
-      });
-      res.send(messages);
-    } else {
-      res.status(403).end();
-    }
-  });
-
-
-  function getUserProfile(user, callback) {
-    db.collection('users').findOne({
-      _id: user
-    }, function(err, userData) {
+function getMessages(userId, callback) {
+  db.collection('users').findOne({ _id: userId },
+    function(err, userData) {
       if (err) {
         return callback(err);
       } else if (userData === null) {
-        //User not found
         return callback(null, null);
       } else {
-        return callback(null, userData);
+        db.collection('messages').findOne({ _id: userData.messages },
+          function(err, messageData) {
+            if (err) {
+              return callback(err);
+            } else if (messageData === null) {
+              return callback(null, null);
+            } else {
+              return callback(null, messages);
+            }
+          }
+        );
       }
-    });
+    }
+  );
+}
+
+// HTTP request for messages from database
+app.get('/user/:userid/messages', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = req.params.userid;
+  if(fromUser === userId){
+    // var messages = readDocument('users', userId).messages;
+    getMessages( new ObjectID(userId), function (err, messageData) {
+      if (err) {
+        res.status(500).send("Database error: " + err);
+      } else if (messageData === null) {
+        res.status(400).send("Could not look up messages for user " + userId);
+      } else {
+        messages.messages = messages.messages.map((message) =>
+        getMessage(new Object(messageid), function (err, message) {
+          if (err) {
+            res.status(500).send("Database error: " + err);
+          } else if (messageData === null) {
+            res.status(400).send("Could not look up message " + messageid);
+          } else {
+            return callback(null, message);
+          }
+        })
+      );
+    }
+  });
+  res.send(messages);
+} else {
+  res.status(403).end();
+}
+});
+
+
+function getUserProfile(user, callback) {
+  db.collection('users').findOne({
+    _id: user
+  }, function(err, userData) {
+    if (err) {
+      return callback(err);
+    } else if (userData === null) {
+      //User not found
+      return callback(null, null);
+    } else {
+      return callback(null, userData);
+    }
+  });
+}
+
+
+app.get('/profile/:userid', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if(fromUser === userid){
+    // Convert userid into an ObjectID before passing it to database queries.
+    getUserProfile(new ObjectID(userid), function(err, userData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (userData === null) {
+        // Couldn't find the user profile data in the database.
+        res.status(400).send("Could not look up profile data for user " + userid);
+      } else {
+        // Send data
+        res.send(userData);
+      }
+    })
+  } else {
+    // 403: Unauthorized request.
+    res.status(403).end();
   }
+});
 
-
-  app.get('/profile/:userid', function(req, res) {
-    var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    if(fromUser === userid){
-      // Convert userid into an ObjectID before passing it to database queries.
-      getUserProfile(new ObjectID(userid), function(err, userData) {
-        if (err) {
-          // A database error happened.
-          // Internal Error: 500.
-          res.status(500).send("Database error: " + err);
-        } else if (userData === null) {
-          // Couldn't find the user profile data in the database.
-          res.status(400).send("Could not look up profile data for user " + userid);
-        } else {
-          // Send data
-          res.send(userData);
-        }
-      })
-    } else {
-      // 403: Unauthorized request.
-      res.status(403).end();
-    }
-  });
-
-  /**
-  * Translate JSON Schema Validation failures into error 400s.
-  */
-  app.use(function(err, req, res, next) {
-    if (err.name === 'JsonSchemaValidation') {
-      // Set a bad request http response status
-      res.status(400).end();
-    } else {
-      // It's some other sort of error; pass it to next error middleware handler
-      next(err);
-    }
-  });
-  // Reset database.
-  app.post('/resetdb', function(req, res) {
-    console.log("Resetting database...");
-    // This is a debug route, so don't do any validation.
-    ResetDatabase(db, function() {
+/**
+* Translate JSON Schema Validation failures into error 400s.
+*/
+app.use(function(err, req, res, next) {
+  if (err.name === 'JsonSchemaValidation') {
+    // Set a bad request http response status
+    res.status(400).end();
+  } else {
+    // It's some other sort of error; pass it to next error middleware handler
+    next(err);
+  }
+});
+// Reset the database.
+app.post('/resetdb', function(req, res) {
+  console.log("Resetting database...");
+  ResetDatabase(db, function() {
     res.send();
   });
+});
 
 
-  // Starts the server on port 3000!
-  app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-  });
+// Starts the server on port 3000!
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
 });
 // The file ends here. Nothing should be after this.
