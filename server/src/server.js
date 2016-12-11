@@ -74,7 +74,7 @@ MongoClient.connect(url, function(err, db) {
   */
   function getFeedData(user, callback) {
     db.collection('feeds').findOne({
-      _id: user.feed
+      _id: user
     }, function(err, feedData) {
       if (err) {
         return callback(err);
@@ -99,7 +99,7 @@ MongoClient.connect(url, function(err, db) {
           }
         });
       }
-      if (feedData.contents.length === 0) {
+      if (feedData.items.length === 0) {
         callback(null, feedData);
       } else {
         processNextFeedItem(0);
@@ -110,8 +110,6 @@ MongoClient.connect(url, function(err, db) {
   app.get('/user/:userid/feed', function(req, res) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var userid = req.params.userid;
-    console.log(fromUser);
-    console.log(userid);
     if (fromUser === userid) {
       getFeedData(new ObjectID(userid), function(err, feedData) {
         if (err) {
@@ -341,15 +339,75 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
   });
+  function getProductManager(user, cb){
+    db.collection('users').findOne({
+      _id: user
+    }, function(err, userData) {
+      if (err) {
+        return callback(err);
+      } else if (userData === null) {
+        // User not found.
+        return callback(null, null);
+      }
+      var productManager = userData.productManager
+      var resolvedContents = [];
+      function processNextItem(i) {
+        // Asynchronously resolve a feed item.
+        getItem(productManager.items[i], function(err, item) {
+          if (err) {
+            // Pass an error to the callback.
+            cb(err);
+          } else {
+            // Success!
+            resolvedContents.push(item);
+            if (resolvedContents.length === productManager.items.length) {
+              // I am the final feed item; all others are resolved.
+              // Pass the resolved feed document back to the callback.
+              productManager.items = resolvedContents;
+              cb(null, productManager);
+            } else {
+              // Process the next feed item.
+              processNextItem(i + 1);
+            }
+          }
+        });
+      }
+      if (productManager.items.length === 0) {
+          callback(null, productManager);
+        } else {
+          processNextItem(0);
+        }
+    });
+  }
+
   app.get('/user/:userid/pm', function(req, res) {
+    // var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // var userId = parseInt(req.params.userid, 10);
+    // if(fromUser === userId){
+    //   var productManager = readDocument('users', userId).productManager;
+    //   productManager.items = productManager.items.map((item) => getItem(item));
+    //   res.send(productManager);
+    // } else {
+    //   res.status(401).end();
+    // }
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = parseInt(req.params.userid, 10);
+    var userId = req.params.userid;
     if(fromUser === userId){
-      var productManager = readDocument('users', userId).productManager;
-      productManager.items = productManager.items.map((item) => getItem(item));
-      res.send(productManager);
+      getProductManager(new ObjectID(userId), function(err, pm) {
+        if (err) {
+          // A database error happened.
+          // Internal Error: 500.
+          res.status(500).send("Database error: " + err);
+        } else if (pm === null) {
+          // Couldn't find the feed in the database.
+          res.status(400).send("Could not look up product manager for user " + userId);
+        } else {
+          // Send data.
+          res.send(pm);
+        }
+      });
     } else {
-      res.status(401).end();
+      res.status(403).end();
     }
   });
 
@@ -493,7 +551,16 @@ MongoClient.connect(url, function(err, db) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var userId = parseInt(req.params.userid, 10);
     if(fromUser === userId){
-      var messages = readDocument('users', userId).messages;
+      // var messages = readDocument('users', userId).messages;
+      db.collection('users').findOne({ _id: userId },
+        function(err, userData) {
+          if (err) {
+            return callback(err);
+          } else {
+
+          }
+        }
+      );
       messages.messages = messages.messages.map((message) => getMessage(message));
       res.send(messages);
     } else {
@@ -514,7 +581,6 @@ MongoClient.connect(url, function(err, db) {
       } else {
         return callback(null, userData)
       }
-
     })
   }
 
@@ -522,13 +588,24 @@ MongoClient.connect(url, function(err, db) {
   app.get('/profile/:userid', function(req, res) {
     var userid = req.params.userid;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var userId = parseInt(req.params.userid, 10);
     if(fromUser === userid){
-      var profile = readDocument('users', userId);
-      res.send(profile);
-
+      // Convert userid into an ObjectID before passing it to database queries.
+      getUserProfile(new ObjectID(userid), function(err, userData) {
+        if (err) {
+          // A database error happened.
+          // Internal Error: 500.
+          res.status(500).send("Database error: " + err);
+        } else if (userData === null) {
+          // Couldn't find the user profile data in the database.
+          res.status(400).send("Could not look up profile data for user " + userid);
+        } else {
+          // Send data
+          res.send(userData);
+        }
+      })
     } else {
-      res.status(401).end();
+      // 403: Unauthorized request.
+      res.status(403).end();
     }
   });
 
