@@ -204,7 +204,7 @@ MongoClient.connect(url, function(err, db) {
     }
 
     // Add the status update to the database.
-    db.collection('feedItems').insertOne(newItem, function(err, result) {
+    db.collection('items').insertOne(newItem, function(err, result) {
       if (err) {
         return callback(err);
       }
@@ -221,24 +221,27 @@ MongoClient.connect(url, function(err, db) {
         if (err) {
           return callback(err);
         }
-        // Update the author's feed with the new status update's ID.
-        db.collection('feeds').updateOne({ _id: userObject.feed },
-          {
-            $push: {
-              contents: {
-                $each: [newItem._id],
-                $position: 0
-              }
-            }
-          },
-          function(err) {
-            if (err) {
-              return callback(err);
-            }
-            // Return the new status update to the application.
-            callback(null, newItem);
+
+      db.collection('users').updateOne({_id: userid}, {
+        $push: {
+          productManager: {
+            items: [newItem._id]
           }
-        );
+        }
+      })
+      db.collection('feeds').updateMany({_id: { $ne: userid}}, {
+        $push: {
+          items: {
+            $each: [newItem._id]
+          }
+        },
+        function(err){
+          if(err){
+            return callback(err);
+          }
+          callback(null, newItem);
+        }
+      })
       });
     });
   }
