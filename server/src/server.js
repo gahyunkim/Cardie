@@ -161,10 +161,38 @@ MongoClient.connect(url, function(err, db) {
       }
     });
   }
-  function getCategorySync(cId){
-    var category = readDocument('categories', cId);
-    category.items = category.items.map((item) => getItem(item));
-    return category;
+  function getCategorySync(categoryId, callback){
+    db.collection('categories').findOne({
+      _id: categoryId
+    }, function(err, catagory) {
+      if (err) {
+        return callback(err);
+      } else if (catagory === null) {
+        // Feed not found.
+        return callback(null, null);
+      }
+      var resolvedContents = [];
+      function processNextFeedItem(i) {
+        getItem(catagory.items[i], function(err, feedItem) {
+          if (err) {
+            callback(err);
+          } else {
+            resolvedContents.push(feedItem);
+            if (resolvedContents.length === catagory.items.length) {
+              catagory.items = resolvedContents;
+              callback(null, catagory);
+            } else {
+              processNextFeedItem(i + 1);
+            }
+          }
+        });
+      }
+      if (catagory.items.length === 0) {
+        callback(null, catagory);
+      } else {
+        processNextFeedItem(0);
+      }
+    });
   }
   app.get('/users/:userid/feeds/categories', function(req, res) {
     var userid = req.params.userid;
