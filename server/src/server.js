@@ -318,7 +318,6 @@ MongoClient.connect(url, function(err, db) {
   });
 
 
-  
 
   // Like an item.
   app.put('/users/:userid/feeds/items/:itemid/like', function(req, res) {
@@ -327,18 +326,6 @@ MongoClient.connect(url, function(err, db) {
     var itemId = new ObjectID(req.params.itemid, 10);
     var userId = req.params.userid;
     if (fromUser === userId) {
-      /*var item = readDocument('items', itemId);
-      var feed = readDocument('feeds', userId);
-      if (item.likeCounter.indexOf(userId) === -1) {
-        item.likeCounter.push(userId);
-        var itemIdx = feed.items.indexOf(itemId);
-        feed.items.splice(itemIdx, 1);
-        writeDocument('feeds', feed);
-        writeDocument('items', item);
-      }
-      // Return a resolved version of the likeCounter
-      res.send();*/
-
       // First, we can update the like counter.
       db.collection('items').updateOne({ _id: itemId },
         {
@@ -362,7 +349,7 @@ MongoClient.connect(url, function(err, db) {
           }
         );
       });
-      db.collections('feeds').updateOne({_id: new ObjectID(userId)},
+      db.collection('feeds').updateOne({_id: new ObjectID(userId)},
         {
           $pull: { items: itemId }
         }, function(err) {
