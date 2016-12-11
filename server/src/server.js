@@ -195,19 +195,25 @@ MongoClient.connect(url, function(err, db) {
     });
   }
   app.get('/users/:userid/feeds/categories', function(req, res) {
-    var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var useridNumber = parseInt(userid, 10);
-
-    if (fromUser === useridNumber) {
-      // Send response.
-      var feedData = getCategories(userid);
-      res.send(feedData);
-    } else {
-      // 401: Unauthorized request.
-      res.status(401).end();
-    }
-  });
+      var userid = req.params.userid;
+      var fromUser = getUserIdFromToken(req.get('Authorization'));
+      console.log(fromUser);
+      console.log(userid);
+      if (fromUser === userid) {
+        getCategories(new ObjectID(userid), function(err, categories) {
+          if (err) {
+            res.status(500).send("Database error: " + err);
+          } else if (categories === null) {
+            res.status(400).send("Could not look up category for user " + userid);
+          } else {
+            res.send(categories);
+          }
+        });
+      } else {
+        // 401: Unauthorized request.
+        res.status(401).end();
+      }
+    });
 
 
   /**
