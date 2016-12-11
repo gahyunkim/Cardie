@@ -603,11 +603,11 @@ MongoClient.connect(url, function(err, db) {
         return callback(err);
       } else if (userData === null) {
         //User not found
-        return callback(null, null)
+        return callback(null, null);
       } else {
-        return callback(null, userData)
+        return callback(null, userData);
       }
-    })
+    });
   }
 
 
