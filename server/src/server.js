@@ -651,17 +651,34 @@ app.post( '/user/:userid/messages', function(req, res) {
 
 // Get message
 function getMessage(messageid, callback) {
-  // var message = readDocument('messages', messageid);
   db.collection('messages').findOne({ _id: messageid },
     function(err, message) {
       if (err) {
         callback(err);
       } else if (message === null) {
         callback(null, null);
-      } else {
-        callback(null, message)
       }
-    }
+        db.collection('users').findOne({ _id: message.sender },
+          function(err, userData) {
+            if (err) {
+              return callback(err);
+            } else if (userData === null) {
+              return callback(null, null);
+            }
+            message.sender = userData;
+        });
+        db.collection('users').findOne({ _id: message.recipient },
+          function(err, userData) {
+            if (err) {
+              return callback(err);
+            } else if (userData === null) {
+              return callback(null, null);
+            }
+            console.log(userData);
+            message.recipient = userData;
+        });
+        callback(null, message);
+      }
   );
 }
 
@@ -690,6 +707,7 @@ function getMessages(userId, callback) {
           }
         });
       }
+      messages.forEach((message) => console.log(message.recipient));
       if (messageData.messages.length === 0) {
         callback(null, messageData);
       } else {

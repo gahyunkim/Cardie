@@ -51,8 +51,8 @@ export default class Chat extends React.Component{
                     return (
                       <tr>
                       <td> {message.date} </td>
-                      <td> {message.sender} </td>
-                      <td> {message.recipient}</td>
+                      <td> {message.sender.fullName} </td>
+                      <td> {message.recipient.fullName}</td>
                       <td> {message.contents} </td>
                       </tr>
                     )}
