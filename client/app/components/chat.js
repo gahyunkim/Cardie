@@ -35,7 +35,7 @@ export default class Chat extends React.Component{
       <div className="row">
         <div className="panel panel-default">
           <div className="panel panel-heading">
-            Messages
+            <h1>Messages</h1>
           </div>
           <div className="panel panel-body">
             <div className="row">
@@ -51,8 +51,8 @@ export default class Chat extends React.Component{
                     return (
                       <tr>
                       <td> {message.date} </td>
-                      <td> {message.sender} </td>
-                      <td> {message.recipient}</td>
+                      <td> {message.sender.fullName} </td>
+                      <td> {message.recipient.fullName}</td>
                       <td> {message.contents} </td>
                       </tr>
                     )}

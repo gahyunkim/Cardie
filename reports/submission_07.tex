@@ -169,6 +169,7 @@ None, no advanced features were set up.
 \item Made changes in CSS for upload component
 \end{itemize}
 \end{itemize}
+<<<<<<< HEAD
 
 
 \subsection{Francis Phan}
@@ -179,8 +180,33 @@ None, no advanced features were set up.
 \item Implemented getProductManager helper function to accommodate MongoDB
 \item Added databse error handling when something could not be found
 \item Helped with getFeedData and uploadItem
+=======
+\item \textbf{Roman Ganchin} \begin{itemize}
+  \item Changed getCategories to work with MongoDB
+  \item Changed getCategorySync to work with MongoDB
+  \item app.get('/users/:userid/feeds/categories') changed http GET request for categories. 
+  \item Stringified trending.js in client
+  \item Made resolveUserObjects for likeItem and dislikeItem to get them to work with MongoDB
+  \item Implemented dislikeItem to work with MongoDB
+>>>>>>> 7125f875dff4f8b44d58d4889758646aa70ac7f2
 \end{itemize}
 \end{itemize}
+<<<<<<< HEAD
+=======
+\item \textbf{Greg McGrath} \begin{itemize}
+  \item Fixed getUserIdFromToken to work with MongoDB
+  \item Changed getFeedData to work with MongoDB
+  \item Fixed app.get(/user/:userid/feed) for feed
+  \item Changed getItem to work with MongoDB
+  \item Changed app.get('/items/:itemid) for get item
+  \item Implemented likeItem to work with MongoDB
+\end{itemize} 
+\item \textbf{Francis Phan} \begin{itemize}
+  \item GET Product Manager now fully interacts with MongoDB
+  \item getProductManager added to accommodate mongoDB
+\end{itemize} 
+\end{enumerate}
+>>>>>>> 7125f875dff4f8b44d58d4889758646aa70ac7f2
 
 
 
@@ -251,9 +277,13 @@ None, no advanced features were set up.
 
 \textbf{Bugs/Issues}
 \begin{itemize}
+<<<<<<< HEAD
 \item When clicking an item from trending the functionality works as expected but the url does not change and stays on initial clicked item. Result of changes in item and feed components.  
 \item Chat feature still under development due to complexities with server.
 \item Currently, you can't mark an uploaded item as sold or remove it. However, items from initialData works fine.
+=======
+\item What are the bus and issues that we have?
+>>>>>>> 7125f875dff4f8b44d58d4889758646aa70ac7f2
 \end{itemize}
 
 \end{homeworkProblem}

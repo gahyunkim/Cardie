@@ -18,6 +18,8 @@ export default class ProductManager extends React.Component{
   }
 
   removeItem(userid, itemid){
+    console.log(userid);
+    console.log(itemid);
     removeItem(userid, itemid, () => {
       this.refresh();
     });
@@ -56,7 +58,8 @@ export default class ProductManager extends React.Component{
                   <tr>
                     <td>
                       {item.name}
-                      {item.content}
+                      <br/>
+                      <img src={item.contents} height="80" width="80"/>
                     </td>
                     <td>
                       {item.description}

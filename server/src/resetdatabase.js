@@ -95,34 +95,34 @@ var initialData = {
     "1" : {
       "_id" : new ObjectID("000000000000000000000001"),
       "items" : [new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004")],
-      "categories" : ["Dorm","Snacks","Electronics"]
+      "categories" : ["Dorm","Food","Electronics"]
     },
     "2" : {
       "_id" : new ObjectID("000000000000000000000002"),
       "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
        new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"),
         new ObjectID("000000000000000000000006"), new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
-      "categories" : ["Dorm","Snacks","Electronics"]
+      "categories" : ["Dorm","Food","Electronics"]
     },
     "3" : {
       "_id" : new ObjectID("000000000000000000000003"),
       "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"),
        new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"), new ObjectID("000000000000000000000006"),
         new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
-      "categories" : ["Dorm","Snacks","Electronics"]
+      "categories" : ["Dorm","Food","Electronics"]
     },
     "4" : {
       "_id" : new ObjectID("000000000000000000000004"),
       "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
        new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"),
         new ObjectID("000000000000000000000006"), new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
-      "categories" : ["Dorm","Snacks","Electronics"]
+      "categories" : ["Dorm","Food","Electronics"]
     },
     "5" : {
       "_id" : new ObjectID("000000000000000000000005"),
       "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000005"), new ObjectID("000000000000000000000006"),
        new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
-      "categories" : ["Dorm","Snacks","Electronics"]
+      "categories" : ["Dorm","Food","Electronics", "Auto", "Entertainment", "Supplies", "Other"]
     }
 
   },
@@ -131,15 +131,31 @@ var initialData = {
       "_id": "Dorm",
       "items" : [new ObjectID("000000000000000000000001")]
     },
-    "Snacks":{
-      "_id": "Snacks",
-      "items": [new ObjectID("000000000000000000000002")]
+    "Food":{
+      "_id": "Food",
+      "items": []
+    },
+    "Auto":{
+      "_id": "Auto",
+      "items": []
+    },
+    "Entertainment":{
+      "_id": "Entertainment",
+      "items": []
+    },
+    "Supplies":{
+      "_id": "Supplies",
+      "items": []
     },
     "Electronics":{
       "_id": "Electronics",
       "items":[new ObjectID("000000000000000000000003"),new ObjectID("000000000000000000000004"),
       new ObjectID("000000000000000000000005"),new ObjectID("000000000000000000000006"),new ObjectID("000000000000000000000007"),
       new ObjectID("000000000000000000000008")]
+    },
+    "Other":{
+      "_id": "Other",
+      "items": []
     }
   },
   // ITEMS

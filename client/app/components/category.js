@@ -18,17 +18,25 @@ export default class Category extends React.Component{
       return (<Item _id={item._id} item={item} isCat={true}/>);})
       var firstFourItems;
       var lastItems;
+      if(allItems.length == 0){
+        return(
+          <div>
+          </div>
+        )
+      }
       if(allItems.length >4){
         firstFourItems = allItems.slice(0, 4);
         lastItems = allItems.slice(4, allItems.length);
         return(
           <li className="list-group-item">
             <div className="panel panel-default">
-              <div className="panel-heading">{this.state._id}</div>
+              <div className="panel-heading">{this.state._id}
+                <input className="right" type="submit" value="More/Less" onClick={this.onClick.bind(this)} />
+              </div>
               <div className="panel-body">
                 {firstFourItems}
                 {this.state.showResults ? lastItems : null }
-                <div className="center"><input className="seeMoreButtons btn" type="submit" value="More/Less" onClick={this.onClick.bind(this)} /></div>        
+
               </div>
             </div>
           </li>

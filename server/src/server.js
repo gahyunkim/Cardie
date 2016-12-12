@@ -313,13 +313,13 @@ MongoClient.connect(url, function(err, db) {
 
       db.collection('users').updateOne({_id: new ObjectID(userid)}, {
         $push: {
-          "productManager.items": newItem._id
+          "productManager.items": new ObjectID(newItem._id)
         }
       });
       db.collection('feeds').updateMany({_id: { $ne: new ObjectID(userid)}}, {
         $push: {
           items: {
-            $each: [newItem._id]
+            $each: [new ObjectID(newItem._id)]
           }
         },
         function(err){
@@ -327,6 +327,11 @@ MongoClient.connect(url, function(err, db) {
             return callback(err);
           }
           callback(null, newItem);
+        }
+      });
+      db.collection('categories').updateOne({_id: newItem.category}, {
+        $push: {
+          items: new ObjectID(newItem._id)
         }
       });
       });
@@ -565,23 +570,24 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
         if(err) {
           return sendDatabaseError(res, err);
         }
-        db.collection('items').deleteOne({
-          _id: itemId
-        }, function(err) {
-          if (err) {
-            return sendDatabaseError(res,err);
-          }
-        });
       });
-      db.collection('users').updateOne({_id: new ObjectID(userId)}, {
-        $pull: {
-          "productManager.items": itemId
-        }
-      }, function(err) {
-        if(err) {
-          return sendDatabaseError(res,err);
-        }
-      });
+    });
+
+    db.collection('users').updateOne({_id: new ObjectID(userId)}, {
+      $pull: {
+        "productManager.items": itemId
+      }
+    }, function(err) {
+      if(err) {
+        return sendDatabaseError(res, err);
+      }
+    });
+    db.collection('items').deleteOne({
+      _id: itemId
+    }, function(err) {
+      if (err) {
+        return sendDatabaseError(res,err);
+      }
     });
 
     res.send();
@@ -613,8 +619,66 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
 //   return newMessage;
 // }
 
-function sendMessage(sender, recipient, callback) {
-  return null;
+function sendMessage(sender, recipient, message, callback) {
+  var newMessage = {
+    "sender": sender,
+    "recipient": recipient,
+    "date": new Date().getTime(),
+    "contents": message
+  }
+  db.collection('messages').insertOne(newMessage, function(err, result){
+    if (err) {
+      return callback(err);
+    }
+    newMessage._id = result.insertedId;
+
+    db.collection('users').find(
+      {
+        $and: [
+          { _id: new ObjectID(sender) },
+          { _id: new ObjectID(recipient) }
+        ]
+      },
+      function(err) {
+        if (err) {
+          return callback(err);
+        }
+        db.collection('users').updateMany(
+          {
+            $and: [
+              { _id: new ObjectID(sender) },
+              { _id: new ObjectID(recipient) }
+            ]
+          },
+          {
+            $push: {
+              "messages.messages": newMessage._id
+            }
+          }
+        );
+        db.collection('messages').updateMany(
+          {
+            $and: [
+              { _id: new ObjectID(sender) },
+              { _id: new ObjectID(recipient) }
+            ]
+          },
+          {
+            $push: {
+              messages: {
+                $each: [newMessage._id]
+              }
+            }
+          },
+          function(err) {
+            if (err) {
+              return callback(err)
+            }
+            return callback(null, newMessage);
+        });
+      }
+    );
+  });
 }
 
 // HTTP request to send message to database
@@ -622,21 +686,15 @@ app.post( '/user/:userid/messages', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var userid = req.params.userid;
   if (fromUser === userid) {
-    var recipientid = req.body.recipient;
-    var newMessage = {
-      "sender" : userid,
-      "recipient" : recipientid,
-      "date" : new Date().getTime(),
-      "contents" : req.body.contents
-    }
-    // newMessage = addDocument('messages', newMessage);
-
-    // var sender = readDocument('users', userid);
-    // var recipient = readDocument('users', recipientid);
-    // sender.messages.push(newMessage._id);
-    // recipient.messages.push(newMessage._id);
-    // writeDocument('users', sender);
-    // writeDocument('users', recipient);
+    sendMessage(userid, req.body.recipient, req.body.message, function(err, newMessage) {
+      if (err) {
+        res.status(500).send("A database error occurred: " + err);
+      } else {
+        res.status(201);
+        res.set('Location', '/users/' + userid + '/messages/' + newMessage._id);
+        res.send(newMessage);
+      }
+    });
   } else {
     res.status(401).end();
   }
@@ -645,17 +703,34 @@ app.post( '/user/:userid/messages', function(req, res) {
 
 // Get message
 function getMessage(messageid, callback) {
-  // var message = readDocument('messages', messageid);
   db.collection('messages').findOne({ _id: messageid },
     function(err, message) {
       if (err) {
         callback(err);
       } else if (message === null) {
         callback(null, null);
-      } else {
-        callback(null, message)
       }
-    }
+        db.collection('users').findOne({ _id: message.sender },
+          function(err, userData) {
+            if (err) {
+              return callback(err);
+            } else if (userData === null) {
+              return callback(null, null);
+            }
+            message.sender = userData;
+        });
+        db.collection('users').findOne({ _id: message.recipient },
+          function(err, userData) {
+            if (err) {
+              return callback(err);
+            } else if (userData === null) {
+              return callback(null, null);
+            }
+            console.log(userData);
+            message.recipient = userData;
+        });
+        callback(null, message);
+      }
   );
 }
 
@@ -666,37 +741,29 @@ function getMessages(userId, callback) {
         return callback(err);
       } else if (userData === null) {
         return callback(null, null);
-      } else {
-        db.collection('messages').findOne({ _id: userData.messages },
-          function(err, messageData) {
-            if (err) {
-              return callback(err);
-            } else if (messageData === null) {
-              return callback(null, null);
-            }
-            var messages = [];
-            function processNextMessage(i) {
-              getMessage(messageData.contents[i], function(err, message) {
-                if (err) {
-                  return callback(err);
-                } else {
-                  messages.push[message];
-                  if (messages.length === messageData.contents.length) {
-                    messageData.contents = messages;
-                    callback(null, messageData);
-                  } else {
-                    processNextMessage(i + 1);
-                  }
-                }
-              });
-            }
-            if (messageData.contents.length === 0) {
+      }
+      var messageData = userData.messages;
+      var messages = [];
+      function processNextMessage(i) {
+        getMessage(messageData.messages[i], function(err, message) {
+          if (err) {
+            return callback(err);
+          } else {
+            messages.push(message);
+            if (messages.length === messageData.messages.length) {
+              messageData.messages = messages;
               callback(null, messageData);
             } else {
-              processNextMessage(0);
+              processNextMessage(i + 1);
             }
           }
-        );
+        });
+      }
+      messages.forEach((message) => console.log(message.recipient));
+      if (messageData.messages.length === 0) {
+        callback(null, messageData);
+      } else {
+        processNextMessage(0);
       }
     }
   );
