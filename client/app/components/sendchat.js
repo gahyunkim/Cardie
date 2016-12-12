@@ -43,16 +43,6 @@ export default class Chat extends React.Component{
     });
   }
 
-  refresh() {
-
-  }
-
-  sendMessage(userid, recipientid, message) {
-    sendMessage(userid, recipientid, message, () => {
-      this.refresh();
-    });
-  }
-
   componentDidMount() {
     this.refresh();
   }
@@ -86,7 +76,7 @@ export default class Chat extends React.Component{
                          rows="6"
                          width="100%"
                          placeholder="Contents"
-                         value={this.state.recipient}
+                         value={this.state.contents}
                          onChange={(e) => this.handleContentsChange(e)}/>
                 </div>
                 <div className="row">
