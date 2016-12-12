@@ -27,7 +27,6 @@
 \usepackage{cancel}
 \usepackage{tikz}
 \usepackage{graphicx}
-\graphicspath{ {C:/Users/Roman/Documents/CS326/team-project-client-template/ERDiagram} }
 \usepackage[margin=1in]{geometry} 
 \usetikzlibrary{automata,positioning}
 \usepackage{fancyhdr} % Required for custom headers
@@ -149,49 +148,100 @@
 %----------------------------------------------------------------------------------------
 \newpage
 \begin{homeworkProblem}[Special Server Setup Procedure]
-We do not have any advanced features that require additional setup.
+\subsection{Setup Procedure}
+No additional setup is required besides npm install and node src/server.js.
+\subsection{Testing Feature}
+None, no advanced features were set up.
 \end{homeworkProblem}
 % To have just one problem per page, simply put a \clearpage after each problem
-\begin{homeworkProblem}[Individual Contributions]
-\renewcommand\labelitemi{$\textendash$}
-\begin{enumerate}
-\item \textbf{Daanial Ahmed}
- \begin{itemize}
-  \item One entry in the list
-  \item Another entry in the list
-\end{itemize}
-\item \textbf{Richard Cui} \begin{itemize}
-  \item One entry in the list
-  \item Another entry in the list
-\end{itemize}
-\item \textbf{Roman Ganchin} \begin{itemize}
-  \item Changed getCategories to work with MongoDB
-  \item Changed getCategorySync to work with MongoDB
-  \item app.get('/users/:userid/feeds/categories') changed http GET request for categories. 
-  \item Stringified trending.js in client
-  \item Made resolveUserObjects for likeItem and dislikeItem to get them to work with MongoDB
-\end{itemize}
-\item \textbf{Gahyun (Susie) Kim} \begin{itemize}
-  \item Added MongoDB and Express to server node\_modules
-  \item Changed mock database IDs to MongoDB ObjectIDs and changed Integer type to String in schema, changed token
-  \item Stringified app.js, feed, chat, item, sendchat, and upload 
-  \item Created function getUserProfile to retrieve user profile data with the given ID
-  \item Updated GET/profile/:userid
-\end{itemize}
-\item \textbf{Greg McGrath} \begin{itemize}
-  \item Fixed getUserIdFromToken to work with MongoDB
-  \item Changed getFeedData to work with MongoDB
-  \item Fixed app.get(/user/:userid/feed) for feed
-  \item Changed getItem to work with MongoDB
-  \item Changed app.get('/items/:itemid) for get item
-\end{itemize} 
-\item \textbf{Francis Phan} \begin{itemize}
-  \item GET Product Manager now fully interacts with MongoDB
-  \item getProductManager added to accommodate mongoDB
-\end{itemize} 
-\end{enumerate}
 
-\end{homeworkProblem}
+\vspace{4mm}
+\begin{homeworkProblem}[Individual Contributions]
+
+\subsection{Daanial Ahmed}
+\begin{itemize}
+\item \textbf{Feature}: uploadItem
+\item \textbf{HTTP Route}: POST /upload/:userid
+\begin{itemize}
+\item Added helper function postItem in server.js to assist with MongoDB
+\item URL for photos are functional
+\item Updated dependencies
+\item Made changes in CSS for upload component
+\end{itemize}
+\end{itemize}
+
+
+\subsection{Francis Phan}
+\begin{itemize}
+\item \textbf{Feature}: Product Manager, getFeedData
+\item \textbf{HTTP Route}: POST /upload/:userid, DELETE /user/:userid/pm/items/:itemid
+\begin{itemize}
+\item Implemented getProductManager helper function to accommodate MongoDB
+\item Added databse error handling when something could not be found
+\item Helped with getFeedData and uploadItem
+\end{itemize}
+\end{itemize}
+
+
+
+\subsection{Greg McGrath}
+\begin{itemize}
+\item \textbf{Feature}: getFeed, getItem
+\item \textbf{HTTP Route}: GET /items/:itemid, GET /user/:userid/feed
+\begin{itemize}
+\item Fixed getUserIdFromToken to work with MongoDB
+\item Fixed app.get(/user/:userid/feed) for feed
+\item Changed getItem to work with MongoDB
+\item Changed app.get(/items/:itemid) for get item
+\item Implemented likeItem to work with MongoDB
+\end{itemize}
+\end{itemize}
+
+
+
+\subsection{Gahyun (Susie) Kim}
+\begin{itemize}
+\item \textbf{Feature}: getUserProfile
+\item \textbf{HTTP Route}: GET /profile/:userid
+\begin{itemize}
+\item Added MongoDB and Express to server node\_modules
+\item Changed mock databse IDs to MongoDB ObjectIDs
+\item Changed Integer type to String in schema, changed token
+\item Stringified app.js, feed, chat, item, sendchat, and upload
+\item Implemented helper function getUserProfile to use MongoDB for user profile data retrieval
+\end{itemize}
+\end{itemize}
+
+
+
+\subsection{Roman Ganchin}
+\begin{itemize}
+\item \textbf{Feature}: getCategories, dislikeItem
+\item \textbf{HTTP Route}: PUT /users/:userid/feeds/items/:itemid/dislike, GET /users/:userid/feeds/categories
+\begin{itemize}
+\item Updated getCategorySync to work with MongoDb
+\item app.get(/users/:userid/feeds/categories) changed http GET request for categories
+\item Stringified trending.js in client
+\item Made resolveUserObjects for likeItem and dislikeItem to work with MongoDB
+\item Implemented dislikeItem to work with MongoDB
+\end{itemize}
+\end{itemize}
+
+\subsection{Richard Cui}
+\begin{itemize}
+\item \textbf{Feature}: getMessages, sendMessages
+\item \textbf{HTTP Route}: POST /users/:userid/messages, GET /users/:userid/messages
+\begin{itemize}
+\item Implemented chat feature with MongoDB
+\item Created JSON schemas
+\end{itemize}
+\end{itemize}
+
+
+\end{homeworkProblem} 
+
+
+
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 5
@@ -203,6 +253,7 @@ We do not have any advanced features that require additional setup.
 \begin{itemize}
 \item When clicking an item from trending the functionality works as expected but the url does not change and stays on initial clicked item. Result of changes in item and feed components.  
 \item Chat feature still under development due to complexities with server.
+\item Currently, you can't mark an uploaded item as sold or remove it. However, items from initialData works fine.
 \end{itemize}
 
 \end{homeworkProblem}
