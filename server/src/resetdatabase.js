@@ -7,7 +7,9 @@ var initialData = {
   "users": {
     "1" : {
       "_id" : new ObjectID("000000000000000000000001"),
-      "nickname" : "phancis",
+      "username" : "phancis",
+      "description" : "Love to buy broken toys.",
+      "languages" : "English",
       "fullName" : "Francis Phan",
       "email" : "fphan@umass.edu",
       "location" : "Amherst, MA",
@@ -24,7 +26,9 @@ var initialData = {
     },
     "2" : {
       "_id" : new ObjectID("000000000000000000000002"),
-      "nickname" : "rcui",
+      "username" : "rcui",
+      "description" : "Selling used electronics.",
+      "languages" : "English",
       "fullName" : "Richard Cui",
       "email" : "rcui@umass.edu",
       "location" : "Amherst, MA",
@@ -40,7 +44,9 @@ var initialData = {
     },
     "3" : {
       "_id" : new ObjectID("000000000000000000000003"),
-      "nickname" : "r-man",
+      "username" : "r-man",
+      "description" : "Living in Amherst is great.",
+      "languages" : "Spanish",
       "fullName" : "Roman Ganchin",
       "email" : "rganchin@umass.edu",
       "location" : "Amherst, MA",
@@ -56,7 +62,9 @@ var initialData = {
     },
     "4" : {
       "_id" : new ObjectID("000000000000000000000004"),
-      "nickname" : "SuzyQ",
+      "username" : "SuzyQ",
+      "description" : "Selling pets.",
+      "languages" : "English",
       "fullName" : "Suzie Kim",
       "email" : "gahyunkim@umass.edu",
       "location" : "Amherst, MA",
