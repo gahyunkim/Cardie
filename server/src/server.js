@@ -572,6 +572,15 @@ app.delete('/user/:userid/pm/item/:itemid', function(req, res) {
         }
       });
     });
+    db.collection('categories').updateMany({}, {
+      $pull:{
+        items: itemId
+      }
+    }, function(err) {
+      if(err){
+        return sendDatabaseError(res, err);
+      }
+    });
 
     db.collection('users').updateOne({_id: new ObjectID(userId)}, {
       $pull: {
