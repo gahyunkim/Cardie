@@ -634,7 +634,7 @@ function sendMessage(sender, recipient, message, callback) {
 
     db.collection('users').find(
       {
-        $and: [
+        $or: [
           { _id: new ObjectID(sender) },
           { _id: new ObjectID(recipient) }
         ]
@@ -645,37 +645,18 @@ function sendMessage(sender, recipient, message, callback) {
         }
         db.collection('users').updateMany(
           {
-            $and: [
+            $or: [
               { _id: new ObjectID(sender) },
               { _id: new ObjectID(recipient) }
             ]
           },
           {
             $push: {
-              "messages.messages": newMessage._id
+              "messages.messages": new ObjectID(newMessage._id)
             }
           }
         );
-        db.collection('messages').updateMany(
-          {
-            $and: [
-              { _id: new ObjectID(sender) },
-              { _id: new ObjectID(recipient) }
-            ]
-          },
-          {
-            $push: {
-              messages: {
-                $each: [newMessage._id]
-              }
-            }
-          },
-          function(err) {
-            if (err) {
-              return callback(err)
-            }
-            return callback(null, newMessage);
-        });
+        return callback(null, newMessage);
       }
     );
   });
