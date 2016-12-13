@@ -71,9 +71,11 @@ export default class Feed extends React.Component{
               </button>
             </div>
             <div className="col-md-8">
-              <h1>{firstItem.name}</h1>
+              <div className="item-title-container">
+                <h1>{firstItem.name}</h1>
+              </div>
               <div className="item_for_sale">
-                <img src={firstItem.contents}  onClick={() => this.showDescription()}/>
+                <img src={firstItem.contents}  width="400px" onClick={() => this.showDescription()}/>
               </div>
             </div>
             <div className="col-md-2">
@@ -96,10 +98,14 @@ export default class Feed extends React.Component{
                 </button>
               </div>
               <div className="col-md-8">
-                <h1>{firstItem.name}</h1>
+                <div className="item-title-container">
+                  <h1>{firstItem.name}</h1>
+                </div>
                 <div className="item_for_sale">
-                  <img src={firstItem.contents} onClick={() => this.showDescription()}/>
-                  <h3>{firstItem.description}</h3>
+                  <img src={firstItem.contents} width="400px" onClick={() => this.showDescription()}/>
+                  <div className="item-descrip-container">
+                    <h3>{firstItem.description}</h3>
+                  </div>
                 </div>
                 <div>
 

@@ -16,7 +16,7 @@ var initialData = {
       "feed": new ObjectID("000000000000000000000001"),
       "productManager" : {
         "_id" : new ObjectID("000000000000000000000001"),
-        "items" : [new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000005"),
+        "items" : [new ObjectID("000000000000000000000009"), new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000005"),
         new ObjectID("000000000000000000000006"),new ObjectID("000000000000000000000007"),new ObjectID("000000000000000000000008")]
       },
       "messages" : {
@@ -89,7 +89,7 @@ var initialData = {
       "feed": new ObjectID("000000000000000000000005"),
       "productManager" : {
         "_id" : new ObjectID("000000000000000000000005"),
-        "items" : [new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004")]
+        "items" : [new ObjectID("000000000000000000000010"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004")]
       },
       "messages" : {
         "_id" : new ObjectID("000000000000000000000005"),
@@ -102,33 +102,33 @@ var initialData = {
   "feeds" : {
     "1" : {
       "_id" : new ObjectID("000000000000000000000001"),
-      "items" : [new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004")],
+      "items" : [new ObjectID("000000000000000000000010"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004")],
       "categories" : ["Dorm","Food","Electronics"]
     },
     "2" : {
       "_id" : new ObjectID("000000000000000000000002"),
-      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
+      "items" : [new ObjectID("000000000000000000000010"), new ObjectID("000000000000000000000009"), new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
        new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"),
         new ObjectID("000000000000000000000006"), new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Food","Electronics"]
     },
     "3" : {
       "_id" : new ObjectID("000000000000000000000003"),
-      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"),
+      "items" : [new ObjectID("000000000000000000000010"), new ObjectID("000000000000000000000009"), new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"), new ObjectID("000000000000000000000003"),
        new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"), new ObjectID("000000000000000000000006"),
         new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Food","Electronics"]
     },
     "4" : {
       "_id" : new ObjectID("000000000000000000000004"),
-      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
+      "items" : [new ObjectID("000000000000000000000010"), new ObjectID("000000000000000000000009"), new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000002"),
        new ObjectID("000000000000000000000003"), new ObjectID("000000000000000000000004"), new ObjectID("000000000000000000000005"),
         new ObjectID("000000000000000000000006"), new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Food","Electronics"]
     },
     "5" : {
       "_id" : new ObjectID("000000000000000000000005"),
-      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000005"), new ObjectID("000000000000000000000006"),
+      "items" : [new ObjectID("000000000000000000000009"), new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000005"), new ObjectID("000000000000000000000006"),
        new ObjectID("000000000000000000000007"), new ObjectID("000000000000000000000008")],
       "categories" : ["Dorm","Food","Electronics", "Auto", "Entertainment", "Supplies", "Other"]
     }
@@ -137,7 +137,7 @@ var initialData = {
   "categories":{
     "Dorm": {
       "_id": "Dorm",
-      "items" : [new ObjectID("000000000000000000000001")]
+      "items" : [new ObjectID("000000000000000000000001"), new ObjectID("000000000000000000000009")]
     },
     "Food":{
       "_id": "Food",
@@ -149,7 +149,7 @@ var initialData = {
     },
     "Entertainment":{
       "_id": "Entertainment",
-      "items": []
+      "items": [new ObjectID("000000000000000000000010")]
     },
     "Supplies":{
       "_id": "Supplies",
@@ -262,6 +262,28 @@ var initialData = {
       "contents" : "https://tse4.mm.bing.net/th?id=OIP.Mf749e3b566949daac2ba418a7e8fbbbbo0&pid=15.1",
       "photoID" : new ObjectID("000000000000000000000008"),
       "vendorID" : new ObjectID("000000000000000000000001")
+    },
+    "9":{
+      "_id" : new ObjectID("000000000000000000000009"),
+      "name" : "Medieval Outfit",
+      "description" : "Worn once in a performance",
+      "category" : "Dorm",
+      "likeCounter" : [],
+      "dislikeCounter" : [],
+      "contents" : "https://scontent.fzty2-1.fna.fbcdn.net/v/t35.0-12/15555473_10211366395944801_1638251738_o.png?oh=5782783ef3717dab5ffb94dd01b12131&oe=5852E6FF",
+      "photoID" : new ObjectID("000000000000000000000009"),
+      "vendorID" : new ObjectID("000000000000000000000001")
+    },
+    "10" :{
+      "_id" : new ObjectID("000000000000000000000010"),
+      "name" : "The Projectionist",
+      "description" : "Great movie, featuring Tim Richards the greatest professor of all time",
+      "category" : "Entertainment",
+      "likeCounter" : [],
+      "dislikeCounter" : [],
+      "contents" : "https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMjA1Njk1NV5BMl5BanBnXkFtZTcwMDEzMjMyMg@@._V1_SY1000_SX750_AL_.jpg",
+      "photoID" : new ObjectID("000000000000000000000010"),
+      "vendorID" : new ObjectID("000000000000000000000005")
     }
   },
   // Messages

@@ -26,9 +26,36 @@ a, a:hover, a:visited{
   text-decoration: none;
 }
 
+.item-title-container{
+  background: #fff;
+  border-radius: 10px;
+  padding-left: 5px;
+  margin: 2px;
+}
+.item-descrip-container{
+  background: #fff;
+  border-radius: 10px;
+  padding-left: 5px;
+  margin: 2px;
+}
+
+.item_for_sale{
+  background: #fff;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 2px;
+}
+
 .navbar-icon:visited {
   color: white;
   text-decoration: none;
+}
+
+.main-feed-content-container{
+  background: #aaa;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 2px;
 }
 
 .login{

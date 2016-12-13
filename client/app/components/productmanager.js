@@ -57,7 +57,7 @@ export default class ProductManager extends React.Component{
                 return(
                   <tr>
                     <td>
-                      {item.name}
+                        <strong>{item.name}</strong>
                       <br/>
                       <img src={item.contents} height="80" width="80"/>
                     </td>
